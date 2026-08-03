@@ -90,9 +90,9 @@ plays.
 
 ## Deploying
 
-Static site, no build step — `vercel.json` sets the cache headers and nothing
-else. Import the repository in Vercel and accept the defaults (framework preset
-*Other*, no build command, root directory `.`).
+Static site, no build step — `netlify.toml` publishes the repository root and
+sets a cache header on `players.json`, same as the sister games. Point Netlify
+at the repo and there is nothing else to configure.
 
 ## Configuration
 
