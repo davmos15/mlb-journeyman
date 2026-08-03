@@ -1,0 +1,34 @@
+name: Refresh MLB data
+on:
+  schedule:
+    # The Lahman database picks up the season just gone over the winter, so a
+    # monthly check is plenty — it exists to catch that annual drop, not to
+    # follow a live scoreboard.
+    - cron: "0 9 1 * *"   # 1st of the month, 09:00 UTC
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Rebuild players.json
+        run: python build_players.py players.json
+      - name: Refresh the offline fallback embedded in index.html
+        run: python make_fallback.py
+      - name: Validate data contract
+        run: pytest -q
+      - name: Commit if changed
+        run: |
+          if ! git diff --quiet players.json index.html; then
+            git config user.name "github-actions"
+            git config user.email "actions@github.com"
+            git add players.json index.html
+            git commit -m "chore: refresh MLB data from the Lahman database"
+            git push
+          fi

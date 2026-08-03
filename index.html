@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Journeyman — MLB</title>
+<meta name="description" content="Guess the MLB player from their career, one season at a time.">
+<meta name="theme-color" content="#182420">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iIzE4MjQyMCIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjkuNSIgZmlsbD0iI0YyRUZFNiIgc3Ryb2tlPSIjMTAxQTE2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik05LjIgOS4yYzMgMi42IDMgMTAuOSAwIDEzLjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0QxNEEzQSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0yMi44IDkuMmMtMyAyLjYtMyAxMC45IDAgMTMuNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDE0QTNBIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGcgc3Ryb2tlPSIjRDE0QTNBIiBzdHJva2Utd2lkdGg9IjEuMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMTAuNiAxMS4xbDEuOS0uN00xMC4yIDEzLjRsMiAtLjRNMTAuMSAxNmgyLjFNMTAuMiAxOC42bDIgLjRNMTAuNiAyMC45bDEuOS43Ii8+PHBhdGggZD0iTTIxLjQgMTEuMWwtMS45LS43TTIxLjggMTMuNGwtMi0uNE0yMS45IDE2aC0yLjFNMjEuOCAxOC42bC0yIC40TTIxLjQgMjAuOWwtMS45LjciLz48L2c+PC9zdmc+">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iIzE4MjQyMCIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjkuNSIgZmlsbD0iI0YyRUZFNiIgc3Ryb2tlPSIjMTAxQTE2IiBzdHJva2Utd2lkdGg9IjEuMiIvPjxwYXRoIGQ9Ik05LjIgOS4yYzMgMi42IDMgMTAuOSAwIDEzLjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0QxNEEzQSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0yMi44IDkuMmMtMyAyLjYtMyAxMC45IDAgMTMuNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDE0QTNBIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGcgc3Ryb2tlPSIjRDE0QTNBIiBzdHJva2Utd2lkdGg9IjEuMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMTAuNiAxMS4xbDEuOS0uN00xMC4yIDEzLjRsMiAtLjRNMTAuMSAxNmgyLjFNMTAuMiAxOC42bDIgLjRNMTAuNiAyMC45bDEuOS43Ii8+PHBhdGggZD0iTTIxLjQgMTEuMWwtMS45LS43TTIxLjggMTMuNGwtMi0uNE0yMS45IDE2aC0yLjFNMjEuOCAxOC42bC0yIC40TTIxLjQgMjAuOWwtMS45LjciLz48L2c+PC9zdmc+">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E1411; --felt:#182420; --felt2:#20302A; --line:#2B3B34;
+  --seam:#E9A13B; --flag:#E7EAE4; --dim:#8C9A93;
+  --err:#D14A3A; --ok:#5BA470;
+  --radius:10px;
+}
+[data-theme="light"]{
+  --ink:#F1EDE3; --felt:#FFFFFF; --felt2:#F6F1E6; --line:#DCD5C4;
+  --flag:#16211C; --dim:#68766E; --seam:#A8641E;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{height:100%}
+body{
+  min-height:100%; background:var(--ink); color:var(--flag);
+  font-family:'Archivo',system-ui,sans-serif; font-size:16px;
+  display:flex; flex-direction:column;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+input{font-family:inherit}
+
+/* ---------- header ---------- */
+header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px 8px; max-width:560px; width:100%; margin:0 auto;
+}
+.wordmark{font-family:'Archivo Black',sans-serif; font-size:20px; letter-spacing:.5px; line-height:1}
+.wordmark small{display:block; font-family:'IBM Plex Mono',monospace; font-weight:400;
+  font-size:10px; letter-spacing:3px; color:var(--seam); margin-top:3px}
+.hbtns{display:flex; gap:4px}
+.hbtn{width:40px;height:40px;border-radius:8px;display:grid;place-items:center;font-size:18px}
+.hbtn:active{background:var(--felt)}
+a.hbtn{color:inherit;text-decoration:none}
+.coffeebtn{font-size:17px}
+.coffeebtn:hover{background:var(--felt)}
+/* the wordmark and four 40px buttons are a tight fit on the narrowest phones */
+@media (max-width:359px){
+  .wordmark{font-size:17px}
+  .hbtn{width:34px;height:34px;font-size:16px}
+}
+.crossplay{display:flex; justify-content:center; max-width:560px; margin:0 auto; padding:2px 16px 0}
+.playother{display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600;
+  color:var(--seam); border:1px solid var(--line); border-radius:999px; padding:5px 15px}
+.playother:hover{background:var(--felt2)}
+
+/* ---------- mode tabs ---------- */
+.tabs{display:flex; gap:8px; padding:8px 16px; max-width:560px; width:100%; margin:0 auto}
+.tab{
+  flex:1; padding:10px 0; border-radius:var(--radius); font-weight:600; font-size:14px;
+  background:var(--felt); color:var(--dim); border:1px solid var(--line);
+}
+.tab.on{background:var(--felt2); color:var(--flag); border-color:var(--seam)}
+.tab .sub{display:block;font-size:10px;font-weight:400;font-family:'IBM Plex Mono',monospace;margin-top:2px}
+.decadebar{display:flex; gap:6px; justify-content:center; flex-wrap:wrap; padding:0 16px 4px; max-width:560px; width:100%; margin:0 auto}
+.dchip{padding:4px 12px; border-radius:999px; border:1px solid var(--line); background:var(--felt); color:var(--dim); font-size:12px; font-weight:600}
+.dchip.on{color:var(--flag); border-color:var(--seam); background:var(--felt2)}
+
+/* ---------- main / table ---------- */
+main{flex:1; width:100%; max-width:560px; margin:0 auto; padding:8px 16px 140px}
+.meta{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--flag);
+  padding:6px 2px;
+}
+.meta b{color:var(--seam);font-weight:600}
+.card{
+  background:var(--felt); border:1px solid var(--line); border-radius:var(--radius);
+  overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch;
+}
+/* min-width:max-content lets a wide line (a pitcher's, which carries longer
+   numbers than a hitter's) scroll inside the card on a narrow phone instead of
+   being clipped, while a line that fits still fills the width. */
+table{width:100%; min-width:max-content; border-collapse:collapse;
+  font-family:'IBM Plex Mono',monospace; font-size:11px}
+thead th{
+  text-align:right; padding:9px 3px; font-weight:600; font-size:9.5px; letter-spacing:.3px;
+  color:var(--dim); border-bottom:1px solid var(--line); text-transform:uppercase; cursor:help;
+  vertical-align:bottom;
+}
+.qual{display:block; font-size:8px; font-weight:600; letter-spacing:.5px; color:var(--dim); opacity:.55; margin-bottom:2px}
+/* full stat words when there's room; abbreviations on narrow screens */
+.hlong{display:none} .hshort{display:inline}
+@media (min-width:560px){ .hlong{display:inline} .hshort{display:none} table{font-size:13px} thead th{padding:10px 7px} td{padding:10px 7px} }
+thead th:first-child, td:first-child{text-align:left}
+thead th:nth-child(2), td:nth-child(2){text-align:left}
+td{padding:9px 3px; border-bottom:1px solid var(--line); text-align:right; white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr.season{animation:print .45s ease both}
+@keyframes print{from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:none}}
+@media (prefers-reduced-motion: reduce){ tr.season{animation:none} }
+tr.masked td{color:var(--line); letter-spacing:2px}
+/* the hairline keeps a club's swatch legible against whichever theme is on —
+   several clubs are near-black navy, several are near-white gold */
+.clubdot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;
+  vertical-align:baseline;border:1px solid rgba(127,127,127,.5)}
+/* the bonus clues are the only rows long enough to want two lines; letting them
+   wrap stops one clue from setting the width of the whole table */
+tr.bonus td{color:var(--seam); white-space:normal}
+
+/* ---------- feedback chips ---------- */
+.chips{display:flex; flex-wrap:wrap; gap:6px; padding:10px 2px}
+.chip{
+  font-family:'IBM Plex Mono',monospace; font-size:11px; padding:6px 10px;
+  border-radius:999px; border:1px solid var(--line); background:var(--felt); color:var(--dim);
+}
+.chip.yes{border-color:var(--ok); color:var(--ok)}
+.chip.no{border-color:var(--err); color:var(--err)}
+
+/* ---------- guess history ---------- */
+.guesses{display:flex; flex-direction:column; gap:6px; padding:4px 0}
+.guessrow{
+  display:flex; justify-content:space-between; align-items:center;
+  background:var(--felt); border:1px solid var(--line); border-radius:8px;
+  padding:9px 12px; font-size:14px; animation:print .3s ease both;
+}
+.guessrow .n{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim)}
+.guessrow.wrong{border-left:3px solid var(--err)}
+.guessrow.right{border-left:3px solid var(--ok)}
+
+/* ---------- sticky guess bar ---------- */
+.guessbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:20;
+  background:linear-gradient(transparent, var(--ink) 24%);
+  padding:20px 16px calc(14px + env(safe-area-inset-bottom));
+}
+.guessbar .inner{max-width:560px;margin:0 auto;position:relative}
+.acwrap{position:absolute; left:0; right:0; bottom:calc(100% + 6px); max-height:220px; overflow:auto;
+  background:var(--felt2); border:1px solid var(--line); border-radius:var(--radius); display:none}
+.acwrap.open{display:block}
+.acitem{width:100%; text-align:left; padding:12px 14px; font-size:15px; border-bottom:1px solid var(--line)}
+.acitem:last-child{border-bottom:none}
+.acitem:active,.acitem.hl{background:var(--felt)}
+.acitem small{color:var(--dim); font-family:'IBM Plex Mono',monospace; font-size:10px; margin-left:8px}
+.inputrow{display:flex; gap:8px}
+#guessInput{
+  /* min-width:0 because an <input> refuses to shrink past its intrinsic size
+     otherwise, and pushes the Guess button off a 320px screen */
+  flex:1; min-width:0;
+  background:var(--felt); border:1px solid var(--line); border-radius:var(--radius);
+  color:var(--flag); font-size:16px; padding:14px 14px; outline:none;
+}
+#guessInput:focus{border-color:var(--seam)}
+#guessInput::placeholder{color:var(--dim)}
+.go{
+  background:var(--seam); color:#14231A; font-weight:700; font-size:14px;
+  padding:0 20px; border-radius:var(--radius);
+}
+.go:disabled{opacity:.35}
+.remain{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);text-align:center;padding-top:8px}
+.remain b{color:var(--seam)}
+.aux{display:flex;gap:8px;padding-top:8px}
+.auxbtn{flex:1;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);
+  border:1px solid var(--line);border-radius:8px;padding:9px 4px;background:var(--felt)}
+.auxbtn:active{border-color:var(--seam);color:var(--flag)}
+.auxbtn:disabled{opacity:.3}
+.auxbtn[hidden]{display:none}
+.guessrow.skip{border-left:3px solid var(--line);color:var(--dim)}
+.sharefallback{display:none;margin-top:12px;background:var(--felt);border:1px solid var(--line);
+  border-radius:8px;padding:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;
+  white-space:pre-wrap;user-select:all;-webkit-user-select:all}
+
+/* ---------- modal ---------- */
+.overlay{
+  position:fixed; inset:0; background:rgba(5,9,7,.72); z-index:40;
+  display:none; align-items:flex-end; justify-content:center;
+}
+.overlay.open{display:flex}
+.sheet{
+  background:var(--ink); border:1px solid var(--line); border-bottom:none;
+  border-radius:16px 16px 0 0; width:100%; max-width:560px; max-height:86vh; overflow:auto;
+  padding:20px 20px calc(24px + env(safe-area-inset-bottom));
+  animation:up .25s ease both;
+}
+@keyframes up{from{transform:translateY(30px);opacity:0} to{transform:none;opacity:1}}
+@media (prefers-reduced-motion: reduce){ .sheet{animation:none} }
+.sheet h2{font-family:'Archivo Black',sans-serif; font-size:18px; margin-bottom:14px}
+.sheet p{font-size:14px; line-height:1.55; color:var(--dim); margin-bottom:10px}
+.sheet p b{color:var(--flag)}
+.closex{position:sticky; top:0; float:right; font-size:20px; color:var(--dim); padding:4px 8px}
+.bigresult{text-align:center; padding:10px 0 4px}
+.bigresult .who{font-family:'Archivo Black',sans-serif; font-size:26px; margin:6px 0 2px}
+.bigresult .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--dim); letter-spacing:1px}
+.bigresult .verdict{font-size:13px; color:var(--seam); font-weight:600; margin-top:8px}
+.sharebtn{
+  display:block; width:100%; margin-top:16px; background:var(--seam); color:#14231A;
+  font-weight:700; font-size:15px; padding:14px; border-radius:var(--radius); text-align:center;
+}
+.ghost{
+  display:block; width:100%; margin-top:8px; border:1px solid var(--line);
+  font-weight:600; font-size:14px; padding:13px; border-radius:var(--radius); color:var(--dim); text-align:center;
+}
+/* other games */
+.gamelink{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit;
+  background:var(--felt); border:1px solid var(--line); border-radius:var(--radius);
+  padding:13px 14px; margin-bottom:8px}
+.gamelink:hover{border-color:var(--seam); background:var(--felt2)}
+.gamelink .gi{font-size:22px; line-height:1}
+.gamelink .gt{flex:1; min-width:0}
+.gamelink .gt b{display:block; font-size:15px; font-weight:600}
+.gamelink .gt small{display:block; font-size:12px; color:var(--dim); margin-top:2px}
+.gamelink .ga{color:var(--seam); font-size:16px}
+/* stats */
+.statgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:16px}
+.statbox{background:var(--felt); border:1px solid var(--line); border-radius:8px; padding:10px 6px; text-align:center}
+.statbox .v{font-family:'Archivo Black',sans-serif; font-size:20px}
+.statbox .l{font-size:10px; color:var(--dim); margin-top:2px}
+.dist{display:flex; flex-direction:column; gap:5px}
+.distrow{display:flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:11px}
+.distbar{height:18px; background:var(--felt2); border-radius:4px; min-width:22px;
+  display:flex; align-items:center; justify-content:flex-end; padding:0 6px; color:var(--flag)}
+.distbar.hit{background:var(--seam); color:#14231A; font-weight:600}
+/* settings */
+.setrow{display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--line)}
+.setrow:last-child{border-bottom:none}
+.setrow .t{font-size:15px; font-weight:600}
+.setrow .d{font-size:12px; color:var(--dim); margin-top:2px}
+.toggle{width:50px; height:28px; border-radius:999px; background:var(--felt2); border:1px solid var(--line); position:relative; flex-shrink:0}
+.toggle::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--dim); transition:transform .18s}
+.toggle.on{background:var(--seam); border-color:var(--seam)}
+.toggle.on::after{background:#14231A; transform:translateX(22px)}
+.toast{
+  position:fixed; left:50%; bottom:120px; transform:translateX(-50%); z-index:60;
+  background:var(--felt2); border:1px solid var(--seam); border-radius:999px;
+  padding:10px 18px; font-size:13px; font-weight:600; opacity:0; pointer-events:none; transition:opacity .25s;
+  max-width:calc(100% - 32px); text-align:center;
+}
+.toast.show{opacity:1}
+.examplerow{font-family:'IBM Plex Mono',monospace;font-size:12px;background:var(--felt);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;color:var(--flag);overflow-x:auto;white-space:nowrap}
+.sitefoot{max-width:560px;margin:0 auto;padding:22px 16px 8px;text-align:center}
+.sitefoot .yrs{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--dim);line-height:1.6}
+.sitefoot .yrs a{color:var(--dim);text-decoration:underline}
+.coffeeghost{display:inline-flex;align-items:center;gap:8px;justify-content:center;width:100%;margin-top:8px;
+  border:1px solid #FFDD00;color:var(--flag);font-weight:600;font-size:14px;padding:12px;border-radius:10px;text-decoration:none}
+</style>
+</head>
+<body data-theme="dark">
+
+<header>
+  <div class="wordmark">JOURNEYMAN<small>MLB EDITION</small></div>
+  <div class="hbtns">
+    <a class="hbtn coffeebtn" id="coffeeMain" href="#" target="_blank" rel="noopener" aria-label="Buy me a coffee" title="Buy me a coffee">☕</a>
+    <button class="hbtn" id="btnHelp" aria-label="How to play">?</button>
+    <button class="hbtn" id="btnStats" aria-label="Your stats">▤</button>
+    <button class="hbtn" id="btnSettings" aria-label="Settings">⚙</button>
+  </div>
+</header>
+
+<div class="crossplay"><button class="playother" id="btnGames">🎮 Play our other games</button></div>
+
+<div class="tabs">
+  <button class="tab on" id="tabAll">All-Time<span class="sub" id="dailyNo">#1</span></button>
+  <button class="tab" id="tabDecades">Decades<span class="sub" id="decadeSub">pick</span></button>
+  <button class="tab" id="tabPractice">Practice<span class="sub">unlimited</span></button>
+</div>
+<div class="decadebar" id="decadeBar" style="display:none">
+  <button class="dchip" data-d="1950">50s</button>
+  <button class="dchip" data-d="1960">60s</button>
+  <button class="dchip" data-d="1970">70s</button>
+  <button class="dchip" data-d="1980">80s</button>
+  <button class="dchip" data-d="1990">90s</button>
+  <button class="dchip" data-d="2000">2000s</button>
+  <button class="dchip" data-d="2010">2010s</button>
+  <button class="dchip" data-d="2020">2020s</button>
+</div>
+
+<main>
+  <div class="meta">
+    <span id="metaLeft">CAREER RECORD</span>
+    <span id="metaRight"></span>
+  </div>
+  <div class="card">
+    <table aria-live="polite">
+      <thead id="thead"></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="guesses" id="guessList"></div>
+
+  <footer class="sitefoot">
+    <div class="yrs" id="dataYears"></div>
+  </footer>
+</main>
+
+<div class="guessbar" id="guessbar">
+  <div class="inner">
+    <div class="acwrap" id="ac"></div>
+    <div class="inputrow">
+      <input id="guessInput" type="text" autocomplete="off" autocapitalize="words" placeholder="Guess the player…" aria-label="Guess the player">
+      <button class="go" id="btnGo" disabled>Guess</button>
+    </div>
+    <div class="remain" id="remain"></div>
+    <div class="aux">
+      <button class="auxbtn" id="btnClue">Next clue (uses a guess)</button>
+      <button class="auxbtn" id="btnGiveUp">Give up</button>
+      <button class="auxbtn" id="btnResult" hidden>View result &amp; share</button>
+    </div>
+  </div>
+</div>
+
+<!-- HELP -->
+<div class="overlay" id="ovHelp"><div class="sheet">
+  <button class="closex" data-close>✕</button>
+  <h2>How to play</h2>
+  <p>A mystery player's <b>career record</b> is revealed one season at a time, in a random order.</p>
+  <p>Every wrong guess reveals <b>another season</b> of their career. Fewer seasons, more bragging rights.</p>
+  <div class="examplerow">1998&nbsp;&nbsp;■ NYY&nbsp;&nbsp;149&nbsp;&nbsp;.324&nbsp;&nbsp;19&nbsp;&nbsp;84&nbsp;&nbsp;127&nbsp;&nbsp;30&nbsp;&nbsp;.842</div>
+  <p>A hitter's season shows the <b>team</b>, <b>games</b>, <b>batting average</b>, <b>home runs</b>, <b>RBI</b>, <b>runs</b>, <b>stolen bases</b> and <b>OPS</b>.</p>
+  <div class="examplerow">1999&nbsp;&nbsp;■ BOS&nbsp;&nbsp;31&nbsp;&nbsp;23&nbsp;&nbsp;4&nbsp;&nbsp;2.07&nbsp;&nbsp;213.1&nbsp;&nbsp;313&nbsp;&nbsp;0.92</div>
+  <p>If the mystery player is a <b>pitcher</b>, the table switches to a pitching line: <b>games</b>, <b>wins</b>, <b>losses</b>, <b>ERA</b>, <b>innings</b>, <b>strikeouts</b> and <b>WHIP</b>. Tap any column heading — or a team code — for what it means.</p>
+  <p>After each wrong guess you also get <b>clue chips</b> comparing your guess to the mystery player: whether they <b>shared a team</b>, whether they played the same <b>position</b>, and whether the answer <b>debuted earlier or later</b> than your guess.</p>
+  <p><b>Normal:</b> 8 guesses. <b>Hard mode:</b> 5 guesses, teams hidden, no clue chips.</p>
+  <p>Daily All-Time and per-decade games, or hit Practice for unlimited random players.</p>
+</div></div>
+
+<!-- OTHER GAMES -->
+<div class="overlay" id="ovGames"><div class="sheet">
+  <button class="closex" data-close>✕</button>
+  <h2>Play our other games</h2>
+  <p>Same daily habit, different obsession.</p>
+  <a class="gamelink" href="https://nba-journeyman.netlify.app" target="_blank" rel="noopener">
+    <span class="gi">🏀</span>
+    <span class="gt"><b>Journeyman — NBA</b><small>Guess the basketballer from their career</small></span>
+    <span class="ga">→</span>
+  </a>
+  <a class="gamelink" href="https://footy-journeyman.netlify.app" target="_blank" rel="noopener">
+    <span class="gi">🏉</span>
+    <span class="gt"><b>Journeyman — AFL</b><small>Guess the footballer from their career</small></span>
+    <span class="ga">→</span>
+  </a>
+  <a class="gamelink" href="https://country-globetrotter.netlify.app" target="_blank" rel="noopener">
+    <span class="gi">🌍</span>
+    <span class="gt"><b>Globetrotter</b><small>Guess the country from its clues</small></span>
+    <span class="ga">→</span>
+  </a>
+</div></div>
+
+<!-- STATS -->
+<div class="overlay" id="ovStats"><div class="sheet">
+  <button class="closex" data-close>✕</button>
+  <h2>Your record</h2>
+  <div class="statgrid" id="statGrid"></div>
+  <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;margin-bottom:6px">GUESS DISTRIBUTION (DAILY)</p>
+  <div class="dist" id="dist"></div>
+</div></div>
+
+<!-- SETTINGS -->
+<div class="overlay" id="ovSettings"><div class="sheet">
+  <button class="closex" data-close>✕</button>
+  <h2>Settings</h2>
+  <div class="setrow">
+    <div><div class="t">Hard mode</div><div class="d">5 guesses, teams hidden, no clue chips. Applies from your next game.</div></div>
+    <button class="toggle" id="tglHard" role="switch" aria-label="Hard mode"></button>
+  </div>
+  <div class="setrow">
+    <div><div class="t">Light theme</div><div class="d">For playing in bright light.</div></div>
+    <button class="toggle" id="tglLight" role="switch" aria-label="Light theme"></button>
+  </div>
+  <div class="setrow">
+    <div><div class="t">About</div><div class="d">Journeyman is a fan-made stats game covering Major League Baseball seasons. Not affiliated with MLB or any club. Player stats are public facts from the Lahman Baseball Database; no logos or player images are used. If you enjoy it, the ☕ button on the main screen helps keep it running.</div></div>
+  </div>
+</div></div>
+
+<!-- RESULT -->
+<div class="overlay" id="ovResult"><div class="sheet">
+  <button class="closex" data-close>✕</button>
+  <div class="bigresult">
+    <div class="tag" id="resTag">JOURNEYMAN #1</div>
+    <div class="who" id="resWho"></div>
+    <div class="tag" id="resCareer"></div>
+    <div class="verdict" id="resVerdict"></div>
+  </div>
+  <button class="sharebtn" id="btnShare">Share result</button>
+  <pre class="sharefallback" id="shareFallback"></pre>
+  <a class="coffeeghost" id="coffeeResult" href="#" target="_blank" rel="noopener"><span>☕</span> Enjoying this? Buy me a coffee</a>
+  <button class="ghost" id="btnAgain">Play practice game</button>
+</div></div>
+
+<div class="toast" id="toast">Copied</div>
+
+<script>
+/* =====================================================================
+   JOURNEYMAN — MLB EDITION
+   ---------------------------------------------------------------------
+   Data is loaded at runtime from players.json (see loadData below), built
+   by build_players.py from the Lahman Baseball Database.
+   Teams are plain text + colour swatch only (no logos = no IP issues).
+   ===================================================================== */
+
+/* ┌─────────────────────────────────────────────────────────────────┐
+   │  SITE CONFIG — edit these.                                        │
+   └─────────────────────────────────────────────────────────────────┘ */
+const COFFEE_URL = "https://buymeacoffee.com/nadavmoskow";  // ← Buy Me a Coffee URL
+const SITE_URL = "";  // ← canonical URL used in the "Play it yourself" share link; leave "" to use the page's own address
+const GA_ID = "";     // ← Google Analytics measurement ID (G-XXXXXXXXXX). Empty = no analytics loaded at all.
+
+// Google Analytics, loaded only once a measurement ID is set above, so the
+// site ships with no third-party tag until there is one to point at.
+if (GA_ID){
+  const gs = document.createElement("script");
+  gs.async = true;
+  gs.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+  document.head.appendChild(gs);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', GA_ID);
+}
+
+// Keyed by the Baseball-Reference club code each season's `team` stores. Clubs
+// that moved or rebranded keep the code they used at the time, so a 1965 line
+// reads MLN and a 2005 one reads ATL.
+//
+// Where a club's primary colour is a near-black navy — and a good half of
+// baseball's is — the swatch uses the brightest colour that club actually wears
+// instead (Detroit's orange, Milwaukee's gold, Seattle's teal), so the dots stay
+// tellable apart at 8 pixels. Franchises that simply moved share a colour on
+// purpose: the Senators became the Rangers.
+const TEAMS = {
+  ARI:["Arizona Diamondbacks","#A71930"], ATL:["Atlanta Braves","#CE1141"],
+  BAL:["Baltimore Orioles","#DF4601"],    BOS:["Boston Red Sox","#BD3039"],
+  CHC:["Chicago Cubs","#2B5FC4"],         CHW:["Chicago White Sox","#9BA7AD"],
+  CIN:["Cincinnati Reds","#C6011F"],      CLE:["Cleveland Guardians","#E31937"],
+  COL:["Colorado Rockies","#8A7BC8"],     DET:["Detroit Tigers","#FA4616"],
+  HOU:["Houston Astros","#EB6E1F"],       KCR:["Kansas City Royals","#2B6FC4"],
+  LAA:["Los Angeles Angels","#BA0021"],   LAD:["Los Angeles Dodgers","#2C7FD4"],
+  MIA:["Miami Marlins","#00A3E0"],        MIL:["Milwaukee Brewers","#FFC52F"],
+  MIN:["Minnesota Twins","#D31145"],      NYM:["New York Mets","#FF5910"],
+  NYY:["New York Yankees","#4A6FBF"],     ATH:["Athletics","#EFB21E"],
+  OAK:["Oakland Athletics","#EFB21E"],    PHI:["Philadelphia Phillies","#E81828"],
+  PIT:["Pittsburgh Pirates","#FDB827"],   SDP:["San Diego Padres","#FFC425"],
+  SFG:["San Francisco Giants","#FD5A1E"], SEA:["Seattle Mariners","#00A99D"],
+  STL:["St. Louis Cardinals","#C41E3A"],  TBR:["Tampa Bay Rays","#8FBCE6"],
+  TEX:["Texas Rangers","#C0111F"],        TOR:["Toronto Blue Jays","#3B7FD4"],
+  WSN:["Washington Nationals","#D22B2E"],
+  // clubs that have since moved, rebranded or folded
+  ANA:["Anaheim Angels","#BA0021"],       CAL:["California Angels","#BA0021"],
+  BRO:["Brooklyn Dodgers","#2C7FD4"],     NYG:["New York Giants","#FD5A1E"],
+  BSN:["Boston Braves","#CE1141"],        MLN:["Milwaukee Braves","#CE1141"],
+  PHA:["Philadelphia Athletics","#EFB21E"], KCA:["Kansas City Athletics","#EFB21E"],
+  SLB:["St. Louis Browns","#DF4601"],     WSH:["Washington Senators","#D22B2E"],
+  WSA:["Washington Senators (1961–71)","#C0111F"], SEP:["Seattle Pilots","#3D8CC4"],
+  MON:["Montreal Expos","#2F6FD8"],       FLA:["Florida Marlins","#00A3E0"],
+  TBD:["Tampa Bay Devil Rays","#6A4C9C"]
+};
+const teamName = t => (TEAMS[t] || [t])[0];
+const teamColour = t => (TEAMS[t] || [null, "#666"])[1];
+
+/* ---------------------------------------------------------------------
+   COLUMNS. Baseball has two kinds of career and no single stat line reads
+   sensibly for both, so the table swaps its columns to match whichever
+   side of the ball the mystery player spent it on.
+   --------------------------------------------------------------------- */
+const rate3 = v => { const s = v.toFixed(3); return s.charAt(0) === "0" ? s.slice(1) : s; };
+const int = v => String(Math.round(v));
+
+const COLSETS = {
+  bat: [
+    {k:"g",   long:"Games",   short:"G",   f:int,   info:"Games played that season."},
+    {k:"avg", long:"Average", short:"AVG", f:rate3, info:"Batting average — hits divided by at-bats."},
+    {k:"hr",  long:"Homers",  short:"HR",  f:int,   info:"Home runs hit that season."},
+    {k:"rbi", long:"RBI",     short:"RBI", f:int,   info:"Runs batted in — runners driven home."},
+    {k:"r",   long:"Runs",    short:"R",   f:int,   info:"Runs scored that season."},
+    {k:"sb",  long:"Steals",  short:"SB",  f:int,   info:"Stolen bases that season."},
+    {k:"ops", long:"OPS",     short:"OPS", f:rate3, info:"On-base plus slugging — the all-round hitting number."}
+  ],
+  pit: [
+    {k:"g",    long:"Games",   short:"G",    f:int,             info:"Games pitched that season."},
+    {k:"w",    long:"Wins",    short:"W",    f:int,             info:"Wins that season."},
+    {k:"l",    long:"Losses",  short:"L",    f:int,             info:"Losses that season."},
+    {k:"era",  long:"ERA",     short:"ERA",  f:v=>v.toFixed(2), info:"Earned run average — earned runs allowed per nine innings."},
+    {k:"ip",   long:"Innings", short:"IP",   f:v=>v.toFixed(1), info:"Innings pitched. The digit after the point counts thirds: 213.1 is 213⅓."},
+    {k:"so",   long:"Ks",      short:"SO",   f:int,             info:"Strikeouts that season."},
+    {k:"whip", long:"WHIP",    short:"WHIP", f:v=>v.toFixed(2), info:"Walks and hits allowed per inning pitched."}
+  ]
+};
+const YEAR_COL = {long:"Year", short:"Year", info:"The season."};
+const TEAM_COL = {long:"Team", short:"Team", info:"Club that season (tap a code for the full name)."};
+
+/* ---------------------------------------------------------------------
+   DATA. Loaded from players.json (generated by build_players.py from the
+   Lahman Baseball Database). If the fetch fails — e.g. opened via file://
+   or in a sandbox — we fall back to an embedded set of players spanning
+   every decade so the game still runs. Deployed, the fetch succeeds and
+   you get the full pool.
+   Batter entry: {name,type:"bat",pos,first,last,teams[],games,pa,hits,hr,decades[],answer,seasons?[]}
+   Pitcher entry: {name,type:"pit",pos,first,last,teams[],games,ip,wins,so,decades[],answer,seasons?[]}
+   Only `answer:true` players (which carry `seasons`) can be the mystery.
+   --------------------------------------------------------------------- */
+const FALLBACK = [{"name":"Pete Rose","type":"bat","pos":"INFIELD","first":1963,"last":1986,"teams":["CIN","PHI","MON"],"games":3562,"pa":15805,"hits":4256,"hr":160,"decades":[1960,1970,1980],"seasons":[{"y":1963,"team":"CIN","g":157,"avg":0.273,"hr":6,"rbi":41,"r":101,"sb":13,"ops":0.705},{"y":1964,"team":"CIN","g":136,"avg":0.269,"hr":4,"rbi":34,"r":64,"sb":4,"ops":0.645},{"y":1965,"team":"CIN","g":162,"avg":0.312,"hr":11,"rbi":81,"r":117,"sb":8,"ops":0.828},{"y":1966,"team":"CIN","g":156,"avg":0.313,"hr":16,"rbi":70,"r":97,"sb":4,"ops":0.811},{"y":1967,"team":"CIN","g":148,"avg":0.301,"hr":12,"rbi":76,"r":86,"sb":11,"ops":0.808},{"y":1968,"team":"CIN","g":149,"avg":0.335,"hr":10,"rbi":49,"r":94,"sb":3,"ops":0.861},{"y":1969,"team":"CIN","g":156,"avg":0.348,"hr":16,"rbi":82,"r":120,"sb":7,"ops":0.94},{"y":1970,"team":"CIN","g":159,"avg":0.316,"hr":15,"rbi":52,"r":120,"sb":12,"ops":0.855},{"y":1971,"team":"CIN","g":160,"avg":0.304,"hr":13,"rbi":44,"r":86,"sb":13,"ops":0.793},{"y":1972,"team":"CIN","g":154,"avg":0.307,"hr":6,"rbi":57,"r":107,"sb":10,"ops":0.799},{"y":1973,"team":"CIN","g":160,"avg":0.338,"hr":5,"rbi":64,"r":115,"sb":10,"ops":0.838},{"y":1974,"team":"CIN","g":163,"avg":0.284,"hr":3,"rbi":51,"r":110,"sb":2,"ops":0.773},{"y":1975,"team":"CIN","g":162,"avg":0.317,"hr":7,"rbi":74,"r":112,"sb":0,"ops":0.838},{"y":1976,"team":"CIN","g":162,"avg":0.323,"hr":10,"rbi":63,"r":130,"sb":9,"ops":0.854},{"y":1977,"team":"CIN","g":162,"avg":0.311,"hr":9,"rbi":64,"r":95,"sb":16,"ops":0.809},{"y":1978,"team":"CIN","g":159,"avg":0.302,"hr":7,"rbi":52,"r":103,"sb":13,"ops":0.783},{"y":1979,"team":"PHI","g":163,"avg":0.331,"hr":4,"rbi":59,"r":90,"sb":20,"ops":0.848},{"y":1980,"team":"PHI","g":162,"avg":0.282,"hr":1,"rbi":64,"r":95,"sb":12,"ops":0.706},{"y":1981,"team":"PHI","g":107,"avg":0.325,"hr":0,"rbi":33,"r":73,"sb":4,"ops":0.781},{"y":1982,"team":"PHI","g":162,"avg":0.271,"hr":3,"rbi":54,"r":80,"sb":8,"ops":0.683},{"y":1983,"team":"PHI","g":151,"avg":0.245,"hr":0,"rbi":45,"r":52,"sb":7,"ops":0.602},{"y":1984,"team":"MON","g":121,"avg":0.286,"hr":0,"rbi":34,"r":43,"sb":1,"ops":0.696},{"y":1985,"team":"CIN","g":119,"avg":0.264,"hr":2,"rbi":46,"r":60,"sb":8,"ops":0.713},{"y":1986,"team":"CIN","g":72,"avg":0.219,"hr":0,"rbi":25,"r":15,"sb":3,"ops":0.586}],"answer":true},{"name":"Carl Yastrzemski","type":"bat","pos":"OUTFIELD","first":1961,"last":1983,"teams":["BOS"],"games":3308,"pa":13978,"hits":3419,"hr":452,"decades":[1960,1970,1980],"seasons":[{"y":1961,"team":"BOS","g":148,"avg":0.266,"hr":11,"rbi":80,"r":71,"sb":6,"ops":0.721},{"y":1962,"team":"BOS","g":160,"avg":0.296,"hr":19,"rbi":94,"r":99,"sb":7,"ops":0.832},{"y":1963,"team":"BOS","g":151,"avg":0.321,"hr":14,"rbi":68,"r":91,"sb":8,"ops":0.894},{"y":1964,"team":"BOS","g":151,"avg":0.289,"hr":15,"rbi":67,"r":77,"sb":6,"ops":0.825},{"y":1965,"team":"BOS","g":133,"avg":0.312,"hr":20,"rbi":72,"r":78,"sb":7,"ops":0.932},{"y":1966,"team":"BOS","g":160,"avg":0.278,"hr":16,"rbi":80,"r":81,"sb":8,"ops":0.799},{"y":1967,"team":"BOS","g":161,"avg":0.326,"hr":44,"rbi":121,"r":112,"sb":10,"ops":1.04},{"y":1968,"team":"BOS","g":157,"avg":0.301,"hr":23,"rbi":74,"r":90,"sb":13,"ops":0.922},{"y":1969,"team":"BOS","g":162,"avg":0.255,"hr":40,"rbi":111,"r":96,"sb":15,"ops":0.87},{"y":1970,"team":"BOS","g":161,"avg":0.329,"hr":40,"rbi":102,"r":125,"sb":23,"ops":1.044},{"y":1971,"team":"BOS","g":148,"avg":0.254,"hr":15,"rbi":70,"r":75,"sb":8,"ops":0.772},{"y":1972,"team":"BOS","g":125,"avg":0.264,"hr":12,"rbi":68,"r":70,"sb":5,"ops":0.748},{"y":1973,"team":"BOS","g":152,"avg":0.296,"hr":19,"rbi":95,"r":82,"sb":9,"ops":0.87},{"y":1974,"team":"BOS","g":148,"avg":0.301,"hr":15,"rbi":79,"r":93,"sb":12,"ops":0.859},{"y":1975,"team":"BOS","g":149,"avg":0.269,"hr":14,"rbi":60,"r":91,"sb":8,"ops":0.776},{"y":1976,"team":"BOS","g":155,"avg":0.267,"hr":21,"rbi":102,"r":71,"sb":5,"ops":0.79},{"y":1977,"team":"BOS","g":150,"avg":0.296,"hr":28,"rbi":102,"r":99,"sb":11,"ops":0.877},{"y":1978,"team":"BOS","g":144,"avg":0.277,"hr":17,"rbi":81,"r":70,"sb":4,"ops":0.79},{"y":1979,"team":"BOS","g":147,"avg":0.27,"hr":21,"rbi":87,"r":69,"sb":3,"ops":0.796},{"y":1980,"team":"BOS","g":105,"avg":0.275,"hr":15,"rbi":50,"r":49,"sb":0,"ops":0.812},{"y":1981,"team":"BOS","g":91,"avg":0.246,"hr":7,"rbi":53,"r":36,"sb":0,"ops":0.693},{"y":1982,"team":"BOS","g":131,"avg":0.275,"hr":16,"rbi":72,"r":53,"sb":0,"ops":0.789},{"y":1983,"team":"BOS","g":119,"avg":0.266,"hr":10,"rbi":56,"r":38,"sb":0,"ops":0.767}],"answer":true},{"name":"Hank Aaron","type":"bat","pos":"OUTFIELD","first":1954,"last":1976,"teams":["MLN","ATL","MIL"],"games":3298,"pa":13919,"hits":3771,"hr":755,"decades":[1950,1960,1970],"seasons":[{"y":1954,"team":"MLN","g":122,"avg":0.28,"hr":13,"rbi":69,"r":58,"sb":2,"ops":0.769},{"y":1955,"team":"MLN","g":153,"avg":0.314,"hr":27,"rbi":106,"r":105,"sb":3,"ops":0.906},{"y":1956,"team":"MLN","g":153,"avg":0.328,"hr":26,"rbi":92,"r":106,"sb":2,"ops":0.923},{"y":1957,"team":"MLN","g":151,"avg":0.322,"hr":44,"rbi":132,"r":118,"sb":1,"ops":0.978},{"y":1958,"team":"MLN","g":153,"avg":0.326,"hr":30,"rbi":95,"r":109,"sb":4,"ops":0.931},{"y":1959,"team":"MLN","g":154,"avg":0.355,"hr":39,"rbi":123,"r":116,"sb":8,"ops":1.037},{"y":1960,"team":"MLN","g":153,"avg":0.292,"hr":40,"rbi":126,"r":102,"sb":16,"ops":0.919},{"y":1961,"team":"MLN","g":155,"avg":0.327,"hr":34,"rbi":120,"r":115,"sb":21,"ops":0.974},{"y":1962,"team":"MLN","g":156,"avg":0.323,"hr":45,"rbi":128,"r":127,"sb":15,"ops":1.008},{"y":1963,"team":"MLN","g":161,"avg":0.319,"hr":44,"rbi":130,"r":121,"sb":31,"ops":0.977},{"y":1964,"team":"MLN","g":145,"avg":0.328,"hr":24,"rbi":95,"r":103,"sb":22,"ops":0.907},{"y":1965,"team":"MLN","g":150,"avg":0.318,"hr":32,"rbi":89,"r":109,"sb":24,"ops":0.938},{"y":1966,"team":"ATL","g":158,"avg":0.279,"hr":44,"rbi":127,"r":117,"sb":21,"ops":0.895},{"y":1967,"team":"ATL","g":155,"avg":0.307,"hr":39,"rbi":109,"r":113,"sb":17,"ops":0.943},{"y":1968,"team":"ATL","g":160,"avg":0.287,"hr":29,"rbi":86,"r":84,"sb":28,"ops":0.852},{"y":1969,"team":"ATL","g":147,"avg":0.3,"hr":44,"rbi":97,"r":100,"sb":9,"ops":1.003},{"y":1970,"team":"ATL","g":150,"avg":0.298,"hr":38,"rbi":118,"r":103,"sb":9,"ops":0.958},{"y":1971,"team":"ATL","g":139,"avg":0.327,"hr":47,"rbi":118,"r":95,"sb":1,"ops":1.079},{"y":1972,"team":"ATL","g":129,"avg":0.265,"hr":34,"rbi":77,"r":75,"sb":4,"ops":0.904},{"y":1973,"team":"ATL","g":120,"avg":0.301,"hr":40,"rbi":96,"r":84,"sb":1,"ops":1.045},{"y":1974,"team":"ATL","g":112,"avg":0.268,"hr":20,"rbi":69,"r":47,"sb":1,"ops":0.832},{"y":1975,"team":"MIL","g":137,"avg":0.234,"hr":12,"rbi":60,"r":45,"sb":0,"ops":0.687},{"y":1976,"team":"MIL","g":85,"avg":0.229,"hr":10,"rbi":35,"r":22,"sb":0,"ops":0.684}],"answer":true},{"name":"Rickey Henderson","type":"bat","pos":"OUTFIELD","first":1979,"last":2003,"teams":["OAK","NYY","TOR","SDP","ANA","NYM","SEA","BOS","LAD"],"games":3081,"pa":13316,"hits":3055,"hr":297,"decades":[1980,1990,2000],"seasons":[{"y":1979,"team":"OAK","g":89,"avg":0.274,"hr":1,"rbi":26,"r":49,"sb":33,"ops":0.675},{"y":1980,"team":"OAK","g":158,"avg":0.303,"hr":9,"rbi":53,"r":111,"sb":100,"ops":0.82},{"y":1981,"team":"OAK","g":108,"avg":0.319,"hr":6,"rbi":35,"r":89,"sb":56,"ops":0.845},{"y":1982,"team":"OAK","g":149,"avg":0.267,"hr":10,"rbi":51,"r":119,"sb":130,"ops":0.78},{"y":1983,"team":"OAK","g":145,"avg":0.292,"hr":9,"rbi":48,"r":105,"sb":108,"ops":0.835},{"y":1984,"team":"OAK","g":142,"avg":0.293,"hr":16,"rbi":58,"r":113,"sb":66,"ops":0.857},{"y":1985,"team":"NYY","g":143,"avg":0.314,"hr":24,"rbi":72,"r":146,"sb":80,"ops":0.934},{"y":1986,"team":"NYY","g":153,"avg":0.263,"hr":28,"rbi":74,"r":130,"sb":87,"ops":0.827},{"y":1987,"team":"NYY","g":95,"avg":0.291,"hr":17,"rbi":37,"r":78,"sb":41,"ops":0.92},{"y":1988,"team":"NYY","g":140,"avg":0.305,"hr":6,"rbi":50,"r":118,"sb":93,"ops":0.793},{"y":1989,"team":"OAK","g":150,"avg":0.274,"hr":12,"rbi":57,"r":113,"sb":77,"ops":0.81},{"y":1990,"team":"OAK","g":136,"avg":0.325,"hr":28,"rbi":61,"r":119,"sb":65,"ops":1.016},{"y":1991,"team":"OAK","g":134,"avg":0.268,"hr":18,"rbi":57,"r":105,"sb":58,"ops":0.823},{"y":1992,"team":"OAK","g":117,"avg":0.283,"hr":15,"rbi":46,"r":77,"sb":48,"ops":0.883},{"y":1993,"team":"OAK","g":134,"avg":0.289,"hr":21,"rbi":59,"r":114,"sb":53,"ops":0.906},{"y":1994,"team":"OAK","g":87,"avg":0.26,"hr":6,"rbi":20,"r":66,"sb":22,"ops":0.776},{"y":1995,"team":"OAK","g":112,"avg":0.3,"hr":9,"rbi":54,"r":67,"sb":32,"ops":0.855},{"y":1996,"team":"SDP","g":148,"avg":0.241,"hr":9,"rbi":29,"r":110,"sb":37,"ops":0.754},{"y":1997,"team":"SDP","g":120,"avg":0.248,"hr":8,"rbi":34,"r":84,"sb":45,"ops":0.742},{"y":1998,"team":"OAK","g":152,"avg":0.236,"hr":14,"rbi":57,"r":101,"sb":66,"ops":0.723},{"y":1999,"team":"NYM","g":121,"avg":0.315,"hr":12,"rbi":42,"r":89,"sb":37,"ops":0.889},{"y":2000,"team":"SEA","g":123,"avg":0.233,"hr":4,"rbi":32,"r":75,"sb":36,"ops":0.673},{"y":2001,"team":"SDP","g":123,"avg":0.227,"hr":8,"rbi":42,"r":70,"sb":25,"ops":0.717},{"y":2002,"team":"BOS","g":72,"avg":0.223,"hr":5,"rbi":16,"r":40,"sb":8,"ops":0.721},{"y":2003,"team":"LAD","g":30,"avg":0.208,"hr":2,"rbi":5,"r":7,"sb":3,"ops":0.627}],"answer":true},{"name":"Albert Pujols","type":"bat","pos":"INFIELD","first":2001,"last":2022,"teams":["STL","LAA","LAD"],"games":3080,"pa":13040,"hits":3384,"hr":703,"decades":[2000,2010,2020],"seasons":[{"y":2001,"team":"STL","g":161,"avg":0.329,"hr":37,"rbi":130,"r":112,"sb":1,"ops":1.013},{"y":2002,"team":"STL","g":157,"avg":0.314,"hr":34,"rbi":127,"r":118,"sb":2,"ops":0.955},{"y":2003,"team":"STL","g":157,"avg":0.359,"hr":43,"rbi":124,"r":137,"sb":5,"ops":1.106},{"y":2004,"team":"STL","g":154,"avg":0.331,"hr":46,"rbi":123,"r":133,"sb":5,"ops":1.072},{"y":2005,"team":"STL","g":161,"avg":0.33,"hr":41,"rbi":117,"r":129,"sb":16,"ops":1.039},{"y":2006,"team":"STL","g":143,"avg":0.331,"hr":49,"rbi":137,"r":119,"sb":7,"ops":1.102},{"y":2007,"team":"STL","g":158,"avg":0.327,"hr":32,"rbi":103,"r":99,"sb":2,"ops":0.997},{"y":2008,"team":"STL","g":148,"avg":0.357,"hr":37,"rbi":116,"r":100,"sb":7,"ops":1.114},{"y":2009,"team":"STL","g":160,"avg":0.327,"hr":47,"rbi":135,"r":124,"sb":16,"ops":1.101},{"y":2010,"team":"STL","g":159,"avg":0.312,"hr":42,"rbi":118,"r":115,"sb":14,"ops":1.011},{"y":2011,"team":"STL","g":147,"avg":0.299,"hr":37,"rbi":99,"r":105,"sb":9,"ops":0.906},{"y":2012,"team":"LAA","g":154,"avg":0.285,"hr":30,"rbi":105,"r":85,"sb":8,"ops":0.859},{"y":2013,"team":"LAA","g":99,"avg":0.258,"hr":17,"rbi":64,"r":49,"sb":1,"ops":0.767},{"y":2014,"team":"LAA","g":159,"avg":0.272,"hr":28,"rbi":105,"r":89,"sb":5,"ops":0.79},{"y":2015,"team":"LAA","g":157,"avg":0.244,"hr":40,"rbi":95,"r":85,"sb":5,"ops":0.787},{"y":2016,"team":"LAA","g":152,"avg":0.268,"hr":31,"rbi":119,"r":71,"sb":4,"ops":0.78},{"y":2017,"team":"LAA","g":149,"avg":0.241,"hr":23,"rbi":101,"r":53,"sb":3,"ops":0.672},{"y":2018,"team":"LAA","g":117,"avg":0.245,"hr":19,"rbi":64,"r":50,"sb":1,"ops":0.7},{"y":2019,"team":"LAA","g":131,"avg":0.244,"hr":23,"rbi":93,"r":55,"sb":3,"ops":0.734},{"y":2020,"team":"LAA","g":39,"avg":0.224,"hr":6,"rbi":25,"r":15,"sb":0,"ops":0.665},{"y":2021,"team":"LAD","g":109,"avg":0.236,"hr":17,"rbi":50,"r":29,"sb":2,"ops":0.717},{"y":2022,"team":"STL","g":109,"avg":0.27,"hr":24,"rbi":68,"r":42,"sb":1,"ops":0.895}],"answer":true},{"name":"Eddie Murray","type":"bat","pos":"INFIELD","first":1977,"last":1997,"teams":["BAL","LAD","NYM","CLE","ANA"],"games":3026,"pa":12815,"hits":3255,"hr":504,"decades":[1970,1980,1990],"seasons":[{"y":1977,"team":"BAL","g":160,"avg":0.283,"hr":27,"rbi":88,"r":81,"sb":0,"ops":0.803},{"y":1978,"team":"BAL","g":161,"avg":0.285,"hr":27,"rbi":95,"r":85,"sb":6,"ops":0.836},{"y":1979,"team":"BAL","g":159,"avg":0.295,"hr":25,"rbi":99,"r":90,"sb":10,"ops":0.844},{"y":1980,"team":"BAL","g":158,"avg":0.3,"hr":32,"rbi":116,"r":100,"sb":7,"ops":0.873},{"y":1981,"team":"BAL","g":99,"avg":0.294,"hr":22,"rbi":78,"r":57,"sb":2,"ops":0.895},{"y":1982,"team":"BAL","g":151,"avg":0.316,"hr":32,"rbi":110,"r":87,"sb":7,"ops":0.94},{"y":1983,"team":"BAL","g":156,"avg":0.306,"hr":33,"rbi":111,"r":115,"sb":5,"ops":0.93},{"y":1984,"team":"BAL","g":162,"avg":0.306,"hr":29,"rbi":110,"r":97,"sb":10,"ops":0.918},{"y":1985,"team":"BAL","g":156,"avg":0.297,"hr":31,"rbi":124,"r":111,"sb":5,"ops":0.906},{"y":1986,"team":"BAL","g":137,"avg":0.305,"hr":17,"rbi":84,"r":61,"sb":3,"ops":0.859},{"y":1987,"team":"BAL","g":160,"avg":0.277,"hr":30,"rbi":91,"r":89,"sb":1,"ops":0.829},{"y":1988,"team":"BAL","g":161,"avg":0.284,"hr":28,"rbi":84,"r":75,"sb":5,"ops":0.836},{"y":1989,"team":"LAD","g":160,"avg":0.247,"hr":20,"rbi":88,"r":66,"sb":7,"ops":0.743},{"y":1990,"team":"LAD","g":155,"avg":0.33,"hr":26,"rbi":95,"r":96,"sb":8,"ops":0.934},{"y":1991,"team":"LAD","g":153,"avg":0.26,"hr":19,"rbi":96,"r":69,"sb":10,"ops":0.724},{"y":1992,"team":"NYM","g":156,"avg":0.261,"hr":16,"rbi":93,"r":64,"sb":4,"ops":0.759},{"y":1993,"team":"NYM","g":154,"avg":0.285,"hr":27,"rbi":100,"r":77,"sb":2,"ops":0.792},{"y":1994,"team":"CLE","g":108,"avg":0.254,"hr":17,"rbi":76,"r":57,"sb":8,"ops":0.727},{"y":1995,"team":"CLE","g":113,"avg":0.323,"hr":21,"rbi":82,"r":68,"sb":5,"ops":0.891},{"y":1996,"team":"CLE","g":152,"avg":0.26,"hr":22,"rbi":79,"r":69,"sb":4,"ops":0.743},{"y":1997,"team":"ANA","g":55,"avg":0.222,"hr":3,"rbi":18,"r":13,"sb":1,"ops":0.598}],"answer":true},{"name":"Cal Ripken","type":"bat","pos":"INFIELD","first":1981,"last":2001,"teams":["BAL"],"games":3001,"pa":12873,"hits":3184,"hr":431,"decades":[1980,1990],"seasons":[{"y":1981,"team":"BAL","g":23,"avg":0.128,"hr":0,"rbi":0,"r":1,"sb":0,"ops":0.278},{"y":1982,"team":"BAL","g":160,"avg":0.264,"hr":28,"rbi":93,"r":90,"sb":3,"ops":0.792},{"y":1983,"team":"BAL","g":162,"avg":0.318,"hr":27,"rbi":102,"r":121,"sb":0,"ops":0.888},{"y":1984,"team":"BAL","g":162,"avg":0.304,"hr":27,"rbi":86,"r":103,"sb":2,"ops":0.884},{"y":1985,"team":"BAL","g":161,"avg":0.282,"hr":26,"rbi":110,"r":116,"sb":2,"ops":0.816},{"y":1986,"team":"BAL","g":162,"avg":0.282,"hr":25,"rbi":81,"r":98,"sb":4,"ops":0.816},{"y":1987,"team":"BAL","g":162,"avg":0.252,"hr":27,"rbi":98,"r":97,"sb":3,"ops":0.769},{"y":1988,"team":"BAL","g":161,"avg":0.264,"hr":23,"rbi":81,"r":87,"sb":2,"ops":0.803},{"y":1989,"team":"BAL","g":162,"avg":0.257,"hr":21,"rbi":93,"r":80,"sb":3,"ops":0.718},{"y":1990,"team":"BAL","g":161,"avg":0.25,"hr":21,"rbi":84,"r":78,"sb":3,"ops":0.756},{"y":1991,"team":"BAL","g":162,"avg":0.323,"hr":34,"rbi":114,"r":99,"sb":6,"ops":0.94},{"y":1992,"team":"BAL","g":162,"avg":0.251,"hr":14,"rbi":72,"r":73,"sb":4,"ops":0.689},{"y":1993,"team":"BAL","g":162,"avg":0.257,"hr":24,"rbi":90,"r":87,"sb":1,"ops":0.748},{"y":1994,"team":"BAL","g":112,"avg":0.315,"hr":13,"rbi":75,"r":71,"sb":1,"ops":0.823},{"y":1995,"team":"BAL","g":144,"avg":0.262,"hr":17,"rbi":88,"r":71,"sb":0,"ops":0.745},{"y":1996,"team":"BAL","g":163,"avg":0.278,"hr":26,"rbi":102,"r":94,"sb":1,"ops":0.807},{"y":1997,"team":"BAL","g":162,"avg":0.27,"hr":17,"rbi":84,"r":79,"sb":1,"ops":0.733},{"y":1998,"team":"BAL","g":161,"avg":0.271,"hr":14,"rbi":61,"r":65,"sb":0,"ops":0.721},{"y":1999,"team":"BAL","g":86,"avg":0.34,"hr":18,"rbi":57,"r":51,"sb":0,"ops":0.952},{"y":2000,"team":"BAL","g":83,"avg":0.256,"hr":15,"rbi":56,"r":43,"sb":0,"ops":0.763},{"y":2001,"team":"BAL","g":128,"avg":0.239,"hr":14,"rbi":68,"r":43,"sb":0,"ops":0.637}],"answer":true},{"name":"Willie Mays","type":"bat","pos":"OUTFIELD","first":1951,"last":1973,"teams":["NYG","SFG","NYM"],"games":2992,"pa":12480,"hits":3283,"hr":660,"decades":[1950,1960,1970],"seasons":[{"y":1951,"team":"NYG","g":121,"avg":0.274,"hr":20,"rbi":68,"r":59,"sb":7,"ops":0.828},{"y":1952,"team":"NYG","g":34,"avg":0.236,"hr":4,"rbi":23,"r":17,"sb":4,"ops":0.736},{"y":1954,"team":"NYG","g":151,"avg":0.345,"hr":41,"rbi":110,"r":119,"sb":8,"ops":1.078},{"y":1955,"team":"NYG","g":152,"avg":0.319,"hr":51,"rbi":127,"r":123,"sb":24,"ops":1.059},{"y":1956,"team":"NYG","g":152,"avg":0.296,"hr":36,"rbi":84,"r":101,"sb":40,"ops":0.926},{"y":1957,"team":"NYG","g":152,"avg":0.333,"hr":35,"rbi":97,"r":112,"sb":38,"ops":1.033},{"y":1958,"team":"SFG","g":152,"avg":0.347,"hr":29,"rbi":96,"r":121,"sb":31,"ops":1.002},{"y":1959,"team":"SFG","g":151,"avg":0.313,"hr":34,"rbi":104,"r":125,"sb":27,"ops":0.964},{"y":1960,"team":"SFG","g":153,"avg":0.319,"hr":29,"rbi":103,"r":107,"sb":25,"ops":0.936},{"y":1961,"team":"SFG","g":154,"avg":0.308,"hr":40,"rbi":123,"r":129,"sb":18,"ops":0.977},{"y":1962,"team":"SFG","g":162,"avg":0.304,"hr":49,"rbi":141,"r":130,"sb":18,"ops":0.999},{"y":1963,"team":"SFG","g":157,"avg":0.314,"hr":38,"rbi":103,"r":115,"sb":8,"ops":0.962},{"y":1964,"team":"SFG","g":157,"avg":0.296,"hr":47,"rbi":111,"r":121,"sb":19,"ops":0.99},{"y":1965,"team":"SFG","g":157,"avg":0.317,"hr":52,"rbi":112,"r":118,"sb":9,"ops":1.043},{"y":1966,"team":"SFG","g":152,"avg":0.288,"hr":37,"rbi":103,"r":99,"sb":5,"ops":0.924},{"y":1967,"team":"SFG","g":141,"avg":0.263,"hr":22,"rbi":70,"r":83,"sb":6,"ops":0.787},{"y":1968,"team":"SFG","g":148,"avg":0.289,"hr":23,"rbi":79,"r":84,"sb":12,"ops":0.86},{"y":1969,"team":"SFG","g":117,"avg":0.283,"hr":13,"rbi":58,"r":64,"sb":6,"ops":0.798},{"y":1970,"team":"SFG","g":139,"avg":0.291,"hr":28,"rbi":83,"r":94,"sb":5,"ops":0.897},{"y":1971,"team":"SFG","g":136,"avg":0.271,"hr":18,"rbi":61,"r":82,"sb":23,"ops":0.907},{"y":1972,"team":"NYM","g":88,"avg":0.25,"hr":8,"rbi":22,"r":35,"sb":4,"ops":0.802},{"y":1973,"team":"NYM","g":66,"avg":0.211,"hr":6,"rbi":25,"r":24,"sb":1,"ops":0.647}],"answer":true},{"name":"Barry Bonds","type":"bat","pos":"OUTFIELD","first":1986,"last":2007,"teams":["PIT","SFG"],"games":2986,"pa":12602,"hits":2935,"hr":762,"decades":[1980,1990,2000],"seasons":[{"y":1986,"team":"PIT","g":113,"avg":0.223,"hr":16,"rbi":48,"r":72,"sb":36,"ops":0.746},{"y":1987,"team":"PIT","g":150,"avg":0.261,"hr":25,"rbi":59,"r":99,"sb":32,"ops":0.821},{"y":1988,"team":"PIT","g":144,"avg":0.283,"hr":24,"rbi":58,"r":97,"sb":17,"ops":0.859},{"y":1989,"team":"PIT","g":159,"avg":0.248,"hr":19,"rbi":58,"r":96,"sb":32,"ops":0.777},{"y":1990,"team":"PIT","g":151,"avg":0.301,"hr":33,"rbi":114,"r":104,"sb":52,"ops":0.97},{"y":1991,"team":"PIT","g":153,"avg":0.292,"hr":25,"rbi":116,"r":95,"sb":43,"ops":0.924},{"y":1992,"team":"PIT","g":140,"avg":0.311,"hr":34,"rbi":103,"r":109,"sb":39,"ops":1.08},{"y":1993,"team":"SFG","g":159,"avg":0.336,"hr":46,"rbi":123,"r":129,"sb":29,"ops":1.136},{"y":1994,"team":"SFG","g":112,"avg":0.312,"hr":37,"rbi":81,"r":89,"sb":29,"ops":1.073},{"y":1995,"team":"SFG","g":144,"avg":0.294,"hr":33,"rbi":104,"r":109,"sb":31,"ops":1.009},{"y":1996,"team":"SFG","g":158,"avg":0.308,"hr":42,"rbi":129,"r":122,"sb":40,"ops":1.076},{"y":1997,"team":"SFG","g":159,"avg":0.291,"hr":40,"rbi":101,"r":123,"sb":37,"ops":1.031},{"y":1998,"team":"SFG","g":156,"avg":0.303,"hr":37,"rbi":122,"r":120,"sb":28,"ops":1.047},{"y":1999,"team":"SFG","g":102,"avg":0.262,"hr":34,"rbi":83,"r":91,"sb":15,"ops":1.006},{"y":2000,"team":"SFG","g":143,"avg":0.306,"hr":49,"rbi":106,"r":129,"sb":11,"ops":1.127},{"y":2001,"team":"SFG","g":153,"avg":0.328,"hr":73,"rbi":137,"r":129,"sb":13,"ops":1.379},{"y":2002,"team":"SFG","g":143,"avg":0.37,"hr":46,"rbi":110,"r":117,"sb":9,"ops":1.381},{"y":2003,"team":"SFG","g":130,"avg":0.341,"hr":45,"rbi":90,"r":111,"sb":7,"ops":1.278},{"y":2004,"team":"SFG","g":147,"avg":0.362,"hr":45,"rbi":101,"r":129,"sb":6,"ops":1.422},{"y":2005,"team":"SFG","g":14,"avg":0.286,"hr":5,"rbi":10,"r":8,"sb":0,"ops":1.071},{"y":2006,"team":"SFG","g":130,"avg":0.27,"hr":26,"rbi":77,"r":74,"sb":3,"ops":0.999},{"y":2007,"team":"SFG","g":126,"avg":0.276,"hr":28,"rbi":66,"r":75,"sb":5,"ops":1.045}],"answer":true},{"name":"Dave Winfield","type":"bat","pos":"OUTFIELD","first":1973,"last":1995,"teams":["SDP","NYY","CAL","TOR","MIN","CLE"],"games":2973,"pa":12339,"hits":3110,"hr":465,"decades":[1970,1980,1990],"seasons":[{"y":1973,"team":"SDP","g":56,"avg":0.277,"hr":3,"rbi":12,"r":9,"sb":0,"ops":0.714},{"y":1974,"team":"SDP","g":145,"avg":0.265,"hr":20,"rbi":75,"r":57,"sb":9,"ops":0.756},{"y":1975,"team":"SDP","g":143,"avg":0.267,"hr":15,"rbi":76,"r":74,"sb":23,"ops":0.756},{"y":1976,"team":"SDP","g":137,"avg":0.283,"hr":13,"rbi":69,"r":81,"sb":26,"ops":0.797},{"y":1977,"team":"SDP","g":157,"avg":0.275,"hr":25,"rbi":92,"r":104,"sb":16,"ops":0.801},{"y":1978,"team":"SDP","g":158,"avg":0.308,"hr":24,"rbi":97,"r":88,"sb":21,"ops":0.866},{"y":1979,"team":"SDP","g":159,"avg":0.308,"hr":34,"rbi":118,"r":97,"sb":15,"ops":0.953},{"y":1980,"team":"SDP","g":162,"avg":0.276,"hr":20,"rbi":87,"r":89,"sb":23,"ops":0.815},{"y":1981,"team":"NYY","g":105,"avg":0.294,"hr":13,"rbi":68,"r":52,"sb":11,"ops":0.824},{"y":1982,"team":"NYY","g":140,"avg":0.28,"hr":37,"rbi":106,"r":84,"sb":5,"ops":0.891},{"y":1983,"team":"NYY","g":152,"avg":0.283,"hr":32,"rbi":116,"r":99,"sb":15,"ops":0.858},{"y":1984,"team":"NYY","g":141,"avg":0.34,"hr":19,"rbi":100,"r":106,"sb":6,"ops":0.908},{"y":1985,"team":"NYY","g":155,"avg":0.275,"hr":26,"rbi":114,"r":105,"sb":19,"ops":0.799},{"y":1986,"team":"NYY","g":154,"avg":0.262,"hr":24,"rbi":104,"r":90,"sb":6,"ops":0.811},{"y":1987,"team":"NYY","g":156,"avg":0.275,"hr":27,"rbi":97,"r":83,"sb":5,"ops":0.815},{"y":1988,"team":"NYY","g":149,"avg":0.322,"hr":25,"rbi":107,"r":96,"sb":9,"ops":0.927},{"y":1990,"team":"CAL","g":132,"avg":0.267,"hr":21,"rbi":78,"r":70,"sb":0,"ops":0.79},{"y":1991,"team":"CAL","g":150,"avg":0.262,"hr":28,"rbi":86,"r":75,"sb":7,"ops":0.798},{"y":1992,"team":"TOR","g":156,"avg":0.29,"hr":26,"rbi":108,"r":92,"sb":2,"ops":0.867},{"y":1993,"team":"MIN","g":143,"avg":0.271,"hr":21,"rbi":76,"r":72,"sb":2,"ops":0.767},{"y":1994,"team":"MIN","g":77,"avg":0.252,"hr":10,"rbi":43,"r":35,"sb":2,"ops":0.746},{"y":1995,"team":"CLE","g":46,"avg":0.191,"hr":2,"rbi":4,"r":11,"sb":1,"ops":0.572}],"answer":true},{"name":"Omar Vizquel","type":"bat","pos":"INFIELD","first":1989,"last":2012,"teams":["SEA","CLE","SFG","TEX","CHW","TOR"],"games":2968,"pa":11757,"hits":2877,"hr":80,"decades":[1990,2000,2010],"seasons":[{"y":1989,"team":"SEA","g":143,"avg":0.22,"hr":1,"rbi":20,"r":45,"sb":1,"ops":0.534},{"y":1990,"team":"SEA","g":81,"avg":0.247,"hr":2,"rbi":18,"r":19,"sb":4,"ops":0.593},{"y":1991,"team":"SEA","g":142,"avg":0.23,"hr":1,"rbi":41,"r":42,"sb":7,"ops":0.595},{"y":1992,"team":"SEA","g":136,"avg":0.294,"hr":0,"rbi":21,"r":49,"sb":15,"ops":0.692},{"y":1993,"team":"SEA","g":158,"avg":0.255,"hr":2,"rbi":31,"r":68,"sb":12,"ops":0.618},{"y":1994,"team":"CLE","g":69,"avg":0.273,"hr":1,"rbi":33,"r":39,"sb":13,"ops":0.65},{"y":1995,"team":"CLE","g":136,"avg":0.266,"hr":6,"rbi":56,"r":87,"sb":29,"ops":0.684},{"y":1996,"team":"CLE","g":151,"avg":0.297,"hr":9,"rbi":64,"r":98,"sb":35,"ops":0.779},{"y":1997,"team":"CLE","g":153,"avg":0.28,"hr":5,"rbi":49,"r":89,"sb":43,"ops":0.715},{"y":1998,"team":"CLE","g":151,"avg":0.288,"hr":2,"rbi":50,"r":86,"sb":37,"ops":0.73},{"y":1999,"team":"CLE","g":144,"avg":0.333,"hr":5,"rbi":66,"r":112,"sb":42,"ops":0.833},{"y":2000,"team":"CLE","g":156,"avg":0.287,"hr":7,"rbi":66,"r":101,"sb":22,"ops":0.753},{"y":2001,"team":"CLE","g":155,"avg":0.255,"hr":2,"rbi":50,"r":84,"sb":13,"ops":0.657},{"y":2002,"team":"CLE","g":151,"avg":0.275,"hr":14,"rbi":72,"r":85,"sb":18,"ops":0.759},{"y":2003,"team":"CLE","g":64,"avg":0.244,"hr":2,"rbi":19,"r":43,"sb":8,"ops":0.657},{"y":2004,"team":"CLE","g":148,"avg":0.291,"hr":7,"rbi":59,"r":82,"sb":19,"ops":0.741},{"y":2005,"team":"SFG","g":152,"avg":0.271,"hr":3,"rbi":45,"r":66,"sb":24,"ops":0.691},{"y":2006,"team":"SFG","g":153,"avg":0.295,"hr":4,"rbi":58,"r":88,"sb":24,"ops":0.749},{"y":2007,"team":"SFG","g":145,"avg":0.246,"hr":4,"rbi":51,"r":54,"sb":14,"ops":0.621},{"y":2008,"team":"SFG","g":92,"avg":0.222,"hr":0,"rbi":23,"r":24,"sb":5,"ops":0.55},{"y":2009,"team":"TEX","g":62,"avg":0.266,"hr":1,"rbi":14,"r":17,"sb":4,"ops":0.66},{"y":2010,"team":"CHW","g":108,"avg":0.276,"hr":2,"rbi":30,"r":36,"sb":11,"ops":0.673},{"y":2011,"team":"CHW","g":58,"avg":0.251,"hr":0,"rbi":8,"r":18,"sb":1,"ops":0.592},{"y":2012,"team":"TOR","g":60,"avg":0.235,"hr":0,"rbi":7,"r":13,"sb":3,"ops":0.546}],"answer":true},{"name":"Rusty Staub","type":"bat","pos":"OUTFIELD","first":1963,"last":1985,"teams":["HOU","MON","NYM","DET","TEX"],"games":2951,"pa":11173,"hits":2716,"hr":292,"decades":[1960,1970,1980],"seasons":[{"y":1963,"team":"HOU","g":150,"avg":0.224,"hr":6,"rbi":45,"r":43,"sb":0,"ops":0.617},{"y":1964,"team":"HOU","g":89,"avg":0.216,"hr":8,"rbi":35,"r":26,"sb":1,"ops":0.618},{"y":1965,"team":"HOU","g":131,"avg":0.256,"hr":14,"rbi":63,"r":43,"sb":3,"ops":0.751},{"y":1966,"team":"HOU","g":153,"avg":0.28,"hr":13,"rbi":81,"r":60,"sb":2,"ops":0.756},{"y":1967,"team":"HOU","g":149,"avg":0.333,"hr":10,"rbi":74,"r":71,"sb":0,"ops":0.871},{"y":1968,"team":"HOU","g":161,"avg":0.291,"hr":6,"rbi":72,"r":54,"sb":2,"ops":0.761},{"y":1969,"team":"MON","g":158,"avg":0.302,"hr":29,"rbi":79,"r":89,"sb":3,"ops":0.952},{"y":1970,"team":"MON","g":160,"avg":0.274,"hr":30,"rbi":94,"r":98,"sb":12,"ops":0.891},{"y":1971,"team":"MON","g":162,"avg":0.311,"hr":19,"rbi":97,"r":94,"sb":9,"ops":0.874},{"y":1972,"team":"NYM","g":66,"avg":0.293,"hr":9,"rbi":38,"r":32,"sb":0,"ops":0.824},{"y":1973,"team":"NYM","g":152,"avg":0.279,"hr":15,"rbi":76,"r":77,"sb":1,"ops":0.781},{"y":1974,"team":"NYM","g":151,"avg":0.258,"hr":19,"rbi":78,"r":65,"sb":2,"ops":0.754},{"y":1975,"team":"NYM","g":155,"avg":0.282,"hr":19,"rbi":105,"r":93,"sb":2,"ops":0.818},{"y":1976,"team":"DET","g":161,"avg":0.299,"hr":15,"rbi":96,"r":73,"sb":3,"ops":0.818},{"y":1977,"team":"DET","g":158,"avg":0.278,"hr":22,"rbi":101,"r":84,"sb":1,"ops":0.784},{"y":1978,"team":"DET","g":162,"avg":0.273,"hr":24,"rbi":121,"r":75,"sb":3,"ops":0.782},{"y":1979,"team":"DET","g":106,"avg":0.244,"hr":12,"rbi":54,"r":41,"sb":1,"ops":0.744},{"y":1980,"team":"TEX","g":109,"avg":0.3,"hr":9,"rbi":55,"r":42,"sb":1,"ops":0.828},{"y":1981,"team":"NYM","g":70,"avg":0.317,"hr":5,"rbi":21,"r":9,"sb":1,"ops":0.864},{"y":1982,"team":"NYM","g":112,"avg":0.242,"hr":3,"rbi":27,"r":11,"sb":0,"ops":0.633},{"y":1983,"team":"NYM","g":104,"avg":0.296,"hr":3,"rbi":28,"r":5,"sb":0,"ops":0.797},{"y":1984,"team":"NYM","g":78,"avg":0.264,"hr":1,"rbi":18,"r":2,"sb":0,"ops":0.652},{"y":1985,"team":"NYM","g":54,"avg":0.267,"hr":1,"rbi":8,"r":2,"sb":0,"ops":0.8}],"answer":true},{"name":"Adrian Beltre","type":"bat","pos":"INFIELD","first":1998,"last":2018,"teams":["LAD","SEA","BOS","TEX"],"games":2933,"pa":12116,"hits":3166,"hr":477,"decades":[2000,2010],"seasons":[{"y":1998,"team":"LAD","g":77,"avg":0.215,"hr":7,"rbi":22,"r":18,"sb":3,"ops":0.648},{"y":1999,"team":"LAD","g":152,"avg":0.275,"hr":15,"rbi":67,"r":84,"sb":18,"ops":0.78},{"y":2000,"team":"LAD","g":138,"avg":0.29,"hr":20,"rbi":85,"r":71,"sb":12,"ops":0.835},{"y":2001,"team":"LAD","g":126,"avg":0.265,"hr":13,"rbi":60,"r":59,"sb":13,"ops":0.72},{"y":2002,"team":"LAD","g":159,"avg":0.257,"hr":21,"rbi":75,"r":70,"sb":7,"ops":0.729},{"y":2003,"team":"LAD","g":158,"avg":0.24,"hr":23,"rbi":80,"r":50,"sb":2,"ops":0.714},{"y":2004,"team":"LAD","g":156,"avg":0.334,"hr":48,"rbi":121,"r":104,"sb":7,"ops":1.017},{"y":2005,"team":"SEA","g":156,"avg":0.255,"hr":19,"rbi":87,"r":69,"sb":3,"ops":0.716},{"y":2006,"team":"SEA","g":156,"avg":0.268,"hr":25,"rbi":89,"r":88,"sb":11,"ops":0.792},{"y":2007,"team":"SEA","g":149,"avg":0.276,"hr":26,"rbi":99,"r":87,"sb":14,"ops":0.802},{"y":2008,"team":"SEA","g":143,"avg":0.266,"hr":25,"rbi":77,"r":74,"sb":8,"ops":0.784},{"y":2009,"team":"SEA","g":111,"avg":0.265,"hr":8,"rbi":44,"r":54,"sb":13,"ops":0.683},{"y":2010,"team":"BOS","g":154,"avg":0.321,"hr":28,"rbi":102,"r":84,"sb":2,"ops":0.919},{"y":2011,"team":"TEX","g":124,"avg":0.296,"hr":32,"rbi":105,"r":82,"sb":1,"ops":0.892},{"y":2012,"team":"TEX","g":156,"avg":0.321,"hr":36,"rbi":102,"r":95,"sb":1,"ops":0.921},{"y":2013,"team":"TEX","g":161,"avg":0.315,"hr":30,"rbi":92,"r":88,"sb":1,"ops":0.88},{"y":2014,"team":"TEX","g":148,"avg":0.324,"hr":19,"rbi":77,"r":79,"sb":1,"ops":0.879},{"y":2015,"team":"TEX","g":143,"avg":0.287,"hr":18,"rbi":83,"r":83,"sb":1,"ops":0.788},{"y":2016,"team":"TEX","g":153,"avg":0.3,"hr":32,"rbi":104,"r":89,"sb":1,"ops":0.879},{"y":2017,"team":"TEX","g":94,"avg":0.312,"hr":17,"rbi":71,"r":47,"sb":1,"ops":0.915},{"y":2018,"team":"TEX","g":119,"avg":0.273,"hr":15,"rbi":65,"r":49,"sb":1,"ops":0.763}],"answer":true},{"name":"Brooks Robinson","type":"bat","pos":"INFIELD","first":1955,"last":1977,"teams":["BAL"],"games":2896,"pa":11681,"hits":2848,"hr":268,"decades":[1950,1960,1970],"seasons":[{"y":1955,"team":"BAL","g":6,"avg":0.091,"hr":0,"rbi":1,"r":0,"sb":0,"ops":0.182},{"y":1956,"team":"BAL","g":15,"avg":0.227,"hr":1,"rbi":1,"r":5,"sb":0,"ops":0.631},{"y":1957,"team":"BAL","g":50,"avg":0.239,"hr":2,"rbi":14,"r":13,"sb":1,"ops":0.645},{"y":1958,"team":"BAL","g":145,"avg":0.238,"hr":3,"rbi":32,"r":31,"sb":1,"ops":0.597},{"y":1959,"team":"BAL","g":88,"avg":0.284,"hr":4,"rbi":24,"r":29,"sb":2,"ops":0.709},{"y":1960,"team":"BAL","g":152,"avg":0.294,"hr":14,"rbi":88,"r":74,"sb":2,"ops":0.769},{"y":1961,"team":"BAL","g":163,"avg":0.287,"hr":7,"rbi":61,"r":89,"sb":1,"ops":0.73},{"y":1962,"team":"BAL","g":162,"avg":0.303,"hr":23,"rbi":86,"r":77,"sb":3,"ops":0.828},{"y":1963,"team":"BAL","g":161,"avg":0.251,"hr":11,"rbi":67,"r":67,"sb":2,"ops":0.67},{"y":1964,"team":"BAL","g":163,"avg":0.317,"hr":28,"rbi":118,"r":82,"sb":1,"ops":0.889},{"y":1965,"team":"BAL","g":144,"avg":0.297,"hr":18,"rbi":80,"r":81,"sb":3,"ops":0.797},{"y":1966,"team":"BAL","g":157,"avg":0.269,"hr":23,"rbi":100,"r":91,"sb":2,"ops":0.776},{"y":1967,"team":"BAL","g":158,"avg":0.269,"hr":22,"rbi":77,"r":88,"sb":1,"ops":0.763},{"y":1968,"team":"BAL","g":162,"avg":0.253,"hr":17,"rbi":75,"r":65,"sb":1,"ops":0.72},{"y":1969,"team":"BAL","g":156,"avg":0.234,"hr":23,"rbi":84,"r":73,"sb":2,"ops":0.693},{"y":1970,"team":"BAL","g":158,"avg":0.276,"hr":18,"rbi":94,"r":84,"sb":1,"ops":0.764},{"y":1971,"team":"BAL","g":156,"avg":0.272,"hr":20,"rbi":92,"r":67,"sb":0,"ops":0.754},{"y":1972,"team":"BAL","g":153,"avg":0.25,"hr":8,"rbi":64,"r":48,"sb":1,"ops":0.644},{"y":1973,"team":"BAL","g":155,"avg":0.257,"hr":9,"rbi":72,"r":53,"sb":2,"ops":0.67},{"y":1974,"team":"BAL","g":153,"avg":0.288,"hr":7,"rbi":59,"r":46,"sb":2,"ops":0.728},{"y":1975,"team":"BAL","g":144,"avg":0.201,"hr":6,"rbi":53,"r":50,"sb":0,"ops":0.541},{"y":1976,"team":"BAL","g":71,"avg":0.211,"hr":3,"rbi":11,"r":16,"sb":0,"ops":0.548},{"y":1977,"team":"BAL","g":24,"avg":0.149,"hr":1,"rbi":4,"r":3,"sb":0,"ops":0.467}],"answer":true},{"name":"Robin Yount","type":"bat","pos":"INFIELD","first":1974,"last":1993,"teams":["MIL"],"games":2856,"pa":12145,"hits":3142,"hr":251,"decades":[1970,1980,1990],"seasons":[{"y":1974,"team":"MIL","g":107,"avg":0.25,"hr":3,"rbi":26,"r":48,"sb":7,"ops":0.622},{"y":1975,"team":"MIL","g":147,"avg":0.267,"hr":8,"rbi":52,"r":67,"sb":12,"ops":0.674},{"y":1976,"team":"MIL","g":161,"avg":0.252,"hr":2,"rbi":54,"r":59,"sb":16,"ops":0.593},{"y":1977,"team":"MIL","g":154,"avg":0.288,"hr":4,"rbi":49,"r":66,"sb":16,"ops":0.71},{"y":1978,"team":"MIL","g":127,"avg":0.293,"hr":9,"rbi":71,"r":66,"sb":16,"ops":0.752},{"y":1979,"team":"MIL","g":149,"avg":0.267,"hr":8,"rbi":51,"r":72,"sb":11,"ops":0.679},{"y":1980,"team":"MIL","g":143,"avg":0.293,"hr":23,"rbi":87,"r":121,"sb":20,"ops":0.84},{"y":1981,"team":"MIL","g":96,"avg":0.273,"hr":10,"rbi":49,"r":50,"sb":4,"ops":0.731},{"y":1982,"team":"MIL","g":156,"avg":0.331,"hr":29,"rbi":114,"r":129,"sb":14,"ops":0.957},{"y":1983,"team":"MIL","g":149,"avg":0.308,"hr":17,"rbi":80,"r":102,"sb":12,"ops":0.886},{"y":1984,"team":"MIL","g":160,"avg":0.298,"hr":16,"rbi":80,"r":105,"sb":14,"ops":0.803},{"y":1985,"team":"MIL","g":122,"avg":0.277,"hr":15,"rbi":68,"r":76,"sb":10,"ops":0.784},{"y":1986,"team":"MIL","g":140,"avg":0.312,"hr":9,"rbi":46,"r":82,"sb":14,"ops":0.838},{"y":1987,"team":"MIL","g":158,"avg":0.312,"hr":21,"rbi":103,"r":99,"sb":19,"ops":0.862},{"y":1988,"team":"MIL","g":162,"avg":0.306,"hr":13,"rbi":91,"r":92,"sb":22,"ops":0.834},{"y":1989,"team":"MIL","g":160,"avg":0.318,"hr":21,"rbi":103,"r":101,"sb":19,"ops":0.896},{"y":1990,"team":"MIL","g":158,"avg":0.247,"hr":17,"rbi":77,"r":98,"sb":15,"ops":0.717},{"y":1991,"team":"MIL","g":130,"avg":0.26,"hr":10,"rbi":77,"r":66,"sb":6,"ops":0.707},{"y":1992,"team":"MIL","g":150,"avg":0.264,"hr":8,"rbi":77,"r":71,"sb":15,"ops":0.714},{"y":1993,"team":"MIL","g":127,"avg":0.258,"hr":8,"rbi":51,"r":62,"sb":9,"ops":0.705}],"answer":true},{"name":"Craig Biggio","type":"bat","pos":"INFIELD","first":1988,"last":2007,"teams":["HOU"],"games":2850,"pa":12402,"hits":3060,"hr":291,"decades":[1990,2000],"seasons":[{"y":1988,"team":"HOU","g":50,"avg":0.211,"hr":3,"rbi":5,"r":14,"sb":6,"ops":0.603},{"y":1989,"team":"HOU","g":134,"avg":0.257,"hr":13,"rbi":60,"r":64,"sb":21,"ops":0.738},{"y":1990,"team":"HOU","g":150,"avg":0.276,"hr":4,"rbi":42,"r":53,"sb":25,"ops":0.689},{"y":1991,"team":"HOU","g":149,"avg":0.295,"hr":4,"rbi":46,"r":79,"sb":19,"ops":0.731},{"y":1992,"team":"HOU","g":162,"avg":0.277,"hr":6,"rbi":39,"r":96,"sb":38,"ops":0.747},{"y":1993,"team":"HOU","g":155,"avg":0.287,"hr":21,"rbi":64,"r":98,"sb":15,"ops":0.847},{"y":1994,"team":"HOU","g":114,"avg":0.318,"hr":6,"rbi":56,"r":88,"sb":39,"ops":0.893},{"y":1995,"team":"HOU","g":141,"avg":0.302,"hr":22,"rbi":77,"r":123,"sb":33,"ops":0.889},{"y":1996,"team":"HOU","g":162,"avg":0.288,"hr":15,"rbi":75,"r":113,"sb":25,"ops":0.801},{"y":1997,"team":"HOU","g":162,"avg":0.309,"hr":22,"rbi":81,"r":146,"sb":47,"ops":0.916},{"y":1998,"team":"HOU","g":160,"avg":0.325,"hr":20,"rbi":88,"r":123,"sb":50,"ops":0.906},{"y":1999,"team":"HOU","g":160,"avg":0.294,"hr":16,"rbi":73,"r":123,"sb":28,"ops":0.843},{"y":2000,"team":"HOU","g":101,"avg":0.268,"hr":8,"rbi":35,"r":67,"sb":12,"ops":0.78},{"y":2001,"team":"HOU","g":155,"avg":0.292,"hr":20,"rbi":70,"r":118,"sb":7,"ops":0.838},{"y":2002,"team":"HOU","g":145,"avg":0.253,"hr":15,"rbi":58,"r":96,"sb":16,"ops":0.734},{"y":2003,"team":"HOU","g":153,"avg":0.264,"hr":15,"rbi":62,"r":102,"sb":8,"ops":0.763},{"y":2004,"team":"HOU","g":156,"avg":0.281,"hr":24,"rbi":63,"r":100,"sb":7,"ops":0.806},{"y":2005,"team":"HOU","g":155,"avg":0.264,"hr":26,"rbi":69,"r":94,"sb":11,"ops":0.792},{"y":2006,"team":"HOU","g":145,"avg":0.246,"hr":21,"rbi":62,"r":79,"sb":3,"ops":0.727},{"y":2007,"team":"HOU","g":141,"avg":0.251,"hr":10,"rbi":50,"r":68,"sb":4,"ops":0.666}],"answer":true},{"name":"Al Kaline","type":"bat","pos":"OUTFIELD","first":1953,"last":1974,"teams":["DET"],"games":2834,"pa":11552,"hits":3007,"hr":399,"decades":[1950,1960,1970],"seasons":[{"y":1953,"team":"DET","g":30,"avg":0.25,"hr":1,"rbi":2,"r":9,"sb":1,"ops":0.657},{"y":1954,"team":"DET","g":138,"avg":0.276,"hr":4,"rbi":43,"r":42,"sb":9,"ops":0.652},{"y":1955,"team":"DET","g":152,"avg":0.34,"hr":27,"rbi":102,"r":121,"sb":6,"ops":0.967},{"y":1956,"team":"DET","g":153,"avg":0.314,"hr":27,"rbi":128,"r":96,"sb":7,"ops":0.913},{"y":1957,"team":"DET","g":149,"avg":0.295,"hr":23,"rbi":90,"r":83,"sb":11,"ops":0.821},{"y":1958,"team":"DET","g":146,"avg":0.313,"hr":16,"rbi":85,"r":84,"sb":7,"ops":0.864},{"y":1959,"team":"DET","g":136,"avg":0.327,"hr":27,"rbi":94,"r":86,"sb":10,"ops":0.94},{"y":1960,"team":"DET","g":147,"avg":0.278,"hr":15,"rbi":68,"r":77,"sb":19,"ops":0.781},{"y":1961,"team":"DET","g":153,"avg":0.324,"hr":19,"rbi":82,"r":116,"sb":14,"ops":0.909},{"y":1962,"team":"DET","g":100,"avg":0.304,"hr":29,"rbi":94,"r":78,"sb":4,"ops":0.969},{"y":1963,"team":"DET","g":145,"avg":0.312,"hr":27,"rbi":101,"r":89,"sb":6,"ops":0.889},{"y":1964,"team":"DET","g":146,"avg":0.293,"hr":17,"rbi":68,"r":77,"sb":4,"ops":0.851},{"y":1965,"team":"DET","g":125,"avg":0.281,"hr":18,"rbi":72,"r":72,"sb":6,"ops":0.859},{"y":1966,"team":"DET","g":142,"avg":0.288,"hr":29,"rbi":88,"r":85,"sb":5,"ops":0.927},{"y":1967,"team":"DET","g":131,"avg":0.308,"hr":25,"rbi":78,"r":94,"sb":8,"ops":0.952},{"y":1968,"team":"DET","g":102,"avg":0.287,"hr":10,"rbi":53,"r":49,"sb":6,"ops":0.82},{"y":1969,"team":"DET","g":131,"avg":0.272,"hr":21,"rbi":69,"r":74,"sb":1,"ops":0.793},{"y":1970,"team":"DET","g":131,"avg":0.278,"hr":16,"rbi":71,"r":64,"sb":2,"ops":0.826},{"y":1971,"team":"DET","g":133,"avg":0.294,"hr":15,"rbi":54,"r":69,"sb":4,"ops":0.878},{"y":1972,"team":"DET","g":106,"avg":0.313,"hr":10,"rbi":32,"r":46,"sb":1,"ops":0.849},{"y":1973,"team":"DET","g":91,"avg":0.255,"hr":10,"rbi":45,"r":40,"sb":4,"ops":0.713},{"y":1974,"team":"DET","g":147,"avg":0.262,"hr":13,"rbi":64,"r":71,"sb":2,"ops":0.726}],"answer":true},{"name":"Rafael Palmeiro","type":"bat","pos":"INFIELD","first":1986,"last":2005,"teams":["CHC","TEX","BAL"],"games":2831,"pa":12031,"hits":3020,"hr":569,"decades":[1980,1990,2000],"seasons":[{"y":1986,"team":"CHC","g":22,"avg":0.247,"hr":3,"rbi":12,"r":9,"sb":1,"ops":0.72},{"y":1987,"team":"CHC","g":84,"avg":0.276,"hr":14,"rbi":30,"r":32,"sb":2,"ops":0.879},{"y":1988,"team":"CHC","g":152,"avg":0.307,"hr":8,"rbi":53,"r":75,"sb":12,"ops":0.785},{"y":1989,"team":"TEX","g":156,"avg":0.275,"hr":8,"rbi":64,"r":76,"sb":4,"ops":0.728},{"y":1990,"team":"TEX","g":154,"avg":0.319,"hr":14,"rbi":89,"r":72,"sb":3,"ops":0.829},{"y":1991,"team":"TEX","g":159,"avg":0.322,"hr":26,"rbi":88,"r":115,"sb":4,"ops":0.922},{"y":1992,"team":"TEX","g":159,"avg":0.268,"hr":22,"rbi":85,"r":84,"sb":2,"ops":0.786},{"y":1993,"team":"TEX","g":160,"avg":0.295,"hr":37,"rbi":105,"r":124,"sb":22,"ops":0.926},{"y":1994,"team":"BAL","g":111,"avg":0.319,"hr":23,"rbi":76,"r":82,"sb":7,"ops":0.942},{"y":1995,"team":"BAL","g":143,"avg":0.31,"hr":39,"rbi":104,"r":89,"sb":3,"ops":0.963},{"y":1996,"team":"BAL","g":162,"avg":0.289,"hr":39,"rbi":142,"r":110,"sb":8,"ops":0.927},{"y":1997,"team":"BAL","g":158,"avg":0.254,"hr":38,"rbi":110,"r":95,"sb":5,"ops":0.815},{"y":1998,"team":"BAL","g":162,"avg":0.296,"hr":43,"rbi":121,"r":98,"sb":11,"ops":0.945},{"y":1999,"team":"TEX","g":158,"avg":0.324,"hr":47,"rbi":148,"r":96,"sb":2,"ops":1.05},{"y":2000,"team":"TEX","g":158,"avg":0.288,"hr":39,"rbi":120,"r":102,"sb":2,"ops":0.954},{"y":2001,"team":"TEX","g":160,"avg":0.273,"hr":47,"rbi":123,"r":98,"sb":1,"ops":0.944},{"y":2002,"team":"TEX","g":155,"avg":0.273,"hr":43,"rbi":105,"r":99,"sb":2,"ops":0.962},{"y":2003,"team":"TEX","g":154,"avg":0.26,"hr":38,"rbi":112,"r":92,"sb":2,"ops":0.867},{"y":2004,"team":"BAL","g":154,"avg":0.258,"hr":23,"rbi":88,"r":68,"sb":2,"ops":0.796},{"y":2005,"team":"BAL","g":110,"avg":0.266,"hr":18,"rbi":60,"r":47,"sb":2,"ops":0.786}],"answer":true},{"name":"Reggie Jackson","type":"bat","pos":"OUTFIELD","first":1967,"last":1987,"teams":["KCA","OAK","BAL","NYY","CAL"],"games":2820,"pa":11403,"hits":2584,"hr":563,"decades":[1960,1970,1980],"seasons":[{"y":1967,"team":"KCA","g":35,"avg":0.178,"hr":1,"rbi":6,"r":13,"sb":1,"ops":0.574},{"y":1968,"team":"OAK","g":154,"avg":0.25,"hr":29,"rbi":74,"r":82,"sb":14,"ops":0.768},{"y":1969,"team":"OAK","g":152,"avg":0.275,"hr":47,"rbi":118,"r":123,"sb":13,"ops":1.018},{"y":1970,"team":"OAK","g":149,"avg":0.237,"hr":23,"rbi":66,"r":57,"sb":26,"ops":0.817},{"y":1971,"team":"OAK","g":150,"avg":0.277,"hr":32,"rbi":80,"r":87,"sb":16,"ops":0.86},{"y":1972,"team":"OAK","g":135,"avg":0.265,"hr":25,"rbi":75,"r":72,"sb":9,"ops":0.823},{"y":1973,"team":"OAK","g":151,"avg":0.293,"hr":32,"rbi":117,"r":99,"sb":22,"ops":0.914},{"y":1974,"team":"OAK","g":148,"avg":0.289,"hr":29,"rbi":93,"r":90,"sb":25,"ops":0.905},{"y":1975,"team":"OAK","g":157,"avg":0.253,"hr":36,"rbi":104,"r":91,"sb":17,"ops":0.84},{"y":1976,"team":"BAL","g":134,"avg":0.277,"hr":27,"rbi":91,"r":84,"sb":28,"ops":0.853},{"y":1977,"team":"NYY","g":146,"avg":0.286,"hr":32,"rbi":110,"r":93,"sb":17,"ops":0.925},{"y":1978,"team":"NYY","g":139,"avg":0.274,"hr":27,"rbi":97,"r":82,"sb":14,"ops":0.834},{"y":1979,"team":"NYY","g":131,"avg":0.297,"hr":29,"rbi":89,"r":78,"sb":9,"ops":0.926},{"y":1980,"team":"NYY","g":143,"avg":0.3,"hr":41,"rbi":111,"r":94,"sb":1,"ops":0.995},{"y":1981,"team":"NYY","g":94,"avg":0.237,"hr":15,"rbi":54,"r":33,"sb":0,"ops":0.758},{"y":1982,"team":"CAL","g":153,"avg":0.275,"hr":39,"rbi":101,"r":92,"sb":4,"ops":0.907},{"y":1983,"team":"CAL","g":116,"avg":0.194,"hr":14,"rbi":49,"r":43,"sb":0,"ops":0.63},{"y":1984,"team":"CAL","g":143,"avg":0.223,"hr":25,"rbi":81,"r":67,"sb":8,"ops":0.706},{"y":1985,"team":"CAL","g":143,"avg":0.252,"hr":27,"rbi":85,"r":64,"sb":1,"ops":0.847},{"y":1986,"team":"CAL","g":132,"avg":0.241,"hr":18,"rbi":58,"r":65,"sb":1,"ops":0.787},{"y":1987,"team":"OAK","g":115,"avg":0.22,"hr":15,"rbi":43,"r":42,"sb":2,"ops":0.699}],"answer":true},{"name":"Frank Robinson","type":"bat","pos":"OUTFIELD","first":1956,"last":1976,"teams":["CIN","BAL","LAD","CAL","CLE"],"games":2808,"pa":11726,"hits":2943,"hr":586,"decades":[1950,1960,1970],"seasons":[{"y":1956,"team":"CIN","g":152,"avg":0.29,"hr":38,"rbi":83,"r":122,"sb":8,"ops":0.936},{"y":1957,"team":"CIN","g":150,"avg":0.322,"hr":29,"rbi":75,"r":97,"sb":10,"ops":0.905},{"y":1958,"team":"CIN","g":148,"avg":0.269,"hr":31,"rbi":83,"r":90,"sb":10,"ops":0.854},{"y":1959,"team":"CIN","g":146,"avg":0.311,"hr":36,"rbi":125,"r":106,"sb":18,"ops":0.975},{"y":1960,"team":"CIN","g":139,"avg":0.297,"hr":31,"rbi":83,"r":86,"sb":13,"ops":1.002},{"y":1961,"team":"CIN","g":153,"avg":0.323,"hr":37,"rbi":124,"r":117,"sb":22,"ops":1.015},{"y":1962,"team":"CIN","g":162,"avg":0.342,"hr":39,"rbi":136,"r":134,"sb":18,"ops":1.045},{"y":1963,"team":"CIN","g":140,"avg":0.259,"hr":21,"rbi":91,"r":79,"sb":26,"ops":0.821},{"y":1964,"team":"CIN","g":156,"avg":0.306,"hr":29,"rbi":96,"r":103,"sb":23,"ops":0.943},{"y":1965,"team":"CIN","g":156,"avg":0.296,"hr":33,"rbi":113,"r":109,"sb":13,"ops":0.925},{"y":1966,"team":"BAL","g":155,"avg":0.316,"hr":49,"rbi":122,"r":122,"sb":8,"ops":1.047},{"y":1967,"team":"BAL","g":129,"avg":0.311,"hr":30,"rbi":94,"r":83,"sb":2,"ops":0.979},{"y":1968,"team":"BAL","g":130,"avg":0.268,"hr":15,"rbi":52,"r":69,"sb":11,"ops":0.834},{"y":1969,"team":"BAL","g":148,"avg":0.308,"hr":32,"rbi":100,"r":111,"sb":9,"ops":0.955},{"y":1970,"team":"BAL","g":132,"avg":0.306,"hr":25,"rbi":78,"r":88,"sb":2,"ops":0.918},{"y":1971,"team":"BAL","g":133,"avg":0.281,"hr":28,"rbi":99,"r":82,"sb":3,"ops":0.894},{"y":1972,"team":"LAD","g":103,"avg":0.251,"hr":19,"rbi":59,"r":41,"sb":2,"ops":0.795},{"y":1973,"team":"CAL","g":147,"avg":0.266,"hr":30,"rbi":97,"r":85,"sb":1,"ops":0.861},{"y":1974,"team":"CAL","g":144,"avg":0.245,"hr":22,"rbi":68,"r":81,"sb":5,"ops":0.82},{"y":1975,"team":"CLE","g":49,"avg":0.237,"hr":9,"rbi":24,"r":19,"sb":0,"ops":0.894},{"y":1976,"team":"CLE","g":36,"avg":0.224,"hr":3,"rbi":10,"r":5,"sb":0,"ops":0.687}],"answer":true},{"name":"Miguel Cabrera","type":"bat","pos":"INFIELD","first":2003,"last":2023,"teams":["FLA","DET"],"games":2797,"pa":11791,"hits":3174,"hr":511,"decades":[2000,2010,2020],"seasons":[{"y":2003,"team":"FLA","g":87,"avg":0.268,"hr":12,"rbi":62,"r":39,"sb":0,"ops":0.793},{"y":2004,"team":"FLA","g":160,"avg":0.294,"hr":33,"rbi":112,"r":101,"sb":5,"ops":0.879},{"y":2005,"team":"FLA","g":158,"avg":0.323,"hr":33,"rbi":116,"r":106,"sb":1,"ops":0.947},{"y":2006,"team":"FLA","g":158,"avg":0.339,"hr":26,"rbi":114,"r":112,"sb":9,"ops":0.998},{"y":2007,"team":"FLA","g":157,"avg":0.32,"hr":34,"rbi":119,"r":91,"sb":2,"ops":0.965},{"y":2008,"team":"DET","g":160,"avg":0.292,"hr":37,"rbi":127,"r":85,"sb":1,"ops":0.887},{"y":2009,"team":"DET","g":160,"avg":0.324,"hr":34,"rbi":103,"r":96,"sb":6,"ops":0.942},{"y":2010,"team":"DET","g":150,"avg":0.328,"hr":38,"rbi":126,"r":111,"sb":3,"ops":1.042},{"y":2011,"team":"DET","g":161,"avg":0.344,"hr":30,"rbi":105,"r":111,"sb":2,"ops":1.033},{"y":2012,"team":"DET","g":161,"avg":0.33,"hr":44,"rbi":139,"r":109,"sb":4,"ops":0.999},{"y":2013,"team":"DET","g":148,"avg":0.348,"hr":44,"rbi":137,"r":103,"sb":3,"ops":1.078},{"y":2014,"team":"DET","g":159,"avg":0.313,"hr":25,"rbi":109,"r":101,"sb":1,"ops":0.895},{"y":2015,"team":"DET","g":119,"avg":0.338,"hr":18,"rbi":76,"r":64,"sb":1,"ops":0.974},{"y":2016,"team":"DET","g":158,"avg":0.316,"hr":38,"rbi":108,"r":92,"sb":0,"ops":0.956},{"y":2017,"team":"DET","g":130,"avg":0.249,"hr":16,"rbi":60,"r":50,"sb":0,"ops":0.728},{"y":2018,"team":"DET","g":38,"avg":0.299,"hr":3,"rbi":22,"r":17,"sb":0,"ops":0.843},{"y":2019,"team":"DET","g":136,"avg":0.282,"hr":12,"rbi":59,"r":41,"sb":0,"ops":0.744},{"y":2020,"team":"DET","g":57,"avg":0.25,"hr":10,"rbi":35,"r":28,"sb":1,"ops":0.746},{"y":2021,"team":"DET","g":130,"avg":0.256,"hr":15,"rbi":75,"r":48,"sb":0,"ops":0.701},{"y":2022,"team":"DET","g":112,"avg":0.254,"hr":5,"rbi":43,"r":25,"sb":1,"ops":0.622},{"y":2023,"team":"DET","g":98,"avg":0.257,"hr":4,"rbi":34,"r":21,"sb":0,"ops":0.675}],"answer":true},{"name":"Alex Rodriguez","type":"bat","pos":"INFIELD","first":1994,"last":2016,"teams":["SEA","TEX","NYY"],"games":2784,"pa":12191,"hits":3115,"hr":696,"decades":[1990,2000,2010],"seasons":[{"y":1994,"team":"SEA","g":17,"avg":0.204,"hr":0,"rbi":2,"r":4,"sb":3,"ops":0.445},{"y":1995,"team":"SEA","g":48,"avg":0.232,"hr":5,"rbi":19,"r":15,"sb":4,"ops":0.672},{"y":1996,"team":"SEA","g":146,"avg":0.358,"hr":36,"rbi":123,"r":141,"sb":15,"ops":1.045},{"y":1997,"team":"SEA","g":141,"avg":0.3,"hr":23,"rbi":84,"r":100,"sb":29,"ops":0.846},{"y":1998,"team":"SEA","g":161,"avg":0.31,"hr":42,"rbi":124,"r":123,"sb":46,"ops":0.919},{"y":1999,"team":"SEA","g":129,"avg":0.285,"hr":42,"rbi":111,"r":110,"sb":21,"ops":0.943},{"y":2000,"team":"SEA","g":148,"avg":0.316,"hr":41,"rbi":132,"r":134,"sb":15,"ops":1.026},{"y":2001,"team":"TEX","g":162,"avg":0.318,"hr":52,"rbi":135,"r":133,"sb":18,"ops":1.021},{"y":2002,"team":"TEX","g":162,"avg":0.3,"hr":57,"rbi":142,"r":125,"sb":9,"ops":1.015},{"y":2003,"team":"TEX","g":161,"avg":0.298,"hr":47,"rbi":118,"r":124,"sb":17,"ops":0.995},{"y":2004,"team":"NYY","g":155,"avg":0.286,"hr":36,"rbi":106,"r":112,"sb":28,"ops":0.888},{"y":2005,"team":"NYY","g":162,"avg":0.321,"hr":48,"rbi":130,"r":124,"sb":21,"ops":1.031},{"y":2006,"team":"NYY","g":154,"avg":0.29,"hr":35,"rbi":121,"r":113,"sb":15,"ops":0.914},{"y":2007,"team":"NYY","g":158,"avg":0.314,"hr":54,"rbi":156,"r":143,"sb":24,"ops":1.067},{"y":2008,"team":"NYY","g":138,"avg":0.302,"hr":35,"rbi":103,"r":104,"sb":18,"ops":0.965},{"y":2009,"team":"NYY","g":124,"avg":0.286,"hr":30,"rbi":100,"r":78,"sb":14,"ops":0.933},{"y":2010,"team":"NYY","g":137,"avg":0.27,"hr":30,"rbi":125,"r":74,"sb":4,"ops":0.847},{"y":2011,"team":"NYY","g":99,"avg":0.276,"hr":16,"rbi":62,"r":67,"sb":4,"ops":0.823},{"y":2012,"team":"NYY","g":122,"avg":0.272,"hr":18,"rbi":57,"r":74,"sb":13,"ops":0.783},{"y":2013,"team":"NYY","g":44,"avg":0.244,"hr":7,"rbi":19,"r":21,"sb":4,"ops":0.771},{"y":2015,"team":"NYY","g":151,"avg":0.25,"hr":33,"rbi":86,"r":83,"sb":4,"ops":0.842},{"y":2016,"team":"NYY","g":65,"avg":0.2,"hr":9,"rbi":31,"r":19,"sb":3,"ops":0.598}],"answer":true},{"name":"Derek Jeter","type":"bat","pos":"INFIELD","first":1995,"last":2014,"teams":["NYY"],"games":2747,"pa":12505,"hits":3465,"hr":260,"decades":[1990,2000,2010],"seasons":[{"y":1995,"team":"NYY","g":15,"avg":0.25,"hr":0,"rbi":7,"r":5,"sb":0,"ops":0.669},{"y":1996,"team":"NYY","g":157,"avg":0.314,"hr":10,"rbi":78,"r":104,"sb":14,"ops":0.8},{"y":1997,"team":"NYY","g":159,"avg":0.291,"hr":10,"rbi":70,"r":116,"sb":23,"ops":0.775},{"y":1998,"team":"NYY","g":149,"avg":0.324,"hr":19,"rbi":84,"r":127,"sb":30,"ops":0.864},{"y":1999,"team":"NYY","g":158,"avg":0.349,"hr":24,"rbi":102,"r":134,"sb":19,"ops":0.989},{"y":2000,"team":"NYY","g":148,"avg":0.339,"hr":15,"rbi":73,"r":119,"sb":22,"ops":0.896},{"y":2001,"team":"NYY","g":150,"avg":0.311,"hr":21,"rbi":74,"r":110,"sb":27,"ops":0.858},{"y":2002,"team":"NYY","g":157,"avg":0.297,"hr":18,"rbi":75,"r":124,"sb":32,"ops":0.794},{"y":2003,"team":"NYY","g":119,"avg":0.324,"hr":10,"rbi":52,"r":87,"sb":11,"ops":0.844},{"y":2004,"team":"NYY","g":154,"avg":0.292,"hr":23,"rbi":78,"r":111,"sb":23,"ops":0.823},{"y":2005,"team":"NYY","g":159,"avg":0.309,"hr":19,"rbi":70,"r":122,"sb":14,"ops":0.839},{"y":2006,"team":"NYY","g":154,"avg":0.343,"hr":14,"rbi":97,"r":118,"sb":34,"ops":0.9},{"y":2007,"team":"NYY","g":156,"avg":0.322,"hr":12,"rbi":73,"r":102,"sb":15,"ops":0.84},{"y":2008,"team":"NYY","g":150,"avg":0.3,"hr":11,"rbi":69,"r":88,"sb":11,"ops":0.771},{"y":2009,"team":"NYY","g":153,"avg":0.334,"hr":18,"rbi":66,"r":107,"sb":30,"ops":0.871},{"y":2010,"team":"NYY","g":157,"avg":0.27,"hr":10,"rbi":67,"r":111,"sb":18,"ops":0.71},{"y":2011,"team":"NYY","g":131,"avg":0.297,"hr":6,"rbi":61,"r":84,"sb":16,"ops":0.743},{"y":2012,"team":"NYY","g":159,"avg":0.316,"hr":15,"rbi":58,"r":99,"sb":9,"ops":0.791},{"y":2013,"team":"NYY","g":17,"avg":0.19,"hr":1,"rbi":7,"r":8,"sb":0,"ops":0.542},{"y":2014,"team":"NYY","g":145,"avg":0.256,"hr":4,"rbi":50,"r":47,"sb":10,"ops":0.617}],"answer":true},{"name":"Ichiro Suzuki","type":"bat","pos":"OUTFIELD","first":2001,"last":2019,"teams":["SEA","NYY","MIA"],"games":2653,"pa":10684,"hits":3089,"hr":117,"decades":[2000,2010],"seasons":[{"y":2001,"team":"SEA","g":157,"avg":0.35,"hr":8,"rbi":69,"r":127,"sb":56,"ops":0.838},{"y":2002,"team":"SEA","g":157,"avg":0.321,"hr":8,"rbi":51,"r":111,"sb":31,"ops":0.813},{"y":2003,"team":"SEA","g":159,"avg":0.312,"hr":13,"rbi":62,"r":111,"sb":34,"ops":0.788},{"y":2004,"team":"SEA","g":161,"avg":0.372,"hr":8,"rbi":60,"r":101,"sb":36,"ops":0.869},{"y":2005,"team":"SEA","g":162,"avg":0.303,"hr":15,"rbi":68,"r":111,"sb":33,"ops":0.786},{"y":2006,"team":"SEA","g":161,"avg":0.322,"hr":9,"rbi":49,"r":110,"sb":45,"ops":0.786},{"y":2007,"team":"SEA","g":161,"avg":0.351,"hr":6,"rbi":68,"r":111,"sb":37,"ops":0.827},{"y":2008,"team":"SEA","g":162,"avg":0.31,"hr":6,"rbi":42,"r":103,"sb":43,"ops":0.747},{"y":2009,"team":"SEA","g":146,"avg":0.352,"hr":11,"rbi":46,"r":88,"sb":26,"ops":0.851},{"y":2010,"team":"SEA","g":162,"avg":0.315,"hr":6,"rbi":43,"r":74,"sb":42,"ops":0.754},{"y":2011,"team":"SEA","g":161,"avg":0.272,"hr":5,"rbi":47,"r":80,"sb":40,"ops":0.645},{"y":2012,"team":"SEA","g":162,"avg":0.283,"hr":9,"rbi":55,"r":77,"sb":29,"ops":0.696},{"y":2013,"team":"NYY","g":150,"avg":0.262,"hr":7,"rbi":35,"r":57,"sb":20,"ops":0.639},{"y":2014,"team":"NYY","g":143,"avg":0.284,"hr":1,"rbi":22,"r":42,"sb":15,"ops":0.664},{"y":2015,"team":"MIA","g":153,"avg":0.229,"hr":1,"rbi":21,"r":45,"sb":11,"ops":0.561},{"y":2016,"team":"MIA","g":143,"avg":0.291,"hr":1,"rbi":22,"r":48,"sb":10,"ops":0.73},{"y":2017,"team":"MIA","g":136,"avg":0.255,"hr":3,"rbi":20,"r":19,"sb":1,"ops":0.649},{"y":2018,"team":"SEA","g":15,"avg":0.205,"hr":0,"rbi":0,"r":5,"sb":0,"ops":0.46},{"y":2019,"team":"SEA","g":2,"avg":0.0,"hr":0,"rbi":0,"r":0,"sb":0,"ops":0.167}],"answer":true},{"name":"Luis Aparicio","type":"bat","pos":"INFIELD","first":1956,"last":1973,"teams":["CHW","BAL","BOS"],"games":2601,"pa":11069,"hits":2677,"hr":83,"decades":[1950,1960,1970],"seasons":[{"y":1956,"team":"CHW","g":152,"avg":0.266,"hr":3,"rbi":56,"r":69,"sb":21,"ops":0.653},{"y":1957,"team":"CHW","g":143,"avg":0.257,"hr":3,"rbi":41,"r":82,"sb":28,"ops":0.649},{"y":1958,"team":"CHW","g":145,"avg":0.266,"hr":2,"rbi":40,"r":76,"sb":29,"ops":0.653},{"y":1959,"team":"CHW","g":152,"avg":0.257,"hr":6,"rbi":51,"r":98,"sb":56,"ops":0.647},{"y":1960,"team":"CHW","g":153,"avg":0.277,"hr":2,"rbi":61,"r":86,"sb":51,"ops":0.666},{"y":1961,"team":"CHW","g":156,"avg":0.272,"hr":6,"rbi":45,"r":90,"sb":53,"ops":0.665},{"y":1962,"team":"CHW","g":153,"avg":0.241,"hr":7,"rbi":40,"r":72,"sb":31,"ops":0.614},{"y":1963,"team":"BAL","g":146,"avg":0.25,"hr":5,"rbi":45,"r":73,"sb":40,"ops":0.623},{"y":1964,"team":"BAL","g":146,"avg":0.266,"hr":10,"rbi":37,"r":93,"sb":57,"ops":0.688},{"y":1965,"team":"BAL","g":144,"avg":0.225,"hr":8,"rbi":40,"r":67,"sb":26,"ops":0.625},{"y":1966,"team":"BAL","g":151,"avg":0.276,"hr":6,"rbi":41,"r":97,"sb":25,"ops":0.676},{"y":1967,"team":"BAL","g":134,"avg":0.233,"hr":4,"rbi":31,"r":55,"sb":18,"ops":0.583},{"y":1968,"team":"CHW","g":157,"avg":0.264,"hr":4,"rbi":36,"r":55,"sb":17,"ops":0.636},{"y":1969,"team":"CHW","g":156,"avg":0.28,"hr":5,"rbi":51,"r":77,"sb":24,"ops":0.714},{"y":1970,"team":"CHW","g":146,"avg":0.313,"hr":5,"rbi":43,"r":86,"sb":8,"ops":0.776},{"y":1971,"team":"BOS","g":125,"avg":0.232,"hr":4,"rbi":45,"r":56,"sb":6,"ops":0.587},{"y":1972,"team":"BOS","g":110,"avg":0.257,"hr":3,"rbi":39,"r":47,"sb":3,"ops":0.649},{"y":1973,"team":"BOS","g":132,"avg":0.271,"hr":0,"rbi":49,"r":56,"sb":13,"ops":0.633}],"answer":true},{"name":"Carlos Beltran","type":"bat","pos":"OUTFIELD","first":1998,"last":2017,"teams":["KCR","HOU","NYM","SFG","STL","NYY","TEX"],"games":2586,"pa":11013,"hits":2725,"hr":435,"decades":[2000,2010],"seasons":[{"y":1998,"team":"KCR","g":14,"avg":0.276,"hr":0,"rbi":7,"r":12,"sb":3,"ops":0.783},{"y":1999,"team":"KCR","g":156,"avg":0.293,"hr":22,"rbi":108,"r":112,"sb":27,"ops":0.791},{"y":2000,"team":"KCR","g":98,"avg":0.247,"hr":7,"rbi":44,"r":49,"sb":13,"ops":0.675},{"y":2001,"team":"KCR","g":155,"avg":0.306,"hr":24,"rbi":101,"r":106,"sb":31,"ops":0.876},{"y":2002,"team":"KCR","g":162,"avg":0.273,"hr":29,"rbi":105,"r":114,"sb":35,"ops":0.847},{"y":2003,"team":"KCR","g":141,"avg":0.307,"hr":26,"rbi":100,"r":102,"sb":41,"ops":0.911},{"y":2004,"team":"HOU","g":159,"avg":0.267,"hr":38,"rbi":104,"r":121,"sb":42,"ops":0.915},{"y":2005,"team":"NYM","g":151,"avg":0.266,"hr":16,"rbi":78,"r":83,"sb":17,"ops":0.744},{"y":2006,"team":"NYM","g":140,"avg":0.275,"hr":41,"rbi":116,"r":127,"sb":18,"ops":0.982},{"y":2007,"team":"NYM","g":144,"avg":0.276,"hr":33,"rbi":112,"r":93,"sb":23,"ops":0.878},{"y":2008,"team":"NYM","g":161,"avg":0.284,"hr":27,"rbi":112,"r":116,"sb":25,"ops":0.876},{"y":2009,"team":"NYM","g":81,"avg":0.325,"hr":10,"rbi":48,"r":50,"sb":11,"ops":0.915},{"y":2010,"team":"NYM","g":64,"avg":0.255,"hr":7,"rbi":27,"r":21,"sb":3,"ops":0.768},{"y":2011,"team":"NYM","g":142,"avg":0.3,"hr":22,"rbi":84,"r":78,"sb":4,"ops":0.91},{"y":2012,"team":"STL","g":151,"avg":0.269,"hr":32,"rbi":97,"r":83,"sb":13,"ops":0.842},{"y":2013,"team":"STL","g":145,"avg":0.296,"hr":24,"rbi":84,"r":79,"sb":2,"ops":0.83},{"y":2014,"team":"NYY","g":109,"avg":0.233,"hr":15,"rbi":49,"r":46,"sb":3,"ops":0.703},{"y":2015,"team":"NYY","g":133,"avg":0.276,"hr":19,"rbi":67,"r":57,"sb":0,"ops":0.808},{"y":2016,"team":"NYY","g":151,"avg":0.295,"hr":29,"rbi":93,"r":73,"sb":1,"ops":0.85},{"y":2017,"team":"HOU","g":129,"avg":0.231,"hr":14,"rbi":51,"r":60,"sb":0,"ops":0.666}],"answer":true},{"name":"Ernie Banks","type":"bat","pos":"INFIELD","first":1953,"last":1971,"teams":["CHC"],"games":2528,"pa":10350,"hits":2583,"hr":512,"decades":[1950,1960],"seasons":[{"y":1953,"team":"CHC","g":10,"avg":0.314,"hr":2,"rbi":6,"r":3,"sb":0,"ops":0.956},{"y":1954,"team":"CHC","g":154,"avg":0.275,"hr":19,"rbi":79,"r":70,"sb":6,"ops":0.753},{"y":1955,"team":"CHC","g":154,"avg":0.295,"hr":44,"rbi":117,"r":98,"sb":9,"ops":0.941},{"y":1956,"team":"CHC","g":139,"avg":0.297,"hr":28,"rbi":85,"r":82,"sb":6,"ops":0.887},{"y":1957,"team":"CHC","g":156,"avg":0.285,"hr":43,"rbi":102,"r":113,"sb":8,"ops":0.939},{"y":1958,"team":"CHC","g":154,"avg":0.313,"hr":47,"rbi":129,"r":119,"sb":4,"ops":0.98},{"y":1959,"team":"CHC","g":155,"avg":0.304,"hr":45,"rbi":143,"r":97,"sb":2,"ops":0.97},{"y":1960,"team":"CHC","g":156,"avg":0.271,"hr":41,"rbi":117,"r":94,"sb":1,"ops":0.904},{"y":1961,"team":"CHC","g":138,"avg":0.278,"hr":29,"rbi":80,"r":75,"sb":1,"ops":0.852},{"y":1962,"team":"CHC","g":154,"avg":0.269,"hr":37,"rbi":104,"r":87,"sb":5,"ops":0.809},{"y":1963,"team":"CHC","g":130,"avg":0.227,"hr":18,"rbi":64,"r":41,"sb":0,"ops":0.695},{"y":1964,"team":"CHC","g":157,"avg":0.264,"hr":23,"rbi":95,"r":67,"sb":1,"ops":0.757},{"y":1965,"team":"CHC","g":163,"avg":0.265,"hr":28,"rbi":106,"r":79,"sb":3,"ops":0.781},{"y":1966,"team":"CHC","g":141,"avg":0.272,"hr":15,"rbi":75,"r":52,"sb":0,"ops":0.747},{"y":1967,"team":"CHC","g":151,"avg":0.276,"hr":23,"rbi":95,"r":68,"sb":2,"ops":0.765},{"y":1968,"team":"CHC","g":150,"avg":0.246,"hr":32,"rbi":83,"r":71,"sb":2,"ops":0.756},{"y":1969,"team":"CHC","g":155,"avg":0.253,"hr":23,"rbi":106,"r":60,"sb":0,"ops":0.725},{"y":1970,"team":"CHC","g":72,"avg":0.252,"hr":12,"rbi":44,"r":25,"sb":0,"ops":0.772},{"y":1971,"team":"CHC","g":39,"avg":0.193,"hr":3,"rbi":6,"r":4,"sb":0,"ops":0.572}],"answer":true},{"name":"Harmon Killebrew","type":"bat","pos":"INFIELD","first":1954,"last":1975,"teams":["WSH","MIN","KCR"],"games":2435,"pa":9831,"hits":2086,"hr":573,"decades":[1950,1960,1970],"seasons":[{"y":1954,"team":"WSH","g":9,"avg":0.308,"hr":0,"rbi":3,"r":1,"sb":0,"ops":0.785},{"y":1955,"team":"WSH","g":38,"avg":0.2,"hr":4,"rbi":7,"r":12,"sb":0,"ops":0.643},{"y":1956,"team":"WSH","g":44,"avg":0.222,"hr":5,"rbi":13,"r":10,"sb":0,"ops":0.685},{"y":1957,"team":"WSH","g":9,"avg":0.29,"hr":2,"rbi":5,"r":4,"sb":0,"ops":0.882},{"y":1958,"team":"WSH","g":13,"avg":0.194,"hr":0,"rbi":2,"r":2,"sb":0,"ops":0.406},{"y":1959,"team":"WSH","g":153,"avg":0.242,"hr":42,"rbi":105,"r":98,"sb":3,"ops":0.87},{"y":1960,"team":"WSH","g":124,"avg":0.276,"hr":31,"rbi":80,"r":84,"sb":1,"ops":0.909},{"y":1961,"team":"MIN","g":150,"avg":0.288,"hr":46,"rbi":122,"r":94,"sb":1,"ops":1.012},{"y":1962,"team":"MIN","g":155,"avg":0.243,"hr":48,"rbi":126,"r":85,"sb":1,"ops":0.912},{"y":1963,"team":"MIN","g":142,"avg":0.258,"hr":45,"rbi":96,"r":88,"sb":0,"ops":0.904},{"y":1964,"team":"MIN","g":158,"avg":0.27,"hr":49,"rbi":111,"r":95,"sb":0,"ops":0.924},{"y":1965,"team":"MIN","g":113,"avg":0.269,"hr":25,"rbi":75,"r":78,"sb":0,"ops":0.885},{"y":1966,"team":"MIN","g":162,"avg":0.281,"hr":39,"rbi":110,"r":89,"sb":0,"ops":0.929},{"y":1967,"team":"MIN","g":163,"avg":0.269,"hr":44,"rbi":113,"r":105,"sb":1,"ops":0.965},{"y":1968,"team":"MIN","g":100,"avg":0.21,"hr":17,"rbi":40,"r":40,"sb":0,"ops":0.782},{"y":1969,"team":"MIN","g":162,"avg":0.276,"hr":49,"rbi":140,"r":106,"sb":8,"ops":1.011},{"y":1970,"team":"MIN","g":157,"avg":0.271,"hr":41,"rbi":113,"r":96,"sb":0,"ops":0.957},{"y":1971,"team":"MIN","g":147,"avg":0.254,"hr":28,"rbi":119,"r":61,"sb":3,"ops":0.85},{"y":1972,"team":"MIN","g":139,"avg":0.231,"hr":26,"rbi":74,"r":53,"sb":0,"ops":0.817},{"y":1973,"team":"MIN","g":69,"avg":0.242,"hr":5,"rbi":32,"r":29,"sb":0,"ops":0.698},{"y":1974,"team":"MIN","g":122,"avg":0.222,"hr":13,"rbi":54,"r":28,"sb":0,"ops":0.672},{"y":1975,"team":"KCR","g":106,"avg":0.199,"hr":14,"rbi":44,"r":25,"sb":1,"ops":0.692}],"answer":true},{"name":"Andrew McCutchen","type":"bat","pos":"OUTFIELD","first":2009,"last":2025,"teams":["PIT","SFG","NYY","PHI","MIL"],"games":2262,"pa":9702,"hits":2266,"hr":332,"decades":[2010,2020],"seasons":[{"y":2009,"team":"PIT","g":108,"avg":0.286,"hr":12,"rbi":54,"r":74,"sb":22,"ops":0.836},{"y":2010,"team":"PIT","g":154,"avg":0.286,"hr":16,"rbi":56,"r":94,"sb":33,"ops":0.814},{"y":2011,"team":"PIT","g":158,"avg":0.259,"hr":23,"rbi":89,"r":87,"sb":23,"ops":0.82},{"y":2012,"team":"PIT","g":157,"avg":0.327,"hr":31,"rbi":96,"r":107,"sb":20,"ops":0.953},{"y":2013,"team":"PIT","g":157,"avg":0.317,"hr":21,"rbi":84,"r":97,"sb":27,"ops":0.911},{"y":2014,"team":"PIT","g":146,"avg":0.314,"hr":25,"rbi":83,"r":89,"sb":18,"ops":0.952},{"y":2015,"team":"PIT","g":157,"avg":0.292,"hr":23,"rbi":96,"r":91,"sb":11,"ops":0.889},{"y":2016,"team":"PIT","g":153,"avg":0.256,"hr":24,"rbi":79,"r":81,"sb":6,"ops":0.766},{"y":2017,"team":"PIT","g":156,"avg":0.279,"hr":28,"rbi":88,"r":94,"sb":11,"ops":0.849},{"y":2018,"team":"SFG","g":155,"avg":0.255,"hr":20,"rbi":65,"r":83,"sb":14,"ops":0.792},{"y":2019,"team":"PHI","g":59,"avg":0.256,"hr":10,"rbi":29,"r":45,"sb":2,"ops":0.834},{"y":2020,"team":"PHI","g":57,"avg":0.253,"hr":10,"rbi":34,"r":32,"sb":4,"ops":0.757},{"y":2021,"team":"PHI","g":144,"avg":0.222,"hr":27,"rbi":80,"r":78,"sb":6,"ops":0.778},{"y":2022,"team":"MIL","g":134,"avg":0.237,"hr":17,"rbi":69,"r":66,"sb":8,"ops":0.7},{"y":2023,"team":"PIT","g":112,"avg":0.256,"hr":12,"rbi":43,"r":55,"sb":11,"ops":0.776},{"y":2024,"team":"PIT","g":120,"avg":0.232,"hr":20,"rbi":50,"r":66,"sb":3,"ops":0.739},{"y":2025,"team":"PIT","g":135,"avg":0.239,"hr":13,"rbi":57,"r":51,"sb":1,"ops":0.7}],"answer":true},{"name":"Yadier Molina","type":"bat","pos":"CATCHER","first":2004,"last":2022,"teams":["STL"],"games":2226,"pa":8510,"hits":2168,"hr":176,"decades":[2000,2010,2020],"seasons":[{"y":2004,"team":"STL","g":51,"avg":0.267,"hr":2,"rbi":15,"r":12,"sb":0,"ops":0.684},{"y":2005,"team":"STL","g":114,"avg":0.252,"hr":8,"rbi":49,"r":36,"sb":2,"ops":0.654},{"y":2006,"team":"STL","g":129,"avg":0.216,"hr":6,"rbi":49,"r":29,"sb":1,"ops":0.595},{"y":2007,"team":"STL","g":111,"avg":0.275,"hr":6,"rbi":40,"r":30,"sb":1,"ops":0.708},{"y":2008,"team":"STL","g":124,"avg":0.304,"hr":7,"rbi":56,"r":37,"sb":0,"ops":0.74},{"y":2009,"team":"STL","g":140,"avg":0.293,"hr":6,"rbi":54,"r":45,"sb":9,"ops":0.749},{"y":2010,"team":"STL","g":136,"avg":0.262,"hr":6,"rbi":62,"r":34,"sb":8,"ops":0.671},{"y":2011,"team":"STL","g":139,"avg":0.305,"hr":14,"rbi":65,"r":55,"sb":4,"ops":0.814},{"y":2012,"team":"STL","g":138,"avg":0.315,"hr":22,"rbi":76,"r":65,"sb":12,"ops":0.874},{"y":2013,"team":"STL","g":136,"avg":0.319,"hr":12,"rbi":80,"r":68,"sb":3,"ops":0.836},{"y":2014,"team":"STL","g":110,"avg":0.282,"hr":7,"rbi":38,"r":40,"sb":1,"ops":0.719},{"y":2015,"team":"STL","g":136,"avg":0.27,"hr":4,"rbi":61,"r":34,"sb":3,"ops":0.66},{"y":2016,"team":"STL","g":147,"avg":0.307,"hr":8,"rbi":58,"r":56,"sb":3,"ops":0.787},{"y":2017,"team":"STL","g":136,"avg":0.273,"hr":18,"rbi":82,"r":60,"sb":9,"ops":0.751},{"y":2018,"team":"STL","g":123,"avg":0.261,"hr":20,"rbi":74,"r":55,"sb":4,"ops":0.75},{"y":2019,"team":"STL","g":113,"avg":0.27,"hr":10,"rbi":57,"r":45,"sb":6,"ops":0.711},{"y":2020,"team":"STL","g":42,"avg":0.262,"hr":4,"rbi":16,"r":12,"sb":0,"ops":0.662},{"y":2021,"team":"STL","g":121,"avg":0.252,"hr":11,"rbi":66,"r":45,"sb":3,"ops":0.667},{"y":2022,"team":"STL","g":80,"avg":0.214,"hr":5,"rbi":24,"r":19,"sb":2,"ops":0.535}],"answer":true},{"name":"Carlos Santana","type":"bat","pos":"INFIELD","first":2010,"last":2025,"teams":["CLE","PHI","KCR","SEA","PIT","MIL","MIN","CHC"],"games":2204,"pa":9254,"hits":1880,"hr":335,"decades":[2010,2020],"seasons":[{"y":2010,"team":"CLE","g":46,"avg":0.26,"hr":6,"rbi":22,"r":23,"sb":3,"ops":0.868},{"y":2011,"team":"CLE","g":155,"avg":0.239,"hr":27,"rbi":79,"r":84,"sb":5,"ops":0.808},{"y":2012,"team":"CLE","g":143,"avg":0.252,"hr":18,"rbi":76,"r":72,"sb":3,"ops":0.785},{"y":2013,"team":"CLE","g":154,"avg":0.268,"hr":20,"rbi":74,"r":75,"sb":3,"ops":0.832},{"y":2014,"team":"CLE","g":152,"avg":0.231,"hr":27,"rbi":85,"r":68,"sb":5,"ops":0.792},{"y":2015,"team":"CLE","g":154,"avg":0.231,"hr":19,"rbi":85,"r":72,"sb":11,"ops":0.752},{"y":2016,"team":"CLE","g":158,"avg":0.259,"hr":34,"rbi":87,"r":89,"sb":5,"ops":0.865},{"y":2017,"team":"CLE","g":154,"avg":0.259,"hr":23,"rbi":79,"r":90,"sb":5,"ops":0.818},{"y":2018,"team":"PHI","g":161,"avg":0.229,"hr":24,"rbi":86,"r":82,"sb":2,"ops":0.766},{"y":2019,"team":"CLE","g":158,"avg":0.281,"hr":34,"rbi":93,"r":110,"sb":4,"ops":0.911},{"y":2020,"team":"CLE","g":60,"avg":0.199,"hr":8,"rbi":30,"r":34,"sb":0,"ops":0.699},{"y":2021,"team":"KCR","g":158,"avg":0.214,"hr":19,"rbi":69,"r":66,"sb":2,"ops":0.66},{"y":2022,"team":"SEA","g":131,"avg":0.202,"hr":19,"rbi":60,"r":52,"sb":0,"ops":0.692},{"y":2023,"team":"PIT","g":146,"avg":0.24,"hr":23,"rbi":86,"r":78,"sb":6,"ops":0.747},{"y":2024,"team":"MIN","g":150,"avg":0.238,"hr":23,"rbi":71,"r":63,"sb":4,"ops":0.749},{"y":2025,"team":"CLE","g":124,"avg":0.219,"hr":11,"rbi":54,"r":49,"sb":7,"ops":0.633}],"answer":true},{"name":"Freddie Freeman","type":"bat","pos":"INFIELD","first":2010,"last":2025,"teams":["ATL","LAD"],"games":2179,"pa":9363,"hits":2431,"hr":367,"decades":[2010,2020],"seasons":[{"y":2010,"team":"ATL","g":20,"avg":0.167,"hr":1,"rbi":1,"r":3,"sb":0,"ops":0.5},{"y":2011,"team":"ATL","g":157,"avg":0.282,"hr":21,"rbi":76,"r":67,"sb":4,"ops":0.795},{"y":2012,"team":"ATL","g":147,"avg":0.259,"hr":23,"rbi":94,"r":91,"sb":2,"ops":0.796},{"y":2013,"team":"ATL","g":147,"avg":0.319,"hr":23,"rbi":109,"r":89,"sb":1,"ops":0.897},{"y":2014,"team":"ATL","g":162,"avg":0.288,"hr":18,"rbi":78,"r":93,"sb":3,"ops":0.847},{"y":2015,"team":"ATL","g":118,"avg":0.276,"hr":18,"rbi":66,"r":62,"sb":3,"ops":0.841},{"y":2016,"team":"ATL","g":158,"avg":0.302,"hr":34,"rbi":91,"r":102,"sb":6,"ops":0.968},{"y":2017,"team":"ATL","g":117,"avg":0.307,"hr":28,"rbi":71,"r":84,"sb":8,"ops":0.989},{"y":2018,"team":"ATL","g":162,"avg":0.309,"hr":23,"rbi":98,"r":94,"sb":10,"ops":0.892},{"y":2019,"team":"ATL","g":158,"avg":0.295,"hr":38,"rbi":121,"r":113,"sb":6,"ops":0.938},{"y":2020,"team":"ATL","g":60,"avg":0.341,"hr":13,"rbi":53,"r":51,"sb":2,"ops":1.102},{"y":2021,"team":"ATL","g":159,"avg":0.3,"hr":31,"rbi":83,"r":120,"sb":8,"ops":0.896},{"y":2022,"team":"LAD","g":159,"avg":0.325,"hr":21,"rbi":100,"r":117,"sb":13,"ops":0.918},{"y":2023,"team":"LAD","g":161,"avg":0.331,"hr":29,"rbi":102,"r":131,"sb":23,"ops":0.976},{"y":2024,"team":"LAD","g":147,"avg":0.282,"hr":22,"rbi":89,"r":81,"sb":9,"ops":0.854},{"y":2025,"team":"LAD","g":147,"avg":0.295,"hr":24,"rbi":90,"r":81,"sb":6,"ops":0.869}],"answer":true},{"name":"Paul Goldschmidt","type":"bat","pos":"INFIELD","first":2011,"last":2025,"teams":["ARI","STL","NYY"],"games":2074,"pa":8804,"hits":2190,"hr":372,"decades":[2010,2020],"seasons":[{"y":2011,"team":"ARI","g":48,"avg":0.25,"hr":8,"rbi":26,"r":28,"sb":4,"ops":0.808},{"y":2012,"team":"ARI","g":145,"avg":0.286,"hr":20,"rbi":82,"r":82,"sb":18,"ops":0.85},{"y":2013,"team":"ARI","g":160,"avg":0.302,"hr":36,"rbi":125,"r":103,"sb":15,"ops":0.952},{"y":2014,"team":"ARI","g":109,"avg":0.3,"hr":19,"rbi":69,"r":75,"sb":9,"ops":0.938},{"y":2015,"team":"ARI","g":159,"avg":0.321,"hr":33,"rbi":110,"r":103,"sb":21,"ops":1.005},{"y":2016,"team":"ARI","g":158,"avg":0.297,"hr":24,"rbi":95,"r":106,"sb":32,"ops":0.899},{"y":2017,"team":"ARI","g":155,"avg":0.297,"hr":36,"rbi":120,"r":117,"sb":18,"ops":0.966},{"y":2018,"team":"ARI","g":158,"avg":0.29,"hr":33,"rbi":83,"r":95,"sb":7,"ops":0.922},{"y":2019,"team":"STL","g":161,"avg":0.26,"hr":34,"rbi":97,"r":97,"sb":3,"ops":0.821},{"y":2020,"team":"STL","g":58,"avg":0.304,"hr":6,"rbi":21,"r":31,"sb":1,"ops":0.883},{"y":2021,"team":"STL","g":158,"avg":0.294,"hr":31,"rbi":99,"r":102,"sb":12,"ops":0.879},{"y":2022,"team":"STL","g":151,"avg":0.317,"hr":35,"rbi":115,"r":106,"sb":7,"ops":0.981},{"y":2023,"team":"STL","g":154,"avg":0.268,"hr":25,"rbi":80,"r":89,"sb":11,"ops":0.81},{"y":2024,"team":"STL","g":154,"avg":0.245,"hr":22,"rbi":65,"r":70,"sb":11,"ops":0.716},{"y":2025,"team":"NYY","g":146,"avg":0.274,"hr":10,"rbi":45,"r":76,"sb":5,"ops":0.731}],"answer":true},{"name":"Elvis Andrus","type":"bat","pos":"INFIELD","first":2009,"last":2023,"teams":["TEX","OAK","CHW"],"games":2059,"pa":8498,"hits":2091,"hr":102,"decades":[2010,2020],"seasons":[{"y":2009,"team":"TEX","g":145,"avg":0.267,"hr":6,"rbi":40,"r":72,"sb":33,"ops":0.702},{"y":2010,"team":"TEX","g":148,"avg":0.265,"hr":0,"rbi":35,"r":88,"sb":32,"ops":0.643},{"y":2011,"team":"TEX","g":150,"avg":0.279,"hr":5,"rbi":60,"r":96,"sb":37,"ops":0.708},{"y":2012,"team":"TEX","g":158,"avg":0.286,"hr":3,"rbi":62,"r":85,"sb":21,"ops":0.727},{"y":2013,"team":"TEX","g":156,"avg":0.271,"hr":4,"rbi":67,"r":91,"sb":42,"ops":0.659},{"y":2014,"team":"TEX","g":157,"avg":0.263,"hr":2,"rbi":41,"r":72,"sb":27,"ops":0.647},{"y":2015,"team":"TEX","g":160,"avg":0.258,"hr":7,"rbi":62,"r":69,"sb":25,"ops":0.667},{"y":2016,"team":"TEX","g":147,"avg":0.302,"hr":8,"rbi":69,"r":75,"sb":24,"ops":0.8},{"y":2017,"team":"TEX","g":158,"avg":0.297,"hr":20,"rbi":88,"r":100,"sb":25,"ops":0.808},{"y":2018,"team":"TEX","g":97,"avg":0.256,"hr":6,"rbi":33,"r":53,"sb":5,"ops":0.675},{"y":2019,"team":"TEX","g":147,"avg":0.275,"hr":12,"rbi":72,"r":81,"sb":31,"ops":0.707},{"y":2020,"team":"TEX","g":29,"avg":0.194,"hr":3,"rbi":7,"r":11,"sb":3,"ops":0.582},{"y":2021,"team":"OAK","g":146,"avg":0.243,"hr":3,"rbi":37,"r":60,"sb":12,"ops":0.614},{"y":2022,"team":"OAK","g":149,"avg":0.249,"hr":17,"rbi":58,"r":66,"sb":18,"ops":0.707},{"y":2023,"team":"CHW","g":112,"avg":0.251,"hr":6,"rbi":44,"r":39,"sb":12,"ops":0.662}],"answer":true},{"name":"Jesse Orosco","type":"pit","pos":"RELIEVER","first":1979,"last":2003,"teams":["NYM","LAD","CLE","MIL","BAL","STL","SDP","NYY","MIN"],"games":1252,"ip":1295.1,"wins":87,"so":1179,"decades":[1980,1990,2000],"seasons":[{"y":1979,"team":"NYM","g":18,"w":1,"l":2,"era":4.89,"ip":35.0,"so":22,"whip":1.57},{"y":1981,"team":"NYM","g":8,"w":0,"l":1,"era":1.56,"ip":17.1,"so":18,"whip":1.1},{"y":1982,"team":"NYM","g":54,"w":4,"l":10,"era":2.72,"ip":109.1,"so":89,"whip":1.21},{"y":1983,"team":"NYM","g":62,"w":13,"l":7,"era":1.47,"ip":110.0,"so":84,"whip":1.04},{"y":1984,"team":"NYM","g":60,"w":10,"l":6,"era":2.59,"ip":87.0,"so":85,"whip":1.06},{"y":1985,"team":"NYM","g":54,"w":8,"l":6,"era":2.73,"ip":79.0,"so":68,"whip":1.27},{"y":1986,"team":"NYM","g":58,"w":8,"l":6,"era":2.33,"ip":81.0,"so":62,"whip":1.22},{"y":1987,"team":"NYM","g":58,"w":3,"l":9,"era":4.44,"ip":77.0,"so":78,"whip":1.42},{"y":1988,"team":"LAD","g":55,"w":3,"l":2,"era":2.72,"ip":53.0,"so":43,"whip":1.34},{"y":1989,"team":"CLE","g":69,"w":3,"l":4,"era":2.08,"ip":78.0,"so":79,"whip":1.03},{"y":1990,"team":"CLE","g":55,"w":5,"l":4,"era":3.9,"ip":64.2,"so":55,"whip":1.48},{"y":1991,"team":"CLE","g":47,"w":2,"l":0,"era":3.74,"ip":45.2,"so":36,"whip":1.47},{"y":1992,"team":"MIL","g":59,"w":3,"l":1,"era":3.23,"ip":39.0,"so":40,"whip":1.18},{"y":1993,"team":"MIL","g":57,"w":3,"l":5,"era":3.18,"ip":56.2,"so":67,"whip":1.13},{"y":1994,"team":"MIL","g":40,"w":3,"l":1,"era":5.08,"ip":39.0,"so":36,"whip":1.49},{"y":1995,"team":"BAL","g":65,"w":2,"l":4,"era":3.26,"ip":49.2,"so":58,"whip":1.11},{"y":1996,"team":"BAL","g":66,"w":3,"l":1,"era":3.4,"ip":55.2,"so":52,"whip":1.26},{"y":1997,"team":"BAL","g":71,"w":6,"l":3,"era":2.32,"ip":50.1,"so":46,"whip":1.17},{"y":1998,"team":"BAL","g":69,"w":4,"l":1,"era":3.18,"ip":56.2,"so":50,"whip":1.31},{"y":1999,"team":"BAL","g":65,"w":0,"l":2,"era":5.34,"ip":32.0,"so":35,"whip":1.5},{"y":2000,"team":"STL","g":6,"w":0,"l":0,"era":3.86,"ip":2.1,"so":4,"whip":2.57},{"y":2001,"team":"LAD","g":35,"w":0,"l":1,"era":3.94,"ip":16.0,"so":21,"whip":1.5},{"y":2002,"team":"LAD","g":56,"w":1,"l":2,"era":3.0,"ip":27.0,"so":22,"whip":1.33},{"y":2003,"team":"SDP","g":65,"w":2,"l":2,"era":7.68,"ip":34.0,"so":29,"whip":1.82}],"answer":true},{"name":"Mike Stanton (ATL, 1989)","type":"pit","pos":"RELIEVER","first":1989,"last":2007,"teams":["ATL","BOS","TEX","NYY","NYM","WSN","SFG","CIN"],"games":1178,"ip":1114.0,"wins":68,"so":895,"decades":[1990,2000],"seasons":[{"y":1989,"team":"ATL","g":20,"w":0,"l":1,"era":1.5,"ip":24.0,"so":27,"whip":1.04},{"y":1990,"team":"ATL","g":7,"w":0,"l":3,"era":18.0,"ip":7.0,"so":7,"whip":2.86},{"y":1991,"team":"ATL","g":74,"w":5,"l":5,"era":2.88,"ip":78.0,"so":54,"whip":1.06},{"y":1992,"team":"ATL","g":65,"w":5,"l":4,"era":4.1,"ip":63.2,"so":44,"whip":1.24},{"y":1993,"team":"ATL","g":63,"w":4,"l":6,"era":4.67,"ip":52.0,"so":43,"whip":1.54},{"y":1994,"team":"ATL","g":49,"w":3,"l":1,"era":3.55,"ip":45.2,"so":35,"whip":1.47},{"y":1995,"team":"ATL","g":48,"w":2,"l":1,"era":4.24,"ip":40.1,"so":23,"whip":1.54},{"y":1996,"team":"BOS","g":81,"w":4,"l":4,"era":3.66,"ip":78.2,"so":60,"whip":1.33},{"y":1997,"team":"NYY","g":64,"w":6,"l":1,"era":2.56,"ip":66.2,"so":70,"whip":1.26},{"y":1998,"team":"NYY","g":67,"w":4,"l":1,"era":5.47,"ip":79.0,"so":69,"whip":1.23},{"y":1999,"team":"NYY","g":73,"w":2,"l":2,"era":4.33,"ip":62.1,"so":59,"whip":1.43},{"y":2000,"team":"NYY","g":69,"w":2,"l":3,"era":4.1,"ip":68.0,"so":75,"whip":1.35},{"y":2001,"team":"NYY","g":76,"w":9,"l":4,"era":2.58,"ip":80.1,"so":78,"whip":1.36},{"y":2002,"team":"NYY","g":79,"w":7,"l":1,"era":3.0,"ip":78.0,"so":44,"whip":1.29},{"y":2003,"team":"NYM","g":50,"w":2,"l":7,"era":4.57,"ip":45.1,"so":34,"whip":1.24},{"y":2004,"team":"NYM","g":83,"w":2,"l":6,"era":3.16,"ip":77.0,"so":58,"whip":1.34},{"y":2005,"team":"WSN","g":59,"w":3,"l":3,"era":4.64,"ip":42.2,"so":27,"whip":1.5},{"y":2006,"team":"WSN","g":82,"w":7,"l":7,"era":3.99,"ip":67.2,"so":48,"whip":1.43},{"y":2007,"team":"CIN","g":69,"w":1,"l":3,"era":5.93,"ip":57.2,"so":40,"whip":1.61}],"answer":true},{"name":"John Franco","type":"pit","pos":"RELIEVER","first":1984,"last":2005,"teams":["CIN","NYM","HOU"],"games":1119,"ip":1245.2,"wins":90,"so":975,"decades":[1980,1990,2000],"seasons":[{"y":1984,"team":"CIN","g":54,"w":6,"l":2,"era":2.61,"ip":79.1,"so":55,"whip":1.39},{"y":1985,"team":"CIN","g":67,"w":12,"l":3,"era":2.18,"ip":99.0,"so":61,"whip":1.24},{"y":1986,"team":"CIN","g":74,"w":6,"l":6,"era":2.94,"ip":101.0,"so":84,"whip":1.33},{"y":1987,"team":"CIN","g":68,"w":8,"l":5,"era":2.52,"ip":82.0,"so":61,"whip":1.26},{"y":1988,"team":"CIN","g":70,"w":6,"l":6,"era":1.57,"ip":86.0,"so":46,"whip":1.01},{"y":1989,"team":"CIN","g":60,"w":4,"l":8,"era":3.12,"ip":80.2,"so":60,"whip":1.4},{"y":1990,"team":"NYM","g":55,"w":5,"l":3,"era":2.53,"ip":67.2,"so":56,"whip":1.29},{"y":1991,"team":"NYM","g":52,"w":5,"l":9,"era":2.93,"ip":55.1,"so":45,"whip":1.43},{"y":1992,"team":"NYM","g":31,"w":6,"l":2,"era":1.64,"ip":33.0,"so":20,"whip":1.06},{"y":1993,"team":"NYM","g":35,"w":4,"l":3,"era":5.2,"ip":36.1,"so":29,"whip":1.79},{"y":1994,"team":"NYM","g":47,"w":1,"l":4,"era":2.7,"ip":50.0,"so":42,"whip":1.32},{"y":1995,"team":"NYM","g":48,"w":5,"l":3,"era":2.44,"ip":51.2,"so":41,"whip":1.26},{"y":1996,"team":"NYM","g":51,"w":4,"l":3,"era":1.83,"ip":54.0,"so":48,"whip":1.39},{"y":1997,"team":"NYM","g":59,"w":5,"l":3,"era":2.55,"ip":60.0,"so":53,"whip":1.15},{"y":1998,"team":"NYM","g":61,"w":0,"l":8,"era":3.62,"ip":64.2,"so":59,"whip":1.47},{"y":1999,"team":"NYM","g":46,"w":0,"l":2,"era":2.88,"ip":40.2,"so":41,"whip":1.45},{"y":2000,"team":"NYM","g":62,"w":5,"l":4,"era":3.4,"ip":55.2,"so":56,"whip":1.29},{"y":2001,"team":"NYM","g":58,"w":6,"l":2,"era":4.05,"ip":53.1,"so":50,"whip":1.39},{"y":2003,"team":"NYM","g":38,"w":0,"l":3,"era":2.62,"ip":34.1,"so":16,"whip":1.4},{"y":2004,"team":"NYM","g":52,"w":2,"l":7,"era":5.28,"ip":46.0,"so":36,"whip":1.52},{"y":2005,"team":"HOU","g":31,"w":0,"l":1,"era":7.2,"ip":15.0,"so":16,"whip":2.13}],"answer":true},{"name":"Mariano Rivera","type":"pit","pos":"RELIEVER","first":1995,"last":2013,"teams":["NYY"],"games":1115,"ip":1283.2,"wins":82,"so":1173,"decades":[1990,2000,2010],"seasons":[{"y":1995,"team":"NYY","g":19,"w":5,"l":3,"era":5.51,"ip":67.0,"so":51,"whip":1.51},{"y":1996,"team":"NYY","g":61,"w":8,"l":3,"era":2.09,"ip":107.2,"so":130,"whip":0.99},{"y":1997,"team":"NYY","g":66,"w":6,"l":4,"era":1.88,"ip":71.2,"so":68,"whip":1.19},{"y":1998,"team":"NYY","g":54,"w":3,"l":0,"era":1.91,"ip":61.1,"so":36,"whip":1.06},{"y":1999,"team":"NYY","g":66,"w":4,"l":3,"era":1.83,"ip":69.0,"so":52,"whip":0.88},{"y":2000,"team":"NYY","g":66,"w":7,"l":4,"era":2.85,"ip":75.2,"so":58,"whip":1.1},{"y":2001,"team":"NYY","g":71,"w":4,"l":6,"era":2.34,"ip":80.2,"so":83,"whip":0.9},{"y":2002,"team":"NYY","g":45,"w":1,"l":4,"era":2.74,"ip":46.0,"so":41,"whip":1.0},{"y":2003,"team":"NYY","g":64,"w":5,"l":2,"era":1.66,"ip":70.2,"so":63,"whip":1.0},{"y":2004,"team":"NYY","g":74,"w":4,"l":2,"era":1.94,"ip":78.2,"so":66,"whip":1.08},{"y":2005,"team":"NYY","g":71,"w":7,"l":4,"era":1.38,"ip":78.1,"so":80,"whip":0.87},{"y":2006,"team":"NYY","g":63,"w":5,"l":5,"era":1.8,"ip":75.0,"so":55,"whip":0.96},{"y":2007,"team":"NYY","g":67,"w":3,"l":4,"era":3.15,"ip":71.1,"so":74,"whip":1.12},{"y":2008,"team":"NYY","g":64,"w":6,"l":5,"era":1.4,"ip":70.2,"so":77,"whip":0.67},{"y":2009,"team":"NYY","g":66,"w":3,"l":3,"era":1.76,"ip":66.1,"so":72,"whip":0.9},{"y":2010,"team":"NYY","g":61,"w":3,"l":3,"era":1.8,"ip":60.0,"so":45,"whip":0.83},{"y":2011,"team":"NYY","g":64,"w":1,"l":2,"era":1.91,"ip":61.1,"so":60,"whip":0.9},{"y":2012,"team":"NYY","g":9,"w":1,"l":1,"era":2.16,"ip":8.1,"so":8,"whip":0.96},{"y":2013,"team":"NYY","g":64,"w":6,"l":2,"era":2.11,"ip":64.0,"so":54,"whip":1.05}],"answer":true},{"name":"Dennis Eckersley","type":"pit","pos":"RELIEVER","first":1975,"last":1998,"teams":["CLE","BOS","CHC","OAK","STL"],"games":1071,"ip":3285.2,"wins":197,"so":2401,"decades":[1970,1980,1990],"seasons":[{"y":1975,"team":"CLE","g":34,"w":13,"l":7,"era":2.6,"ip":186.2,"so":152,"whip":1.27},{"y":1976,"team":"CLE","g":36,"w":13,"l":12,"era":3.43,"ip":199.1,"so":200,"whip":1.17},{"y":1977,"team":"CLE","g":33,"w":14,"l":13,"era":3.53,"ip":247.1,"so":191,"whip":1.08},{"y":1978,"team":"BOS","g":35,"w":20,"l":8,"era":2.99,"ip":268.1,"so":162,"whip":1.23},{"y":1979,"team":"BOS","g":33,"w":17,"l":10,"era":2.99,"ip":246.2,"so":150,"whip":1.19},{"y":1980,"team":"BOS","g":30,"w":12,"l":14,"era":4.28,"ip":197.2,"so":121,"whip":1.17},{"y":1981,"team":"BOS","g":23,"w":9,"l":8,"era":4.27,"ip":154.0,"so":79,"whip":1.27},{"y":1982,"team":"BOS","g":33,"w":13,"l":13,"era":3.73,"ip":224.1,"so":127,"whip":1.21},{"y":1983,"team":"BOS","g":28,"w":9,"l":13,"era":5.61,"ip":176.1,"so":77,"whip":1.49},{"y":1984,"team":"CHC","g":33,"w":14,"l":12,"era":3.6,"ip":225.0,"so":114,"whip":1.21},{"y":1985,"team":"CHC","g":25,"w":11,"l":7,"era":3.08,"ip":169.1,"so":117,"whip":0.97},{"y":1986,"team":"CHC","g":33,"w":6,"l":11,"era":4.57,"ip":201.0,"so":137,"whip":1.34},{"y":1987,"team":"OAK","g":54,"w":6,"l":8,"era":3.03,"ip":115.2,"so":113,"whip":1.0},{"y":1988,"team":"OAK","g":60,"w":4,"l":2,"era":2.35,"ip":72.2,"so":70,"whip":0.87},{"y":1989,"team":"OAK","g":51,"w":4,"l":0,"era":1.56,"ip":57.2,"so":55,"whip":0.61},{"y":1990,"team":"OAK","g":63,"w":4,"l":2,"era":0.61,"ip":73.1,"so":73,"whip":0.61},{"y":1991,"team":"OAK","g":67,"w":5,"l":4,"era":2.96,"ip":76.0,"so":87,"whip":0.91},{"y":1992,"team":"OAK","g":69,"w":7,"l":1,"era":1.91,"ip":80.0,"so":93,"whip":0.91},{"y":1993,"team":"OAK","g":64,"w":2,"l":4,"era":4.16,"ip":67.0,"so":80,"whip":1.19},{"y":1994,"team":"OAK","g":45,"w":5,"l":4,"era":4.26,"ip":44.1,"so":47,"whip":1.4},{"y":1995,"team":"OAK","g":52,"w":4,"l":6,"era":4.83,"ip":50.1,"so":40,"whip":1.27},{"y":1996,"team":"STL","g":63,"w":0,"l":6,"era":3.3,"ip":60.0,"so":49,"whip":1.18},{"y":1997,"team":"STL","g":57,"w":1,"l":5,"era":3.91,"ip":53.0,"so":45,"whip":1.08},{"y":1998,"team":"BOS","g":50,"w":4,"l":1,"era":4.76,"ip":39.2,"so":22,"whip":1.36}],"answer":true},{"name":"Hoyt Wilhelm","type":"pit","pos":"RELIEVER","first":1952,"last":1972,"teams":["NYG","STL","CLE","BAL","CHW","CAL","ATL","CHC","LAD"],"games":1070,"ip":2254.1,"wins":143,"so":1610,"decades":[1950,1960,1970],"seasons":[{"y":1952,"team":"NYG","g":71,"w":15,"l":3,"era":2.43,"ip":159.1,"so":108,"whip":1.15},{"y":1953,"team":"NYG","g":68,"w":7,"l":8,"era":3.04,"ip":145.0,"so":71,"whip":1.41},{"y":1954,"team":"NYG","g":57,"w":12,"l":4,"era":2.1,"ip":111.1,"so":64,"whip":1.16},{"y":1955,"team":"NYG","g":59,"w":4,"l":1,"era":3.93,"ip":103.0,"so":71,"whip":1.4},{"y":1956,"team":"NYG","g":64,"w":4,"l":9,"era":3.83,"ip":89.1,"so":71,"whip":1.57},{"y":1957,"team":"STL","g":42,"w":2,"l":4,"era":4.14,"ip":58.2,"so":29,"whip":1.3},{"y":1958,"team":"CLE","g":39,"w":3,"l":10,"era":2.34,"ip":131.0,"so":92,"whip":1.07},{"y":1959,"team":"BAL","g":32,"w":15,"l":11,"era":2.19,"ip":226.0,"so":139,"whip":1.13},{"y":1960,"team":"BAL","g":41,"w":11,"l":8,"era":3.31,"ip":147.0,"so":107,"whip":1.12},{"y":1961,"team":"BAL","g":51,"w":9,"l":7,"era":2.3,"ip":109.2,"so":87,"whip":1.19},{"y":1962,"team":"BAL","g":52,"w":7,"l":10,"era":1.94,"ip":93.0,"so":90,"whip":1.05},{"y":1963,"team":"CHW","g":55,"w":5,"l":8,"era":2.64,"ip":136.1,"so":111,"whip":1.0},{"y":1964,"team":"CHW","g":73,"w":12,"l":9,"era":1.99,"ip":131.1,"so":95,"whip":0.94},{"y":1965,"team":"CHW","g":66,"w":7,"l":7,"era":1.81,"ip":144.0,"so":106,"whip":0.83},{"y":1966,"team":"CHW","g":46,"w":5,"l":2,"era":1.66,"ip":81.1,"so":61,"whip":0.82},{"y":1967,"team":"CHW","g":49,"w":8,"l":3,"era":1.31,"ip":89.0,"so":76,"whip":1.03},{"y":1968,"team":"CHW","g":72,"w":4,"l":4,"era":1.73,"ip":93.2,"so":72,"whip":0.99},{"y":1969,"team":"CAL","g":52,"w":7,"l":7,"era":2.19,"ip":78.0,"so":67,"whip":0.92},{"y":1970,"team":"ATL","g":53,"w":6,"l":5,"era":3.4,"ip":82.0,"so":68,"whip":1.4},{"y":1971,"team":"LAD","g":12,"w":0,"l":1,"era":2.7,"ip":20.0,"so":16,"whip":0.85},{"y":1972,"team":"LAD","g":16,"w":0,"l":1,"era":4.62,"ip":25.1,"so":9,"whip":1.38}],"answer":true},{"name":"Dan Plesac","type":"pit","pos":"RELIEVER","first":1986,"last":2003,"teams":["MIL","CHC","PIT","TOR","ARI","PHI"],"games":1064,"ip":1072.0,"wins":65,"so":1041,"decades":[1980,1990,2000],"seasons":[{"y":1986,"team":"MIL","g":51,"w":10,"l":7,"era":2.97,"ip":91.0,"so":75,"whip":1.21},{"y":1987,"team":"MIL","g":57,"w":5,"l":6,"era":2.61,"ip":79.1,"so":89,"whip":1.08},{"y":1988,"team":"MIL","g":50,"w":1,"l":2,"era":2.41,"ip":52.1,"so":52,"whip":1.11},{"y":1989,"team":"MIL","g":52,"w":3,"l":4,"era":2.35,"ip":61.1,"so":52,"whip":1.04},{"y":1990,"team":"MIL","g":66,"w":3,"l":7,"era":4.43,"ip":69.0,"so":65,"whip":1.42},{"y":1991,"team":"MIL","g":45,"w":2,"l":7,"era":4.29,"ip":92.1,"so":61,"whip":1.42},{"y":1992,"team":"MIL","g":44,"w":5,"l":4,"era":2.96,"ip":79.0,"so":54,"whip":1.25},{"y":1993,"team":"CHC","g":57,"w":2,"l":1,"era":4.74,"ip":62.2,"so":47,"whip":1.52},{"y":1994,"team":"CHC","g":54,"w":2,"l":3,"era":4.61,"ip":54.2,"so":53,"whip":1.35},{"y":1995,"team":"PIT","g":58,"w":4,"l":4,"era":3.58,"ip":60.1,"so":57,"whip":1.33},{"y":1996,"team":"PIT","g":73,"w":6,"l":5,"era":4.09,"ip":70.1,"so":76,"whip":1.29},{"y":1997,"team":"TOR","g":73,"w":2,"l":4,"era":3.58,"ip":50.1,"so":61,"whip":1.31},{"y":1998,"team":"TOR","g":78,"w":4,"l":3,"era":3.78,"ip":50.0,"so":55,"whip":1.14},{"y":1999,"team":"ARI","g":64,"w":2,"l":4,"era":5.89,"ip":44.1,"so":53,"whip":1.51},{"y":2000,"team":"ARI","g":62,"w":5,"l":1,"era":3.15,"ip":40.0,"so":45,"whip":1.5},{"y":2001,"team":"TOR","g":62,"w":4,"l":5,"era":3.57,"ip":45.1,"so":68,"whip":1.28},{"y":2002,"team":"PHI","g":60,"w":3,"l":3,"era":4.21,"ip":36.1,"so":41,"whip":1.24},{"y":2003,"team":"PHI","g":58,"w":2,"l":1,"era":2.7,"ip":33.1,"so":37,"whip":1.2}],"answer":true},{"name":"Mike Timlin","type":"pit","pos":"RELIEVER","first":1991,"last":2008,"teams":["TOR","SEA","BAL","STL","PHI","BOS"],"games":1058,"ip":1204.1,"wins":75,"so":872,"decades":[1990,2000],"seasons":[{"y":1991,"team":"TOR","g":63,"w":11,"l":6,"era":3.16,"ip":108.1,"so":85,"whip":1.33},{"y":1992,"team":"TOR","g":26,"w":0,"l":2,"era":4.12,"ip":43.2,"so":35,"whip":1.49},{"y":1993,"team":"TOR","g":54,"w":4,"l":2,"era":4.69,"ip":55.2,"so":49,"whip":1.62},{"y":1994,"team":"TOR","g":34,"w":0,"l":1,"era":5.17,"ip":40.0,"so":38,"whip":1.52},{"y":1995,"team":"TOR","g":31,"w":4,"l":3,"era":2.14,"ip":42.0,"so":36,"whip":1.31},{"y":1996,"team":"TOR","g":59,"w":1,"l":6,"era":3.65,"ip":56.2,"so":52,"whip":1.15},{"y":1997,"team":"TOR","g":64,"w":6,"l":4,"era":3.22,"ip":72.2,"so":45,"whip":1.22},{"y":1998,"team":"SEA","g":70,"w":3,"l":3,"era":2.95,"ip":79.1,"so":60,"whip":1.18},{"y":1999,"team":"BAL","g":62,"w":3,"l":9,"era":3.57,"ip":63.0,"so":50,"whip":1.17},{"y":2000,"team":"BAL","g":62,"w":5,"l":4,"era":4.18,"ip":64.2,"so":52,"whip":1.58},{"y":2001,"team":"STL","g":67,"w":4,"l":5,"era":4.09,"ip":72.2,"so":47,"whip":1.33},{"y":2002,"team":"STL","g":72,"w":4,"l":6,"era":2.98,"ip":96.2,"so":50,"whip":0.92},{"y":2003,"team":"BOS","g":72,"w":6,"l":4,"era":3.55,"ip":83.2,"so":65,"whip":1.03},{"y":2004,"team":"BOS","g":76,"w":5,"l":4,"era":4.13,"ip":76.1,"so":56,"whip":1.23},{"y":2005,"team":"BOS","g":81,"w":7,"l":3,"era":2.24,"ip":80.1,"so":59,"whip":1.32},{"y":2006,"team":"BOS","g":68,"w":6,"l":6,"era":4.36,"ip":64.0,"so":30,"whip":1.47},{"y":2007,"team":"BOS","g":50,"w":2,"l":1,"era":3.42,"ip":55.1,"so":31,"whip":1.08},{"y":2008,"team":"BOS","g":47,"w":4,"l":4,"era":5.66,"ip":49.1,"so":32,"whip":1.62}],"answer":true},{"name":"Kent Tekulve","type":"pit","pos":"RELIEVER","first":1974,"last":1989,"teams":["PIT","PHI","CIN"],"games":1050,"ip":1436.2,"wins":94,"so":779,"decades":[1970,1980],"seasons":[{"y":1974,"team":"PIT","g":8,"w":1,"l":1,"era":6.0,"ip":9.0,"so":6,"whip":1.89},{"y":1975,"team":"PIT","g":34,"w":1,"l":2,"era":2.25,"ip":56.0,"so":28,"whip":1.18},{"y":1976,"team":"PIT","g":64,"w":5,"l":3,"era":2.45,"ip":102.2,"so":68,"whip":1.13},{"y":1977,"team":"PIT","g":72,"w":10,"l":1,"era":3.06,"ip":103.0,"so":59,"whip":1.18},{"y":1978,"team":"PIT","g":91,"w":8,"l":7,"era":2.33,"ip":135.1,"so":77,"whip":1.26},{"y":1979,"team":"PIT","g":94,"w":10,"l":8,"era":2.75,"ip":134.1,"so":75,"whip":1.18},{"y":1980,"team":"PIT","g":78,"w":8,"l":12,"era":3.39,"ip":93.0,"so":47,"whip":1.46},{"y":1981,"team":"PIT","g":45,"w":5,"l":5,"era":2.49,"ip":65.0,"so":34,"whip":1.2},{"y":1982,"team":"PIT","g":85,"w":12,"l":8,"era":2.87,"ip":128.2,"so":66,"whip":1.24},{"y":1983,"team":"PIT","g":76,"w":7,"l":5,"era":1.64,"ip":99.0,"so":52,"whip":1.15},{"y":1984,"team":"PIT","g":72,"w":3,"l":9,"era":2.66,"ip":88.0,"so":36,"whip":1.35},{"y":1985,"team":"PHI","g":61,"w":4,"l":10,"era":3.57,"ip":75.2,"so":40,"whip":1.37},{"y":1986,"team":"PHI","g":73,"w":11,"l":5,"era":2.54,"ip":110.0,"so":57,"whip":1.13},{"y":1987,"team":"PHI","g":90,"w":6,"l":4,"era":3.09,"ip":105.0,"so":60,"whip":1.19},{"y":1988,"team":"PHI","g":70,"w":3,"l":7,"era":3.6,"ip":80.0,"so":43,"whip":1.36},{"y":1989,"team":"CIN","g":37,"w":0,"l":3,"era":5.02,"ip":52.0,"so":31,"whip":1.52}],"answer":true},{"name":"LaTroy Hawkins","type":"pit","pos":"RELIEVER","first":1995,"last":2015,"teams":["MIN","CHC","SFG","BAL","COL","NYY","HOU","MIL","LAA","NYM","TOR"],"games":1042,"ip":1467.1,"wins":75,"so":983,"decades":[1990,2000,2010],"seasons":[{"y":1995,"team":"MIN","g":6,"w":2,"l":3,"era":8.67,"ip":27.0,"so":9,"whip":1.89},{"y":1996,"team":"MIN","g":7,"w":1,"l":1,"era":8.2,"ip":26.1,"so":24,"whip":1.94},{"y":1997,"team":"MIN","g":20,"w":6,"l":12,"era":5.84,"ip":103.1,"so":58,"whip":1.75},{"y":1998,"team":"MIN","g":33,"w":7,"l":14,"era":5.25,"ip":190.1,"so":105,"whip":1.51},{"y":1999,"team":"MIN","g":33,"w":10,"l":14,"era":6.66,"ip":174.1,"so":103,"whip":1.71},{"y":2000,"team":"MIN","g":66,"w":2,"l":5,"era":3.39,"ip":87.2,"so":59,"whip":1.33},{"y":2001,"team":"MIN","g":62,"w":1,"l":5,"era":5.96,"ip":51.1,"so":36,"whip":1.91},{"y":2002,"team":"MIN","g":65,"w":6,"l":0,"era":2.13,"ip":80.1,"so":63,"whip":0.97},{"y":2003,"team":"MIN","g":74,"w":9,"l":3,"era":1.86,"ip":77.1,"so":75,"whip":1.09},{"y":2004,"team":"CHC","g":77,"w":5,"l":4,"era":2.63,"ip":82.0,"so":69,"whip":1.05},{"y":2005,"team":"SFG","g":66,"w":2,"l":8,"era":3.83,"ip":56.1,"so":43,"whip":1.46},{"y":2006,"team":"BAL","g":60,"w":3,"l":2,"era":4.48,"ip":60.1,"so":27,"whip":1.46},{"y":2007,"team":"COL","g":62,"w":2,"l":5,"era":3.42,"ip":55.1,"so":29,"whip":1.23},{"y":2008,"team":"NYY","g":57,"w":3,"l":1,"era":3.92,"ip":62.0,"so":48,"whip":1.21},{"y":2009,"team":"HOU","g":65,"w":1,"l":4,"era":2.13,"ip":63.1,"so":45,"whip":1.2},{"y":2010,"team":"MIL","g":18,"w":0,"l":3,"era":8.44,"ip":16.0,"so":18,"whip":1.69},{"y":2011,"team":"MIL","g":52,"w":3,"l":1,"era":2.42,"ip":48.1,"so":28,"whip":1.24},{"y":2012,"team":"LAA","g":48,"w":2,"l":3,"era":3.64,"ip":42.0,"so":23,"whip":1.38},{"y":2013,"team":"NYM","g":72,"w":3,"l":2,"era":2.93,"ip":70.2,"so":55,"whip":1.15},{"y":2014,"team":"COL","g":57,"w":4,"l":3,"era":3.31,"ip":54.1,"so":32,"whip":1.2},{"y":2015,"team":"COL","g":42,"w":3,"l":1,"era":3.26,"ip":38.2,"so":34,"whip":1.32}],"answer":true},{"name":"Trevor Hoffman","type":"pit","pos":"RELIEVER","first":1993,"last":2010,"teams":["FLA","SDP","MIL"],"games":1035,"ip":1089.1,"wins":61,"so":1133,"decades":[1990,2000],"seasons":[{"y":1993,"team":"SDP","g":67,"w":4,"l":6,"era":3.9,"ip":90.0,"so":79,"whip":1.32},{"y":1994,"team":"SDP","g":47,"w":4,"l":4,"era":2.57,"ip":56.0,"so":68,"whip":1.05},{"y":1995,"team":"SDP","g":55,"w":7,"l":4,"era":3.88,"ip":53.1,"so":52,"whip":1.16},{"y":1996,"team":"SDP","g":70,"w":9,"l":5,"era":2.25,"ip":88.0,"so":111,"whip":0.92},{"y":1997,"team":"SDP","g":70,"w":6,"l":4,"era":2.66,"ip":81.1,"so":111,"whip":1.02},{"y":1998,"team":"SDP","g":66,"w":4,"l":2,"era":1.48,"ip":73.0,"so":86,"whip":0.85},{"y":1999,"team":"SDP","g":64,"w":2,"l":3,"era":2.14,"ip":67.1,"so":73,"whip":0.94},{"y":2000,"team":"SDP","g":70,"w":4,"l":7,"era":2.99,"ip":72.1,"so":85,"whip":1.0},{"y":2001,"team":"SDP","g":62,"w":3,"l":4,"era":3.43,"ip":60.1,"so":63,"whip":1.14},{"y":2002,"team":"SDP","g":61,"w":2,"l":5,"era":2.73,"ip":59.1,"so":69,"whip":1.18},{"y":2003,"team":"SDP","g":9,"w":0,"l":0,"era":2.0,"ip":9.0,"so":11,"whip":1.11},{"y":2004,"team":"SDP","g":55,"w":3,"l":3,"era":2.3,"ip":54.2,"so":53,"whip":0.91},{"y":2005,"team":"SDP","g":60,"w":1,"l":6,"era":2.97,"ip":57.2,"so":54,"whip":1.11},{"y":2006,"team":"SDP","g":65,"w":0,"l":2,"era":2.14,"ip":63.0,"so":50,"whip":0.97},{"y":2007,"team":"SDP","g":61,"w":4,"l":5,"era":2.98,"ip":57.1,"so":44,"whip":1.12},{"y":2008,"team":"SDP","g":48,"w":3,"l":6,"era":3.77,"ip":45.1,"so":46,"whip":1.04},{"y":2009,"team":"MIL","g":55,"w":3,"l":2,"era":1.83,"ip":54.0,"so":48,"whip":0.91},{"y":2010,"team":"MIL","g":50,"w":2,"l":7,"era":5.89,"ip":47.1,"so":30,"whip":1.44}],"answer":true},{"name":"Lee Smith","type":"pit","pos":"RELIEVER","first":1980,"last":1997,"teams":["CHC","BOS","STL","NYY","BAL","CAL","CIN","MON"],"games":1022,"ip":1289.1,"wins":71,"so":1251,"decades":[1980,1990],"seasons":[{"y":1980,"team":"CHC","g":18,"w":2,"l":0,"era":2.91,"ip":21.2,"so":17,"whip":1.62},{"y":1981,"team":"CHC","g":40,"w":3,"l":6,"era":3.51,"ip":66.2,"so":50,"whip":1.32},{"y":1982,"team":"CHC","g":72,"w":2,"l":5,"era":2.69,"ip":117.0,"so":99,"whip":1.21},{"y":1983,"team":"CHC","g":66,"w":4,"l":10,"era":1.65,"ip":103.1,"so":91,"whip":1.07},{"y":1984,"team":"CHC","g":69,"w":9,"l":7,"era":3.65,"ip":101.0,"so":86,"whip":1.32},{"y":1985,"team":"CHC","g":65,"w":7,"l":4,"era":3.04,"ip":97.2,"so":112,"whip":1.22},{"y":1986,"team":"CHC","g":66,"w":9,"l":9,"era":3.09,"ip":90.1,"so":93,"whip":1.23},{"y":1987,"team":"CHC","g":62,"w":4,"l":10,"era":3.12,"ip":83.2,"so":96,"whip":1.39},{"y":1988,"team":"BOS","g":64,"w":4,"l":5,"era":2.8,"ip":83.2,"so":96,"whip":1.3},{"y":1989,"team":"BOS","g":64,"w":6,"l":1,"era":3.57,"ip":70.2,"so":96,"whip":1.22},{"y":1990,"team":"STL","g":64,"w":5,"l":5,"era":2.06,"ip":83.0,"so":87,"whip":1.2},{"y":1991,"team":"STL","g":67,"w":6,"l":3,"era":2.34,"ip":73.0,"so":67,"whip":1.14},{"y":1992,"team":"STL","g":70,"w":4,"l":9,"era":3.12,"ip":75.0,"so":60,"whip":1.17},{"y":1993,"team":"STL","g":63,"w":2,"l":4,"era":3.88,"ip":58.0,"so":60,"whip":1.16},{"y":1994,"team":"BAL","g":41,"w":1,"l":4,"era":3.29,"ip":38.1,"so":42,"whip":1.17},{"y":1995,"team":"CAL","g":52,"w":0,"l":5,"era":3.47,"ip":49.1,"so":43,"whip":1.36},{"y":1996,"team":"CIN","g":54,"w":3,"l":4,"era":3.74,"ip":55.1,"so":41,"whip":1.5},{"y":1997,"team":"MON","g":25,"w":0,"l":1,"era":5.82,"ip":21.2,"so":15,"whip":1.66}],"answer":true},{"name":"Michael Jackson","type":"pit","pos":"RELIEVER","first":1986,"last":2004,"teams":["PHI","SEA","SFG","CIN","CLE","HOU","MIN","CHW"],"games":1005,"ip":1188.1,"wins":62,"so":1006,"decades":[1980,1990,2000],"seasons":[{"y":1986,"team":"PHI","g":9,"w":0,"l":0,"era":3.38,"ip":13.1,"so":3,"whip":1.2},{"y":1987,"team":"PHI","g":55,"w":3,"l":10,"era":4.2,"ip":109.1,"so":93,"whip":1.32},{"y":1988,"team":"SEA","g":62,"w":6,"l":5,"era":2.63,"ip":99.1,"so":76,"whip":1.18},{"y":1989,"team":"SEA","g":65,"w":4,"l":6,"era":3.17,"ip":99.1,"so":94,"whip":1.36},{"y":1990,"team":"SEA","g":63,"w":5,"l":7,"era":4.54,"ip":77.1,"so":69,"whip":1.4},{"y":1991,"team":"SEA","g":72,"w":7,"l":7,"era":3.25,"ip":88.2,"so":74,"whip":1.11},{"y":1992,"team":"SFG","g":67,"w":6,"l":6,"era":3.73,"ip":82.0,"so":80,"whip":1.33},{"y":1993,"team":"SFG","g":81,"w":6,"l":6,"era":3.03,"ip":77.1,"so":70,"whip":1.06},{"y":1994,"team":"SFG","g":36,"w":3,"l":2,"era":1.49,"ip":42.1,"so":51,"whip":0.8},{"y":1995,"team":"CIN","g":40,"w":6,"l":1,"era":2.39,"ip":49.0,"so":41,"whip":1.16},{"y":1996,"team":"SEA","g":73,"w":1,"l":1,"era":3.62,"ip":72.0,"so":70,"whip":1.18},{"y":1997,"team":"CLE","g":71,"w":2,"l":5,"era":3.24,"ip":75.0,"so":74,"whip":1.17},{"y":1998,"team":"CLE","g":69,"w":1,"l":1,"era":1.55,"ip":64.0,"so":55,"whip":0.88},{"y":1999,"team":"CLE","g":72,"w":3,"l":4,"era":4.06,"ip":68.2,"so":55,"whip":1.25},{"y":2001,"team":"HOU","g":67,"w":5,"l":3,"era":4.7,"ip":69.0,"so":46,"whip":1.3},{"y":2002,"team":"MIN","g":58,"w":2,"l":3,"era":3.27,"ip":55.0,"so":29,"whip":1.31},{"y":2004,"team":"CHW","g":45,"w":2,"l":0,"era":5.01,"ip":46.2,"so":26,"whip":1.5}],"answer":true},{"name":"Rich Gossage","type":"pit","pos":"RELIEVER","first":1972,"last":1994,"teams":["CHW","PIT","NYY","SDP","CHC","SFG","TEX","OAK","SEA"],"games":1002,"ip":1809.1,"wins":124,"so":1502,"decades":[1970,1980,1990],"seasons":[{"y":1972,"team":"CHW","g":36,"w":7,"l":1,"era":4.28,"ip":80.0,"so":57,"whip":1.45},{"y":1973,"team":"CHW","g":20,"w":0,"l":4,"era":7.43,"ip":49.2,"so":33,"whip":1.89},{"y":1974,"team":"CHW","g":39,"w":4,"l":6,"era":4.13,"ip":89.1,"so":64,"whip":1.56},{"y":1975,"team":"CHW","g":62,"w":9,"l":8,"era":1.84,"ip":141.2,"so":130,"whip":1.19},{"y":1976,"team":"CHW","g":31,"w":9,"l":17,"era":3.94,"ip":224.0,"so":135,"whip":1.36},{"y":1977,"team":"PIT","g":72,"w":11,"l":9,"era":1.62,"ip":133.0,"so":151,"whip":0.95},{"y":1978,"team":"NYY","g":63,"w":10,"l":11,"era":2.01,"ip":134.1,"so":122,"whip":1.09},{"y":1979,"team":"NYY","g":36,"w":5,"l":3,"era":2.62,"ip":58.1,"so":41,"whip":1.15},{"y":1980,"team":"NYY","g":64,"w":6,"l":2,"era":2.27,"ip":99.0,"so":103,"whip":1.12},{"y":1981,"team":"NYY","g":32,"w":3,"l":2,"era":0.77,"ip":46.2,"so":48,"whip":0.77},{"y":1982,"team":"NYY","g":56,"w":4,"l":5,"era":2.23,"ip":93.0,"so":102,"whip":0.98},{"y":1983,"team":"NYY","g":57,"w":13,"l":5,"era":2.27,"ip":87.1,"so":90,"whip":1.23},{"y":1984,"team":"SDP","g":62,"w":10,"l":6,"era":2.9,"ip":102.1,"so":84,"whip":1.08},{"y":1985,"team":"SDP","g":50,"w":5,"l":3,"era":1.82,"ip":79.0,"so":52,"whip":1.03},{"y":1986,"team":"SDP","g":45,"w":5,"l":7,"era":4.45,"ip":64.2,"so":63,"whip":1.38},{"y":1987,"team":"SDP","g":40,"w":5,"l":4,"era":3.12,"ip":52.0,"so":44,"whip":1.27},{"y":1988,"team":"CHC","g":46,"w":4,"l":4,"era":4.33,"ip":43.2,"so":30,"whip":1.49},{"y":1989,"team":"SFG","g":42,"w":3,"l":1,"era":2.95,"ip":58.0,"so":30,"whip":1.31},{"y":1991,"team":"TEX","g":44,"w":4,"l":2,"era":3.57,"ip":40.1,"so":28,"whip":1.21},{"y":1992,"team":"OAK","g":30,"w":0,"l":2,"era":2.84,"ip":38.0,"so":26,"whip":1.34},{"y":1993,"team":"OAK","g":39,"w":4,"l":5,"era":4.53,"ip":47.2,"so":40,"whip":1.57},{"y":1994,"team":"SEA","g":36,"w":3,"l":0,"era":4.18,"ip":47.1,"so":29,"whip":1.25}],"answer":true},{"name":"Lindy McDaniel","type":"pit","pos":"RELIEVER","first":1955,"last":1975,"teams":["STL","CHC","SFG","NYY","KCR"],"games":987,"ip":2139.1,"wins":141,"so":1361,"decades":[1950,1960,1970],"seasons":[{"y":1955,"team":"STL","g":4,"w":0,"l":0,"era":4.74,"ip":19.0,"so":7,"whip":1.53},{"y":1956,"team":"STL","g":39,"w":7,"l":6,"era":3.4,"ip":116.1,"so":59,"whip":1.4},{"y":1957,"team":"STL","g":30,"w":15,"l":9,"era":3.49,"ip":191.0,"so":75,"whip":1.3},{"y":1958,"team":"STL","g":26,"w":5,"l":7,"era":5.8,"ip":108.2,"so":47,"whip":1.56},{"y":1959,"team":"STL","g":62,"w":14,"l":12,"era":3.82,"ip":132.0,"so":86,"whip":1.4},{"y":1960,"team":"STL","g":65,"w":12,"l":4,"era":2.09,"ip":116.1,"so":105,"whip":0.94},{"y":1961,"team":"STL","g":55,"w":10,"l":6,"era":4.87,"ip":94.1,"so":65,"whip":1.57},{"y":1962,"team":"STL","g":55,"w":3,"l":10,"era":4.12,"ip":107.0,"so":79,"whip":1.17},{"y":1963,"team":"CHC","g":57,"w":13,"l":7,"era":2.86,"ip":88.0,"so":75,"whip":1.24},{"y":1964,"team":"CHC","g":63,"w":1,"l":7,"era":3.88,"ip":95.0,"so":71,"whip":1.34},{"y":1965,"team":"CHC","g":71,"w":5,"l":6,"era":2.59,"ip":128.2,"so":92,"whip":1.26},{"y":1966,"team":"SFG","g":64,"w":10,"l":5,"era":2.66,"ip":121.2,"so":93,"whip":1.13},{"y":1967,"team":"SFG","g":41,"w":2,"l":6,"era":3.72,"ip":72.2,"so":48,"whip":1.28},{"y":1968,"team":"NYY","g":36,"w":4,"l":1,"era":3.31,"ip":70.2,"so":52,"whip":1.09},{"y":1969,"team":"NYY","g":51,"w":5,"l":6,"era":3.55,"ip":83.2,"so":60,"whip":1.28},{"y":1970,"team":"NYY","g":62,"w":9,"l":5,"era":2.01,"ip":111.2,"so":81,"whip":0.99},{"y":1971,"team":"NYY","g":44,"w":5,"l":10,"era":5.04,"ip":69.2,"so":39,"whip":1.52},{"y":1972,"team":"NYY","g":37,"w":3,"l":1,"era":2.25,"ip":68.0,"so":47,"whip":1.16},{"y":1973,"team":"NYY","g":47,"w":12,"l":6,"era":2.86,"ip":160.1,"so":93,"whip":1.23},{"y":1974,"team":"KCR","g":38,"w":1,"l":4,"era":3.46,"ip":106.2,"so":47,"whip":1.25},{"y":1975,"team":"KCR","g":40,"w":5,"l":1,"era":4.15,"ip":78.0,"so":40,"whip":1.35}],"answer":true},{"name":"Fernando Rodney","type":"pit","pos":"RELIEVER","first":2002,"last":2019,"teams":["DET","LAA","TBR","SEA","CHC","SDP","MIA","ARI","MIN","OAK","WSN"],"games":951,"ip":933.0,"wins":48,"so":943,"decades":[2000,2010],"seasons":[{"y":2002,"team":"DET","g":20,"w":1,"l":3,"era":6.0,"ip":18.0,"so":10,"whip":1.94},{"y":2003,"team":"DET","g":27,"w":1,"l":3,"era":6.07,"ip":29.2,"so":33,"whip":1.75},{"y":2005,"team":"DET","g":39,"w":2,"l":3,"era":2.86,"ip":44.0,"so":42,"whip":1.27},{"y":2006,"team":"DET","g":63,"w":7,"l":4,"era":3.52,"ip":71.2,"so":65,"whip":1.19},{"y":2007,"team":"DET","g":48,"w":2,"l":6,"era":4.26,"ip":50.2,"so":54,"whip":1.32},{"y":2008,"team":"DET","g":38,"w":0,"l":6,"era":4.91,"ip":40.1,"so":49,"whip":1.59},{"y":2009,"team":"DET","g":73,"w":2,"l":5,"era":4.4,"ip":75.2,"so":61,"whip":1.47},{"y":2010,"team":"LAA","g":72,"w":4,"l":3,"era":4.24,"ip":68.0,"so":53,"whip":1.54},{"y":2011,"team":"LAA","g":39,"w":3,"l":5,"era":4.5,"ip":32.0,"so":26,"whip":1.69},{"y":2012,"team":"TBR","g":76,"w":2,"l":2,"era":0.6,"ip":74.2,"so":76,"whip":0.78},{"y":2013,"team":"TBR","g":68,"w":5,"l":4,"era":3.37,"ip":66.2,"so":82,"whip":1.33},{"y":2014,"team":"SEA","g":69,"w":1,"l":6,"era":2.85,"ip":66.1,"so":76,"whip":1.34},{"y":2015,"team":"SEA","g":68,"w":7,"l":5,"era":4.74,"ip":62.2,"so":58,"whip":1.4},{"y":2016,"team":"MIA","g":67,"w":2,"l":4,"era":3.44,"ip":65.1,"so":74,"whip":1.39},{"y":2017,"team":"ARI","g":61,"w":5,"l":4,"era":4.23,"ip":55.1,"so":65,"whip":1.19},{"y":2018,"team":"MIN","g":68,"w":4,"l":3,"era":3.36,"ip":64.1,"so":70,"whip":1.46},{"y":2019,"team":"WSN","g":55,"w":0,"l":5,"era":5.66,"ip":47.2,"so":49,"whip":1.62}],"answer":true},{"name":"Francisco Rodriguez","type":"pit","pos":"RELIEVER","first":2002,"last":2017,"teams":["ANA","LAA","NYM","MIL","BAL","DET"],"games":948,"ip":976.0,"wins":52,"so":1142,"decades":[2000,2010],"seasons":[{"y":2002,"team":"ANA","g":5,"w":0,"l":0,"era":0.0,"ip":5.2,"so":13,"whip":0.88},{"y":2003,"team":"ANA","g":59,"w":8,"l":3,"era":3.03,"ip":86.0,"so":95,"whip":0.99},{"y":2004,"team":"ANA","g":69,"w":4,"l":1,"era":1.82,"ip":84.0,"so":123,"whip":1.0},{"y":2005,"team":"LAA","g":66,"w":2,"l":5,"era":2.67,"ip":67.1,"so":91,"whip":1.14},{"y":2006,"team":"LAA","g":69,"w":2,"l":3,"era":1.73,"ip":73.0,"so":98,"whip":1.1},{"y":2007,"team":"LAA","g":64,"w":5,"l":2,"era":2.81,"ip":67.1,"so":90,"whip":1.25},{"y":2008,"team":"LAA","g":76,"w":2,"l":3,"era":2.24,"ip":68.1,"so":77,"whip":1.29},{"y":2009,"team":"NYM","g":70,"w":3,"l":6,"era":3.71,"ip":68.0,"so":73,"whip":1.31},{"y":2010,"team":"NYM","g":53,"w":4,"l":2,"era":2.2,"ip":57.1,"so":67,"whip":1.15},{"y":2011,"team":"NYM","g":73,"w":6,"l":2,"era":2.64,"ip":71.2,"so":79,"whip":1.3},{"y":2012,"team":"MIL","g":78,"w":2,"l":7,"era":4.38,"ip":72.0,"so":72,"whip":1.33},{"y":2013,"team":"MIL","g":48,"w":3,"l":2,"era":2.7,"ip":46.2,"so":54,"whip":1.2},{"y":2014,"team":"MIL","g":69,"w":5,"l":5,"era":3.04,"ip":68.0,"so":73,"whip":0.99},{"y":2015,"team":"MIL","g":60,"w":1,"l":3,"era":2.21,"ip":57.0,"so":62,"whip":0.86},{"y":2016,"team":"DET","g":61,"w":3,"l":4,"era":3.24,"ip":58.1,"so":52,"whip":1.13},{"y":2017,"team":"DET","g":28,"w":2,"l":5,"era":7.82,"ip":25.1,"so":23,"whip":1.66}],"answer":true},{"name":"Rollie Fingers","type":"pit","pos":"RELIEVER","first":1968,"last":1985,"teams":["OAK","SDP","MIL"],"games":944,"ip":1701.1,"wins":114,"so":1299,"decades":[1970,1980],"seasons":[{"y":1968,"team":"OAK","g":1,"w":0,"l":0,"era":27.0,"ip":1.1,"so":0,"whip":3.75},{"y":1969,"team":"OAK","g":60,"w":6,"l":7,"era":3.71,"ip":119.0,"so":61,"whip":1.32},{"y":1970,"team":"OAK","g":45,"w":7,"l":9,"era":3.65,"ip":148.0,"so":79,"whip":1.25},{"y":1971,"team":"OAK","g":48,"w":4,"l":6,"era":2.99,"ip":129.1,"so":98,"whip":0.96},{"y":1972,"team":"OAK","g":65,"w":11,"l":9,"era":2.51,"ip":111.1,"so":113,"whip":1.05},{"y":1973,"team":"OAK","g":62,"w":7,"l":8,"era":1.92,"ip":126.2,"so":110,"whip":1.15},{"y":1974,"team":"OAK","g":76,"w":9,"l":5,"era":2.65,"ip":119.0,"so":95,"whip":1.12},{"y":1975,"team":"OAK","g":75,"w":10,"l":6,"era":2.98,"ip":126.2,"so":115,"whip":1.01},{"y":1976,"team":"OAK","g":70,"w":13,"l":11,"era":2.47,"ip":134.2,"so":113,"whip":1.17},{"y":1977,"team":"SDP","g":78,"w":8,"l":9,"era":2.99,"ip":132.1,"so":113,"whip":1.2},{"y":1978,"team":"SDP","g":67,"w":6,"l":13,"era":2.52,"ip":107.1,"so":72,"whip":1.05},{"y":1979,"team":"SDP","g":54,"w":9,"l":9,"era":4.52,"ip":83.2,"so":65,"whip":1.53},{"y":1980,"team":"SDP","g":66,"w":11,"l":9,"era":2.8,"ip":103.0,"so":69,"whip":1.29},{"y":1981,"team":"MIL","g":47,"w":6,"l":3,"era":1.04,"ip":78.0,"so":61,"whip":0.87},{"y":1982,"team":"MIL","g":50,"w":5,"l":6,"era":2.6,"ip":79.2,"so":71,"whip":1.04},{"y":1984,"team":"MIL","g":33,"w":1,"l":2,"era":1.96,"ip":46.0,"so":40,"whip":1.11},{"y":1985,"team":"MIL","g":47,"w":1,"l":6,"era":5.04,"ip":55.1,"so":24,"whip":1.41}],"answer":true},{"name":"Kenley Jansen","type":"pit","pos":"RELIEVER","first":2010,"last":2025,"teams":["LAD","ATL","BOS","LAA"],"games":933,"ip":927.1,"wins":54,"so":1278,"decades":[2010,2020],"seasons":[{"y":2010,"team":"LAD","g":25,"w":1,"l":0,"era":0.67,"ip":27.0,"so":41,"whip":1.0},{"y":2011,"team":"LAD","g":51,"w":2,"l":1,"era":2.85,"ip":53.2,"so":96,"whip":1.04},{"y":2012,"team":"LAD","g":65,"w":5,"l":3,"era":2.35,"ip":65.0,"so":99,"whip":0.85},{"y":2013,"team":"LAD","g":75,"w":4,"l":3,"era":1.88,"ip":76.2,"so":111,"whip":0.86},{"y":2014,"team":"LAD","g":68,"w":2,"l":3,"era":2.76,"ip":65.1,"so":101,"whip":1.13},{"y":2015,"team":"LAD","g":54,"w":2,"l":1,"era":2.41,"ip":52.1,"so":80,"whip":0.78},{"y":2016,"team":"LAD","g":71,"w":3,"l":2,"era":1.83,"ip":68.2,"so":104,"whip":0.67},{"y":2017,"team":"LAD","g":65,"w":5,"l":0,"era":1.32,"ip":68.1,"so":109,"whip":0.75},{"y":2018,"team":"LAD","g":69,"w":1,"l":5,"era":3.01,"ip":71.2,"so":82,"whip":0.99},{"y":2019,"team":"LAD","g":62,"w":5,"l":3,"era":3.71,"ip":63.0,"so":80,"whip":1.06},{"y":2020,"team":"LAD","g":27,"w":3,"l":1,"era":3.33,"ip":24.1,"so":33,"whip":1.15},{"y":2021,"team":"LAD","g":69,"w":4,"l":4,"era":2.22,"ip":69.0,"so":86,"whip":1.04},{"y":2022,"team":"ATL","g":65,"w":5,"l":2,"era":3.38,"ip":64.0,"so":85,"whip":1.05},{"y":2023,"team":"BOS","g":51,"w":3,"l":6,"era":3.63,"ip":44.2,"so":52,"whip":1.28},{"y":2024,"team":"BOS","g":54,"w":4,"l":2,"era":3.29,"ip":54.2,"so":62,"whip":1.06},{"y":2025,"team":"LAA","g":62,"w":5,"l":4,"era":2.59,"ip":59.0,"so":57,"whip":0.95}],"answer":true},{"name":"Gene Garber","type":"pit","pos":"RELIEVER","first":1969,"last":1988,"teams":["PIT","KCR","PHI","ATL"],"games":931,"ip":1510.0,"wins":96,"so":940,"decades":[1970,1980],"seasons":[{"y":1969,"team":"PIT","g":2,"w":0,"l":0,"era":5.4,"ip":5.0,"so":3,"whip":1.4},{"y":1970,"team":"PIT","g":14,"w":0,"l":3,"era":5.24,"ip":22.1,"so":7,"whip":1.43},{"y":1972,"team":"PIT","g":4,"w":0,"l":0,"era":7.11,"ip":6.1,"so":3,"whip":1.58},{"y":1973,"team":"KCR","g":48,"w":9,"l":9,"era":4.24,"ip":152.2,"so":60,"whip":1.4},{"y":1974,"team":"PHI","g":51,"w":5,"l":2,"era":3.08,"ip":76.0,"so":41,"whip":1.55},{"y":1975,"team":"PHI","g":71,"w":10,"l":12,"era":3.6,"ip":110.0,"so":69,"whip":1.19},{"y":1976,"team":"PHI","g":59,"w":9,"l":3,"era":2.82,"ip":92.2,"so":92,"whip":1.17},{"y":1977,"team":"PHI","g":64,"w":8,"l":6,"era":2.35,"ip":103.1,"so":78,"whip":1.02},{"y":1978,"team":"ATL","g":65,"w":6,"l":5,"era":2.15,"ip":117.0,"so":85,"whip":0.92},{"y":1979,"team":"ATL","g":68,"w":6,"l":16,"era":4.33,"ip":106.0,"so":56,"whip":1.37},{"y":1980,"team":"ATL","g":68,"w":5,"l":5,"era":3.83,"ip":82.1,"so":51,"whip":1.45},{"y":1981,"team":"ATL","g":35,"w":4,"l":6,"era":2.61,"ip":58.2,"so":34,"whip":1.18},{"y":1982,"team":"ATL","g":69,"w":8,"l":10,"era":2.34,"ip":119.1,"so":68,"whip":1.11},{"y":1983,"team":"ATL","g":43,"w":4,"l":5,"era":4.6,"ip":60.2,"so":45,"whip":1.57},{"y":1984,"team":"ATL","g":62,"w":3,"l":6,"era":3.06,"ip":106.0,"so":55,"whip":1.2},{"y":1985,"team":"ATL","g":59,"w":6,"l":6,"era":3.61,"ip":97.1,"so":66,"whip":1.26},{"y":1986,"team":"ATL","g":61,"w":5,"l":5,"era":2.54,"ip":78.0,"so":56,"whip":1.23},{"y":1987,"team":"ATL","g":62,"w":8,"l":10,"era":4.09,"ip":83.2,"so":51,"whip":1.54},{"y":1988,"team":"KCR","g":26,"w":0,"l":4,"era":3.58,"ip":32.2,"so":20,"whip":1.29}],"answer":true},{"name":"Sparky Lyle","type":"pit","pos":"RELIEVER","first":1967,"last":1982,"teams":["BOS","NYY","TEX","PHI","CHW"],"games":899,"ip":1390.1,"wins":99,"so":873,"decades":[1960,1970,1980],"seasons":[{"y":1967,"team":"BOS","g":27,"w":1,"l":2,"era":2.28,"ip":43.1,"so":42,"whip":1.08},{"y":1968,"team":"BOS","g":49,"w":6,"l":1,"era":2.74,"ip":65.2,"so":52,"whip":1.23},{"y":1969,"team":"BOS","g":71,"w":8,"l":3,"era":2.54,"ip":102.2,"so":93,"whip":1.35},{"y":1970,"team":"BOS","g":63,"w":1,"l":7,"era":3.88,"ip":67.1,"so":51,"whip":1.43},{"y":1971,"team":"BOS","g":50,"w":6,"l":4,"era":2.75,"ip":52.1,"so":37,"whip":1.22},{"y":1972,"team":"NYY","g":59,"w":9,"l":5,"era":1.92,"ip":107.2,"so":75,"whip":1.05},{"y":1973,"team":"NYY","g":51,"w":5,"l":9,"era":2.51,"ip":82.1,"so":63,"whip":1.02},{"y":1974,"team":"NYY","g":66,"w":9,"l":3,"era":1.66,"ip":114.0,"so":89,"whip":1.19},{"y":1975,"team":"NYY","g":49,"w":5,"l":7,"era":3.12,"ip":89.1,"so":65,"whip":1.46},{"y":1976,"team":"NYY","g":64,"w":7,"l":8,"era":2.26,"ip":103.2,"so":61,"whip":1.2},{"y":1977,"team":"NYY","g":72,"w":13,"l":5,"era":2.17,"ip":137.0,"so":68,"whip":1.2},{"y":1978,"team":"NYY","g":59,"w":9,"l":3,"era":3.47,"ip":111.2,"so":33,"whip":1.33},{"y":1979,"team":"TEX","g":67,"w":5,"l":8,"era":3.13,"ip":95.0,"so":48,"whip":1.12},{"y":1980,"team":"TEX","g":59,"w":3,"l":2,"era":4.28,"ip":94.2,"so":49,"whip":1.5},{"y":1981,"team":"PHI","g":48,"w":9,"l":6,"era":4.44,"ip":75.0,"so":29,"whip":1.57},{"y":1982,"team":"PHI","g":45,"w":3,"l":3,"era":4.62,"ip":48.2,"so":18,"whip":1.64}],"answer":true},{"name":"Jim Kaat","type":"pit","pos":"STARTER","first":1959,"last":1983,"teams":["WSH","MIN","CHW","PHI","NYY","STL"],"games":898,"ip":4530.1,"wins":283,"so":2461,"decades":[1960,1970,1980],"seasons":[{"y":1959,"team":"WSH","g":3,"w":0,"l":2,"era":12.6,"ip":5.0,"so":2,"whip":2.2},{"y":1960,"team":"WSH","g":13,"w":1,"l":5,"era":5.58,"ip":50.0,"so":25,"whip":1.58},{"y":1961,"team":"MIN","g":36,"w":9,"l":17,"era":3.9,"ip":200.2,"so":122,"whip":1.35},{"y":1962,"team":"MIN","g":39,"w":18,"l":14,"era":3.14,"ip":269.0,"so":173,"whip":1.18},{"y":1963,"team":"MIN","g":31,"w":10,"l":10,"era":4.19,"ip":178.1,"so":105,"whip":1.31},{"y":1964,"team":"MIN","g":36,"w":17,"l":11,"era":3.22,"ip":243.0,"so":171,"whip":1.2},{"y":1965,"team":"MIN","g":45,"w":18,"l":11,"era":2.83,"ip":264.1,"so":154,"whip":1.25},{"y":1966,"team":"MIN","g":41,"w":25,"l":13,"era":2.75,"ip":304.2,"so":205,"whip":1.07},{"y":1967,"team":"MIN","g":42,"w":16,"l":13,"era":3.04,"ip":263.1,"so":211,"whip":1.18},{"y":1968,"team":"MIN","g":30,"w":14,"l":12,"era":2.94,"ip":208.0,"so":130,"whip":1.12},{"y":1969,"team":"MIN","g":40,"w":14,"l":13,"era":3.49,"ip":242.1,"so":139,"whip":1.35},{"y":1970,"team":"MIN","g":45,"w":14,"l":10,"era":3.56,"ip":230.1,"so":120,"whip":1.31},{"y":1971,"team":"MIN","g":39,"w":13,"l":14,"era":3.32,"ip":260.1,"so":137,"whip":1.24},{"y":1972,"team":"MIN","g":15,"w":10,"l":2,"era":2.06,"ip":113.1,"so":64,"whip":1.01},{"y":1973,"team":"MIN","g":36,"w":15,"l":13,"era":4.37,"ip":224.1,"so":109,"whip":1.31},{"y":1974,"team":"CHW","g":42,"w":21,"l":13,"era":2.92,"ip":277.1,"so":142,"whip":1.18},{"y":1975,"team":"CHW","g":43,"w":20,"l":14,"era":3.11,"ip":303.2,"so":142,"whip":1.31},{"y":1976,"team":"PHI","g":38,"w":12,"l":14,"era":3.48,"ip":227.2,"so":83,"whip":1.2},{"y":1977,"team":"PHI","g":35,"w":6,"l":11,"era":5.39,"ip":160.1,"so":55,"whip":1.57},{"y":1978,"team":"PHI","g":26,"w":8,"l":5,"era":4.1,"ip":140.1,"so":48,"whip":1.3},{"y":1979,"team":"NYY","g":43,"w":3,"l":3,"era":3.91,"ip":66.2,"so":25,"whip":1.38},{"y":1980,"team":"STL","g":53,"w":8,"l":8,"era":3.94,"ip":134.2,"so":37,"whip":1.37},{"y":1981,"team":"STL","g":41,"w":6,"l":6,"era":3.4,"ip":53.0,"so":8,"whip":1.45},{"y":1982,"team":"STL","g":62,"w":5,"l":3,"era":4.08,"ip":75.0,"so":35,"whip":1.36},{"y":1983,"team":"STL","g":24,"w":0,"l":0,"era":3.89,"ip":34.2,"so":19,"whip":1.67}],"answer":true},{"name":"Kyle Farnsworth","type":"pit","pos":"RELIEVER","first":1999,"last":2014,"teams":["CHC","DET","ATL","NYY","KCR","TBR","PIT","NYM","HOU"],"games":893,"ip":988.2,"wins":43,"so":963,"decades":[2000,2010],"seasons":[{"y":1999,"team":"CHC","g":27,"w":5,"l":9,"era":5.05,"ip":130.0,"so":70,"whip":1.48},{"y":2000,"team":"CHC","g":46,"w":2,"l":9,"era":6.43,"ip":77.0,"so":74,"whip":1.82},{"y":2001,"team":"CHC","g":76,"w":4,"l":6,"era":2.74,"ip":82.0,"so":107,"whip":1.15},{"y":2002,"team":"CHC","g":45,"w":4,"l":6,"era":7.33,"ip":46.2,"so":46,"whip":1.65},{"y":2003,"team":"CHC","g":77,"w":3,"l":2,"era":3.3,"ip":76.1,"so":92,"whip":1.17},{"y":2004,"team":"CHC","g":72,"w":4,"l":5,"era":4.72,"ip":66.2,"so":78,"whip":1.5},{"y":2005,"team":"DET","g":72,"w":1,"l":1,"era":2.19,"ip":70.0,"so":87,"whip":1.01},{"y":2006,"team":"NYY","g":72,"w":3,"l":6,"era":4.36,"ip":66.0,"so":75,"whip":1.36},{"y":2007,"team":"NYY","g":64,"w":2,"l":1,"era":4.8,"ip":60.0,"so":48,"whip":1.45},{"y":2008,"team":"NYY","g":61,"w":2,"l":3,"era":4.48,"ip":60.1,"so":61,"whip":1.52},{"y":2009,"team":"KCR","g":41,"w":1,"l":5,"era":4.58,"ip":37.1,"so":42,"whip":1.53},{"y":2010,"team":"KCR","g":60,"w":3,"l":2,"era":3.34,"ip":64.2,"so":61,"whip":1.14},{"y":2011,"team":"TBR","g":63,"w":5,"l":1,"era":2.18,"ip":57.2,"so":51,"whip":0.99},{"y":2012,"team":"TBR","g":34,"w":1,"l":6,"era":4.0,"ip":27.0,"so":25,"whip":1.33},{"y":2013,"team":"TBR","g":48,"w":3,"l":1,"era":4.7,"ip":38.1,"so":28,"whip":1.38},{"y":2014,"team":"NYM","g":35,"w":0,"l":3,"era":4.4,"ip":28.2,"so":18,"whip":1.64}],"answer":true},{"name":"David Robertson","type":"pit","pos":"RELIEVER","first":2008,"last":2025,"teams":["NYY","CHW","PHI","TBR","CHC","NYM","MIA","TEX"],"games":881,"ip":894.1,"wins":68,"so":1176,"decades":[2010,2020],"seasons":[{"y":2008,"team":"NYY","g":25,"w":4,"l":0,"era":5.34,"ip":30.1,"so":36,"whip":1.45},{"y":2009,"team":"NYY","g":45,"w":2,"l":1,"era":3.3,"ip":43.2,"so":63,"whip":1.35},{"y":2010,"team":"NYY","g":64,"w":4,"l":5,"era":3.82,"ip":61.1,"so":71,"whip":1.5},{"y":2011,"team":"NYY","g":70,"w":4,"l":0,"era":1.08,"ip":66.2,"so":100,"whip":1.12},{"y":2012,"team":"NYY","g":65,"w":2,"l":7,"era":2.67,"ip":60.2,"so":81,"whip":1.17},{"y":2013,"team":"NYY","g":70,"w":5,"l":1,"era":2.04,"ip":66.1,"so":77,"whip":1.04},{"y":2014,"team":"NYY","g":63,"w":4,"l":5,"era":3.08,"ip":64.1,"so":96,"whip":1.06},{"y":2015,"team":"CHW","g":60,"w":6,"l":5,"era":3.41,"ip":63.1,"so":86,"whip":0.93},{"y":2016,"team":"CHW","g":62,"w":5,"l":3,"era":3.47,"ip":62.1,"so":75,"whip":1.36},{"y":2017,"team":"CHW","g":61,"w":9,"l":2,"era":1.84,"ip":68.1,"so":98,"whip":0.85},{"y":2018,"team":"NYY","g":69,"w":8,"l":3,"era":3.23,"ip":69.2,"so":91,"whip":1.03},{"y":2019,"team":"PHI","g":7,"w":0,"l":1,"era":5.4,"ip":6.2,"so":6,"whip":2.1},{"y":2021,"team":"TBR","g":12,"w":0,"l":0,"era":4.5,"ip":12.0,"so":16,"whip":1.25},{"y":2022,"team":"CHC","g":58,"w":4,"l":3,"era":2.4,"ip":63.2,"so":81,"whip":1.16},{"y":2023,"team":"NYM","g":62,"w":6,"l":6,"era":3.03,"ip":65.1,"so":78,"whip":1.19},{"y":2024,"team":"TEX","g":68,"w":3,"l":4,"era":3.0,"ip":72.0,"so":99,"whip":1.11},{"y":2025,"team":"PHI","g":20,"w":2,"l":0,"era":4.08,"ip":17.2,"so":22,"whip":1.47}],"answer":true},{"name":"Don McMahon","type":"pit","pos":"RELIEVER","first":1957,"last":1974,"teams":["MLN","HOU","CLE","BOS","CHW","DET","SFG"],"games":874,"ip":1310.2,"wins":90,"so":1003,"decades":[1950,1960,1970],"seasons":[{"y":1957,"team":"MLN","g":32,"w":2,"l":3,"era":1.54,"ip":46.2,"so":46,"whip":1.33},{"y":1958,"team":"MLN","g":38,"w":7,"l":2,"era":3.68,"ip":58.2,"so":37,"whip":1.35},{"y":1959,"team":"MLN","g":60,"w":5,"l":3,"era":2.57,"ip":80.2,"so":55,"whip":1.46},{"y":1960,"team":"MLN","g":48,"w":3,"l":6,"era":5.94,"ip":63.2,"so":50,"whip":1.54},{"y":1961,"team":"MLN","g":53,"w":6,"l":4,"era":2.84,"ip":92.0,"so":55,"whip":1.47},{"y":1962,"team":"HOU","g":53,"w":5,"l":6,"era":1.69,"ip":79.2,"so":72,"whip":1.12},{"y":1963,"team":"HOU","g":49,"w":1,"l":5,"era":4.05,"ip":80.0,"so":51,"whip":1.36},{"y":1964,"team":"CLE","g":70,"w":6,"l":4,"era":2.41,"ip":101.0,"so":92,"whip":1.18},{"y":1965,"team":"CLE","g":58,"w":3,"l":3,"era":3.28,"ip":85.0,"so":60,"whip":1.36},{"y":1966,"team":"BOS","g":61,"w":9,"l":8,"era":2.69,"ip":90.1,"so":62,"whip":1.3},{"y":1967,"team":"CHW","g":63,"w":6,"l":2,"era":1.98,"ip":109.1,"so":84,"whip":0.99},{"y":1968,"team":"CHW","g":45,"w":5,"l":2,"era":1.98,"ip":81.2,"so":65,"whip":1.02},{"y":1969,"team":"DET","g":47,"w":6,"l":6,"era":3.56,"ip":60.2,"so":59,"whip":1.07},{"y":1970,"team":"SFG","g":61,"w":9,"l":5,"era":2.96,"ip":94.1,"so":74,"whip":1.22},{"y":1971,"team":"SFG","g":61,"w":10,"l":6,"era":4.06,"ip":82.0,"so":71,"whip":1.34},{"y":1972,"team":"SFG","g":44,"w":3,"l":3,"era":3.71,"ip":63.0,"so":45,"whip":1.06},{"y":1973,"team":"SFG","g":22,"w":4,"l":0,"era":1.48,"ip":30.1,"so":20,"whip":0.92},{"y":1974,"team":"SFG","g":9,"w":0,"l":0,"era":3.09,"ip":11.2,"so":5,"whip":1.29}],"answer":true},{"name":"Joe Smith","type":"pit","pos":"RELIEVER","first":2007,"last":2022,"teams":["NYM","CLE","LAA","CHC","TOR","HOU","SEA","MIN"],"games":866,"ip":762.1,"wins":55,"so":666,"decades":[2000,2010],"seasons":[{"y":2007,"team":"NYM","g":54,"w":3,"l":2,"era":3.45,"ip":44.1,"so":45,"whip":1.56},{"y":2008,"team":"NYM","g":82,"w":6,"l":3,"era":3.55,"ip":63.1,"so":52,"whip":1.29},{"y":2009,"team":"CLE","g":37,"w":0,"l":0,"era":3.44,"ip":34.0,"so":30,"whip":1.26},{"y":2010,"team":"CLE","g":53,"w":2,"l":2,"era":3.83,"ip":40.0,"so":32,"whip":1.35},{"y":2011,"team":"CLE","g":71,"w":3,"l":3,"era":2.01,"ip":67.0,"so":45,"whip":1.09},{"y":2012,"team":"CLE","g":72,"w":7,"l":4,"era":2.96,"ip":67.0,"so":53,"whip":1.16},{"y":2013,"team":"CLE","g":70,"w":6,"l":2,"era":2.29,"ip":63.0,"so":54,"whip":1.22},{"y":2014,"team":"LAA","g":76,"w":7,"l":2,"era":1.81,"ip":74.2,"so":68,"whip":0.8},{"y":2015,"team":"LAA","g":70,"w":5,"l":5,"era":3.58,"ip":65.1,"so":57,"whip":1.27},{"y":2016,"team":"LAA","g":54,"w":2,"l":5,"era":3.46,"ip":52.0,"so":40,"whip":1.25},{"y":2017,"team":"TOR","g":59,"w":3,"l":0,"era":3.33,"ip":54.0,"so":71,"whip":1.04},{"y":2018,"team":"HOU","g":56,"w":5,"l":1,"era":3.74,"ip":45.2,"so":46,"whip":1.01},{"y":2019,"team":"HOU","g":28,"w":1,"l":0,"era":1.8,"ip":25.0,"so":22,"whip":0.96},{"y":2021,"team":"HOU","g":50,"w":4,"l":4,"era":4.99,"ip":39.2,"so":34,"whip":1.39},{"y":2022,"team":"MIN","g":34,"w":1,"l":1,"era":4.61,"ip":27.1,"so":17,"whip":1.54}],"answer":true},{"name":"Phil Niekro","type":"pit","pos":"STARTER","first":1964,"last":1987,"teams":["MLN","ATL","NYY","CLE","TOR"],"games":864,"ip":5404.1,"wins":318,"so":3342,"decades":[1960,1970,1980],"seasons":[{"y":1964,"team":"MLN","g":10,"w":0,"l":0,"era":4.8,"ip":15.0,"so":8,"whip":1.47},{"y":1965,"team":"MLN","g":41,"w":2,"l":3,"era":2.89,"ip":74.2,"so":49,"whip":1.33},{"y":1966,"team":"ATL","g":28,"w":4,"l":3,"era":4.11,"ip":50.1,"so":17,"whip":1.41},{"y":1967,"team":"ATL","g":46,"w":11,"l":9,"era":1.87,"ip":207.0,"so":129,"whip":1.06},{"y":1968,"team":"ATL","g":37,"w":14,"l":12,"era":2.59,"ip":257.0,"so":140,"whip":1.06},{"y":1969,"team":"ATL","g":40,"w":23,"l":13,"era":2.56,"ip":284.1,"so":193,"whip":1.03},{"y":1970,"team":"ATL","g":34,"w":12,"l":18,"era":4.27,"ip":229.2,"so":168,"whip":1.26},{"y":1971,"team":"ATL","g":42,"w":15,"l":14,"era":2.98,"ip":268.2,"so":173,"whip":1.18},{"y":1972,"team":"ATL","g":38,"w":16,"l":12,"era":3.06,"ip":282.1,"so":164,"whip":1.09},{"y":1973,"team":"ATL","g":42,"w":13,"l":10,"era":3.31,"ip":245.0,"so":131,"whip":1.24},{"y":1974,"team":"ATL","g":41,"w":20,"l":13,"era":2.38,"ip":302.1,"so":195,"whip":1.11},{"y":1975,"team":"ATL","g":39,"w":15,"l":15,"era":3.2,"ip":275.2,"so":144,"whip":1.3},{"y":1976,"team":"ATL","g":38,"w":17,"l":11,"era":3.29,"ip":270.2,"so":173,"whip":1.29},{"y":1977,"team":"ATL","g":44,"w":16,"l":20,"era":4.03,"ip":330.1,"so":262,"whip":1.45},{"y":1978,"team":"ATL","g":44,"w":19,"l":18,"era":2.88,"ip":334.1,"so":248,"whip":1.19},{"y":1979,"team":"ATL","g":44,"w":21,"l":20,"era":3.39,"ip":342.0,"so":208,"whip":1.24},{"y":1980,"team":"ATL","g":40,"w":15,"l":18,"era":3.63,"ip":275.0,"so":176,"whip":1.24},{"y":1981,"team":"ATL","g":22,"w":7,"l":7,"era":3.1,"ip":139.1,"so":62,"whip":1.26},{"y":1982,"team":"ATL","g":35,"w":17,"l":4,"era":3.61,"ip":234.1,"so":144,"whip":1.27},{"y":1983,"team":"ATL","g":34,"w":11,"l":10,"era":3.97,"ip":201.2,"so":128,"whip":1.57},{"y":1984,"team":"NYY","g":32,"w":16,"l":8,"era":3.09,"ip":215.2,"so":136,"whip":1.37},{"y":1985,"team":"NYY","g":33,"w":16,"l":12,"era":4.09,"ip":220.0,"so":149,"whip":1.47},{"y":1986,"team":"CLE","g":34,"w":11,"l":11,"era":4.32,"ip":210.1,"so":81,"whip":1.6},{"y":1987,"team":"CLE","g":26,"w":7,"l":13,"era":6.3,"ip":138.2,"so":64,"whip":1.65}],"answer":true},{"name":"Aroldis Chapman","type":"pit","pos":"RELIEVER","first":2010,"last":2025,"teams":["CIN","NYY","CHC","KCR","TEX","PIT","BOS"],"games":863,"ip":821.1,"wins":60,"so":1331,"decades":[2010,2020],"seasons":[{"y":2010,"team":"CIN","g":15,"w":2,"l":2,"era":2.02,"ip":13.1,"so":19,"whip":1.05},{"y":2011,"team":"CIN","g":54,"w":4,"l":1,"era":3.6,"ip":50.0,"so":71,"whip":1.3},{"y":2012,"team":"CIN","g":68,"w":5,"l":5,"era":1.51,"ip":71.2,"so":122,"whip":0.81},{"y":2013,"team":"CIN","g":68,"w":4,"l":5,"era":2.54,"ip":63.2,"so":112,"whip":1.04},{"y":2014,"team":"CIN","g":54,"w":0,"l":3,"era":2.0,"ip":54.0,"so":106,"whip":0.83},{"y":2015,"team":"CIN","g":65,"w":4,"l":4,"era":1.63,"ip":66.1,"so":116,"whip":1.15},{"y":2016,"team":"NYY","g":59,"w":4,"l":1,"era":1.55,"ip":58.0,"so":90,"whip":0.86},{"y":2017,"team":"NYY","g":52,"w":4,"l":3,"era":3.22,"ip":50.1,"so":69,"whip":1.13},{"y":2018,"team":"NYY","g":55,"w":3,"l":0,"era":2.45,"ip":51.1,"so":93,"whip":1.05},{"y":2019,"team":"NYY","g":60,"w":3,"l":2,"era":2.21,"ip":57.0,"so":85,"whip":1.11},{"y":2020,"team":"NYY","g":13,"w":1,"l":1,"era":3.09,"ip":11.2,"so":22,"whip":0.86},{"y":2021,"team":"NYY","g":61,"w":6,"l":4,"era":3.36,"ip":56.1,"so":97,"whip":1.31},{"y":2022,"team":"NYY","g":43,"w":4,"l":4,"era":4.46,"ip":36.1,"so":43,"whip":1.43},{"y":2023,"team":"KCR","g":61,"w":6,"l":5,"era":3.09,"ip":58.1,"so":103,"whip":1.25},{"y":2024,"team":"PIT","g":68,"w":5,"l":5,"era":3.79,"ip":61.2,"so":98,"whip":1.35},{"y":2025,"team":"BOS","g":67,"w":5,"l":3,"era":1.17,"ip":61.1,"so":85,"whip":0.7}],"answer":true},{"name":"Craig Kimbrel","type":"pit","pos":"RELIEVER","first":2010,"last":2025,"teams":["ATL","SDP","BOS","CHC","CHW","LAD","PHI","BAL","HOU"],"games":851,"ip":821.2,"wins":56,"so":1282,"decades":[2010,2020],"seasons":[{"y":2010,"team":"ATL","g":21,"w":4,"l":0,"era":0.44,"ip":20.2,"so":40,"whip":1.21},{"y":2011,"team":"ATL","g":79,"w":4,"l":3,"era":2.1,"ip":77.0,"so":127,"whip":1.04},{"y":2012,"team":"ATL","g":63,"w":3,"l":1,"era":1.01,"ip":62.2,"so":116,"whip":0.65},{"y":2013,"team":"ATL","g":68,"w":4,"l":3,"era":1.21,"ip":67.0,"so":98,"whip":0.88},{"y":2014,"team":"ATL","g":63,"w":0,"l":3,"era":1.61,"ip":61.2,"so":95,"whip":0.91},{"y":2015,"team":"SDP","g":61,"w":4,"l":2,"era":2.58,"ip":59.1,"so":87,"whip":1.04},{"y":2016,"team":"BOS","g":57,"w":2,"l":6,"era":3.4,"ip":53.0,"so":83,"whip":1.09},{"y":2017,"team":"BOS","g":67,"w":5,"l":0,"era":1.43,"ip":69.0,"so":126,"whip":0.68},{"y":2018,"team":"BOS","g":63,"w":5,"l":1,"era":2.74,"ip":62.1,"so":96,"whip":0.99},{"y":2019,"team":"CHC","g":23,"w":0,"l":4,"era":6.53,"ip":20.2,"so":30,"whip":1.6},{"y":2020,"team":"CHC","g":18,"w":0,"l":1,"era":5.28,"ip":15.1,"so":28,"whip":1.43},{"y":2021,"team":"CHC","g":63,"w":4,"l":5,"era":2.26,"ip":59.2,"so":100,"whip":0.91},{"y":2022,"team":"LAD","g":63,"w":6,"l":7,"era":3.75,"ip":60.0,"so":72,"whip":1.32},{"y":2023,"team":"PHI","g":71,"w":8,"l":6,"era":3.26,"ip":69.0,"so":94,"whip":1.04},{"y":2024,"team":"BAL","g":57,"w":7,"l":5,"era":5.33,"ip":52.1,"so":73,"whip":1.36},{"y":2025,"team":"HOU","g":14,"w":0,"l":1,"era":2.25,"ip":12.0,"so":17,"whip":1.42}],"answer":true},{"name":"Roy Face","type":"pit","pos":"RELIEVER","first":1953,"last":1969,"teams":["PIT","DET","MON"],"games":848,"ip":1375.0,"wins":104,"so":877,"decades":[1950,1960],"seasons":[{"y":1953,"team":"PIT","g":41,"w":6,"l":8,"era":6.58,"ip":119.0,"so":56,"whip":1.47},{"y":1955,"team":"PIT","g":42,"w":5,"l":7,"era":3.58,"ip":125.2,"so":84,"whip":1.34},{"y":1956,"team":"PIT","g":68,"w":12,"l":13,"era":3.52,"ip":135.1,"so":96,"whip":1.28},{"y":1957,"team":"PIT","g":59,"w":4,"l":6,"era":3.07,"ip":93.2,"so":53,"whip":1.29},{"y":1958,"team":"PIT","g":57,"w":5,"l":2,"era":2.89,"ip":84.0,"so":47,"whip":1.18},{"y":1959,"team":"PIT","g":57,"w":18,"l":1,"era":2.7,"ip":93.1,"so":69,"whip":1.24},{"y":1960,"team":"PIT","g":68,"w":10,"l":8,"era":2.9,"ip":114.2,"so":72,"whip":1.06},{"y":1961,"team":"PIT","g":62,"w":6,"l":12,"era":3.82,"ip":92.0,"so":55,"whip":1.13},{"y":1962,"team":"PIT","g":63,"w":8,"l":7,"era":1.88,"ip":91.0,"so":45,"whip":1.01},{"y":1963,"team":"PIT","g":56,"w":3,"l":9,"era":3.23,"ip":69.2,"so":41,"whip":1.35},{"y":1964,"team":"PIT","g":55,"w":3,"l":3,"era":5.2,"ip":79.2,"so":63,"whip":1.37},{"y":1965,"team":"PIT","g":16,"w":5,"l":2,"era":2.66,"ip":20.1,"so":19,"whip":1.33},{"y":1966,"team":"PIT","g":54,"w":6,"l":6,"era":2.7,"ip":70.0,"so":67,"whip":1.31},{"y":1967,"team":"PIT","g":61,"w":7,"l":5,"era":2.42,"ip":74.1,"so":41,"whip":1.13},{"y":1968,"team":"PIT","g":45,"w":2,"l":4,"era":2.55,"ip":53.0,"so":35,"whip":1.06},{"y":1969,"team":"MON","g":44,"w":4,"l":2,"era":3.94,"ip":59.1,"so":34,"whip":1.3}],"answer":true},{"name":"Tug McGraw","type":"pit","pos":"RELIEVER","first":1965,"last":1984,"teams":["NYM","PHI"],"games":824,"ip":1514.2,"wins":96,"so":1109,"decades":[1960,1970,1980],"seasons":[{"y":1965,"team":"NYM","g":37,"w":2,"l":7,"era":3.32,"ip":97.2,"so":57,"whip":1.39},{"y":1966,"team":"NYM","g":15,"w":2,"l":9,"era":5.34,"ip":62.1,"so":34,"whip":1.56},{"y":1967,"team":"NYM","g":4,"w":0,"l":3,"era":7.79,"ip":17.1,"so":18,"whip":1.5},{"y":1969,"team":"NYM","g":42,"w":9,"l":3,"era":2.24,"ip":100.1,"so":92,"whip":1.36},{"y":1970,"team":"NYM","g":57,"w":4,"l":6,"era":3.28,"ip":90.2,"so":81,"whip":1.39},{"y":1971,"team":"NYM","g":51,"w":11,"l":4,"era":1.7,"ip":111.0,"so":109,"whip":1.03},{"y":1972,"team":"NYM","g":54,"w":8,"l":6,"era":1.7,"ip":106.0,"so":92,"whip":1.05},{"y":1973,"team":"NYM","g":60,"w":5,"l":6,"era":3.87,"ip":118.2,"so":81,"whip":1.36},{"y":1974,"team":"NYM","g":41,"w":6,"l":11,"era":4.16,"ip":88.2,"so":54,"whip":1.44},{"y":1975,"team":"PHI","g":56,"w":9,"l":6,"era":2.98,"ip":102.2,"so":55,"whip":1.17},{"y":1976,"team":"PHI","g":58,"w":7,"l":6,"era":2.5,"ip":97.1,"so":76,"whip":1.26},{"y":1977,"team":"PHI","g":45,"w":7,"l":3,"era":2.62,"ip":79.0,"so":58,"whip":1.09},{"y":1978,"team":"PHI","g":55,"w":8,"l":7,"era":3.21,"ip":89.2,"so":63,"whip":1.17},{"y":1979,"team":"PHI","g":65,"w":4,"l":3,"era":5.16,"ip":83.2,"so":57,"whip":1.34},{"y":1980,"team":"PHI","g":57,"w":5,"l":4,"era":1.46,"ip":92.1,"so":75,"whip":0.92},{"y":1981,"team":"PHI","g":34,"w":2,"l":4,"era":2.66,"ip":44.0,"so":26,"whip":1.11},{"y":1982,"team":"PHI","g":34,"w":3,"l":3,"era":4.31,"ip":39.2,"so":25,"whip":1.56},{"y":1983,"team":"PHI","g":34,"w":2,"l":1,"era":3.56,"ip":55.2,"so":30,"whip":1.38},{"y":1984,"team":"PHI","g":25,"w":2,"l":0,"era":3.79,"ip":38.0,"so":26,"whip":1.21}],"answer":true},{"name":"Sergio Romo","type":"pit","pos":"RELIEVER","first":2008,"last":2022,"teams":["SFG","LAD","TBR","MIA","MIN","OAK","SEA","TOR"],"games":821,"ip":722.2,"wins":42,"so":789,"decades":[2010,2020],"seasons":[{"y":2008,"team":"SFG","g":29,"w":3,"l":1,"era":2.12,"ip":34.0,"so":33,"whip":0.71},{"y":2009,"team":"SFG","g":45,"w":5,"l":2,"era":3.97,"ip":34.0,"so":41,"whip":1.21},{"y":2010,"team":"SFG","g":68,"w":5,"l":3,"era":2.18,"ip":62.0,"so":70,"whip":0.97},{"y":2011,"team":"SFG","g":65,"w":3,"l":1,"era":1.5,"ip":48.0,"so":70,"whip":0.71},{"y":2012,"team":"SFG","g":69,"w":4,"l":2,"era":1.79,"ip":55.1,"so":63,"whip":0.85},{"y":2013,"team":"SFG","g":65,"w":5,"l":8,"era":2.54,"ip":60.1,"so":58,"whip":1.08},{"y":2014,"team":"SFG","g":64,"w":6,"l":4,"era":3.72,"ip":58.0,"so":59,"whip":0.95},{"y":2015,"team":"SFG","g":70,"w":0,"l":5,"era":2.98,"ip":57.1,"so":71,"whip":1.06},{"y":2016,"team":"SFG","g":40,"w":1,"l":0,"era":2.64,"ip":30.2,"so":33,"whip":1.08},{"y":2017,"team":"LAD","g":55,"w":3,"l":1,"era":3.56,"ip":55.2,"so":59,"whip":1.1},{"y":2018,"team":"TBR","g":73,"w":3,"l":4,"era":4.14,"ip":67.1,"so":75,"whip":1.26},{"y":2019,"team":"MIA","g":65,"w":2,"l":1,"era":3.43,"ip":60.1,"so":60,"whip":1.11},{"y":2020,"team":"MIN","g":24,"w":1,"l":2,"era":4.05,"ip":20.0,"so":23,"whip":1.15},{"y":2021,"team":"OAK","g":66,"w":1,"l":1,"era":4.67,"ip":61.2,"so":60,"whip":1.25},{"y":2022,"team":"SEA","g":23,"w":0,"l":1,"era":7.5,"ip":18.0,"so":14,"whip":1.39}],"answer":true},{"name":"Tyler Clippard","type":"pit","pos":"RELIEVER","first":2007,"last":2022,"teams":["NYY","WSN","OAK","NYM","ARI","CHW","HOU","TOR","CLE","MIN"],"games":807,"ip":872.1,"wins":56,"so":956,"decades":[2000,2010,2020],"seasons":[{"y":2007,"team":"NYY","g":6,"w":3,"l":1,"era":6.33,"ip":27.0,"so":18,"whip":1.7},{"y":2008,"team":"WSN","g":2,"w":1,"l":1,"era":4.35,"ip":10.1,"so":8,"whip":1.84},{"y":2009,"team":"WSN","g":41,"w":4,"l":2,"era":2.69,"ip":60.1,"so":67,"whip":1.13},{"y":2010,"team":"WSN","g":78,"w":11,"l":8,"era":3.07,"ip":91.0,"so":112,"whip":1.21},{"y":2011,"team":"WSN","g":72,"w":3,"l":0,"era":1.83,"ip":88.1,"so":104,"whip":0.84},{"y":2012,"team":"WSN","g":74,"w":2,"l":6,"era":3.72,"ip":72.2,"so":84,"whip":1.16},{"y":2013,"team":"WSN","g":72,"w":6,"l":3,"era":2.41,"ip":71.0,"so":73,"whip":0.86},{"y":2014,"team":"WSN","g":75,"w":7,"l":4,"era":2.18,"ip":70.1,"so":82,"whip":1.0},{"y":2015,"team":"OAK","g":69,"w":5,"l":4,"era":2.92,"ip":71.0,"so":64,"whip":1.13},{"y":2016,"team":"ARI","g":69,"w":4,"l":6,"era":3.57,"ip":63.0,"so":72,"whip":1.27},{"y":2017,"team":"NYY","g":67,"w":2,"l":8,"era":4.77,"ip":60.1,"so":72,"whip":1.29},{"y":2018,"team":"TOR","g":73,"w":4,"l":3,"era":3.67,"ip":68.2,"so":85,"whip":1.17},{"y":2019,"team":"CLE","g":53,"w":1,"l":0,"era":2.9,"ip":62.0,"so":64,"whip":0.85},{"y":2020,"team":"MIN","g":26,"w":2,"l":1,"era":2.77,"ip":26.0,"so":26,"whip":0.88},{"y":2021,"team":"ARI","g":26,"w":1,"l":1,"era":3.2,"ip":25.1,"so":21,"whip":1.3},{"y":2022,"team":"WSN","g":4,"w":0,"l":0,"era":7.2,"ip":5.0,"so":4,"whip":2.0}],"answer":true},{"name":"Bryan Shaw","type":"pit","pos":"RELIEVER","first":2011,"last":2024,"teams":["ARI","CLE","COL","SEA","CHW"],"games":796,"ip":764.1,"wins":43,"so":681,"decades":[2010,2020],"seasons":[{"y":2011,"team":"ARI","g":33,"w":1,"l":0,"era":2.54,"ip":28.1,"so":24,"whip":1.34},{"y":2012,"team":"ARI","g":64,"w":1,"l":6,"era":3.49,"ip":59.1,"so":41,"whip":1.42},{"y":2013,"team":"CLE","g":70,"w":7,"l":3,"era":3.24,"ip":75.0,"so":73,"whip":1.17},{"y":2014,"team":"CLE","g":80,"w":5,"l":5,"era":2.59,"ip":76.1,"so":64,"whip":1.09},{"y":2015,"team":"CLE","g":74,"w":3,"l":3,"era":2.95,"ip":64.0,"so":54,"whip":1.22},{"y":2016,"team":"CLE","g":75,"w":2,"l":5,"era":3.24,"ip":66.2,"so":69,"whip":1.26},{"y":2017,"team":"CLE","g":79,"w":4,"l":6,"era":3.52,"ip":76.2,"so":73,"whip":1.21},{"y":2018,"team":"COL","g":61,"w":4,"l":6,"era":5.93,"ip":54.2,"so":54,"whip":1.79},{"y":2019,"team":"COL","g":70,"w":3,"l":2,"era":5.38,"ip":72.0,"so":58,"whip":1.36},{"y":2020,"team":"SEA","g":6,"w":1,"l":0,"era":18.0,"ip":6.0,"so":4,"whip":3.17},{"y":2021,"team":"CLE","g":81,"w":6,"l":7,"era":3.49,"ip":77.1,"so":71,"whip":1.38},{"y":2022,"team":"CLE","g":60,"w":6,"l":2,"era":5.4,"ip":58.1,"so":52,"whip":1.44},{"y":2023,"team":"CHW","g":38,"w":0,"l":0,"era":4.14,"ip":45.2,"so":40,"whip":1.23},{"y":2024,"team":"CHW","g":5,"w":0,"l":1,"era":9.0,"ip":4.0,"so":4,"whip":3.0}],"answer":true},{"name":"Steve Cishek","type":"pit","pos":"RELIEVER","first":2010,"last":2022,"teams":["FLA","MIA","STL","SEA","TBR","CHC","CHW","LAA","WSN"],"games":737,"ip":710.2,"wins":33,"so":743,"decades":[2010,2020],"seasons":[{"y":2010,"team":"FLA","g":3,"w":0,"l":0,"era":0.0,"ip":4.1,"so":3,"whip":0.46},{"y":2011,"team":"FLA","g":45,"w":2,"l":1,"era":2.63,"ip":54.2,"so":55,"whip":1.17},{"y":2012,"team":"MIA","g":68,"w":5,"l":2,"era":2.69,"ip":63.2,"so":68,"whip":1.3},{"y":2013,"team":"MIA","g":69,"w":4,"l":6,"era":2.33,"ip":69.2,"so":74,"whip":1.08},{"y":2014,"team":"MIA","g":67,"w":4,"l":5,"era":3.17,"ip":65.1,"so":84,"whip":1.21},{"y":2015,"team":"MIA","g":59,"w":2,"l":6,"era":3.58,"ip":55.1,"so":48,"whip":1.48},{"y":2016,"team":"SEA","g":62,"w":4,"l":6,"era":2.81,"ip":64.0,"so":76,"whip":1.02},{"y":2017,"team":"TBR","g":49,"w":3,"l":2,"era":2.01,"ip":44.2,"so":41,"whip":0.9},{"y":2018,"team":"CHC","g":80,"w":4,"l":3,"era":2.18,"ip":70.1,"so":78,"whip":1.04},{"y":2019,"team":"CHC","g":70,"w":4,"l":6,"era":2.95,"ip":64.0,"so":57,"whip":1.2},{"y":2020,"team":"CHW","g":22,"w":0,"l":0,"era":5.4,"ip":20.0,"so":21,"whip":1.5},{"y":2021,"team":"LAA","g":74,"w":0,"l":2,"era":3.42,"ip":68.1,"so":64,"whip":1.49},{"y":2022,"team":"WSN","g":69,"w":1,"l":4,"era":4.21,"ip":66.1,"so":74,"whip":1.22}],"answer":true},{"name":"Ron Kline","type":"pit","pos":"RELIEVER","first":1952,"last":1970,"teams":["PIT","STL","LAA","DET","WSA","MIN","SFG","BOS","ATL"],"games":736,"ip":2078.0,"wins":114,"so":989,"decades":[1950,1960],"seasons":[{"y":1952,"team":"PIT","g":27,"w":0,"l":7,"era":5.49,"ip":78.2,"so":27,"whip":1.78},{"y":1955,"team":"PIT","g":36,"w":6,"l":13,"era":4.15,"ip":136.2,"so":48,"whip":1.57},{"y":1956,"team":"PIT","g":44,"w":14,"l":18,"era":3.38,"ip":264.0,"so":125,"whip":1.3},{"y":1957,"team":"PIT","g":40,"w":9,"l":16,"era":4.04,"ip":205.0,"so":88,"whip":1.34},{"y":1958,"team":"PIT","g":32,"w":13,"l":16,"era":3.53,"ip":237.1,"so":109,"whip":1.31},{"y":1959,"team":"PIT","g":33,"w":11,"l":13,"era":4.26,"ip":186.0,"so":91,"whip":1.38},{"y":1960,"team":"STL","g":34,"w":4,"l":9,"era":6.04,"ip":117.2,"so":54,"whip":1.5},{"y":1961,"team":"LAA","g":36,"w":8,"l":9,"era":4.14,"ip":161.0,"so":97,"whip":1.45},{"y":1962,"team":"DET","g":36,"w":3,"l":6,"era":4.31,"ip":77.1,"so":47,"whip":1.5},{"y":1963,"team":"WSA","g":62,"w":3,"l":8,"era":2.79,"ip":93.2,"so":49,"whip":1.23},{"y":1964,"team":"WSA","g":61,"w":10,"l":7,"era":2.32,"ip":81.1,"so":40,"whip":1.25},{"y":1965,"team":"WSA","g":74,"w":7,"l":6,"era":2.63,"ip":99.1,"so":52,"whip":1.39},{"y":1966,"team":"WSA","g":63,"w":6,"l":4,"era":2.39,"ip":90.1,"so":46,"whip":1.06},{"y":1967,"team":"MIN","g":54,"w":7,"l":1,"era":3.77,"ip":71.2,"so":36,"whip":1.2},{"y":1968,"team":"PIT","g":56,"w":12,"l":5,"era":1.68,"ip":112.2,"so":48,"whip":1.11},{"y":1969,"team":"PIT","g":43,"w":1,"l":6,"era":5.19,"ip":59.0,"so":29,"whip":1.78},{"y":1970,"team":"ATL","g":5,"w":0,"l":0,"era":7.11,"ip":6.1,"so":3,"whip":1.74}],"answer":true},{"name":"Johnny Klippstein","type":"pit","pos":"RELIEVER","first":1950,"last":1967,"teams":["CHC","CIN","LAD","CLE","WSA","PHI","MIN","DET"],"games":711,"ip":1967.2,"wins":101,"so":1158,"decades":[1950,1960],"seasons":[{"y":1950,"team":"CHC","g":33,"w":2,"l":9,"era":5.25,"ip":104.2,"so":51,"whip":1.68},{"y":1951,"team":"CHC","g":35,"w":6,"l":6,"era":4.29,"ip":123.2,"so":56,"whip":1.44},{"y":1952,"team":"CHC","g":41,"w":9,"l":14,"era":4.44,"ip":202.2,"so":110,"whip":1.47},{"y":1953,"team":"CHC","g":48,"w":10,"l":11,"era":4.83,"ip":167.2,"so":113,"whip":1.65},{"y":1954,"team":"CHC","g":36,"w":4,"l":11,"era":5.29,"ip":148.0,"so":69,"whip":1.7},{"y":1955,"team":"CIN","g":39,"w":9,"l":10,"era":3.39,"ip":138.0,"so":68,"whip":1.3},{"y":1956,"team":"CIN","g":37,"w":12,"l":11,"era":4.09,"ip":211.0,"so":86,"whip":1.43},{"y":1957,"team":"CIN","g":46,"w":8,"l":11,"era":5.05,"ip":146.0,"so":99,"whip":1.47},{"y":1958,"team":"LAD","g":57,"w":6,"l":7,"era":4.1,"ip":123.0,"so":95,"whip":1.43},{"y":1959,"team":"LAD","g":28,"w":4,"l":0,"era":5.91,"ip":45.2,"so":30,"whip":1.77},{"y":1960,"team":"CLE","g":49,"w":5,"l":5,"era":2.91,"ip":74.1,"so":46,"whip":1.18},{"y":1961,"team":"WSA","g":42,"w":2,"l":2,"era":6.78,"ip":71.2,"so":41,"whip":1.76},{"y":1962,"team":"CIN","g":40,"w":7,"l":6,"era":4.47,"ip":108.2,"so":67,"whip":1.63},{"y":1963,"team":"PHI","g":49,"w":5,"l":6,"era":1.93,"ip":112.0,"so":86,"whip":1.12},{"y":1964,"team":"MIN","g":44,"w":2,"l":5,"era":2.65,"ip":68.0,"so":52,"whip":1.38},{"y":1965,"team":"MIN","g":56,"w":9,"l":3,"era":2.24,"ip":76.1,"so":59,"whip":1.18},{"y":1966,"team":"MIN","g":26,"w":1,"l":1,"era":3.4,"ip":39.2,"so":26,"whip":1.39},{"y":1967,"team":"DET","g":5,"w":0,"l":0,"era":5.4,"ip":6.2,"so":4,"whip":1.05}],"answer":true},{"name":"Stu Miller","type":"pit","pos":"RELIEVER","first":1952,"last":1968,"teams":["STL","PHI","NYG","SFG","BAL","ATL"],"games":704,"ip":1694.0,"wins":105,"so":1164,"decades":[1950,1960],"seasons":[{"y":1952,"team":"STL","g":12,"w":6,"l":3,"era":2.05,"ip":88.0,"so":64,"whip":1.01},{"y":1953,"team":"STL","g":40,"w":7,"l":8,"era":5.56,"ip":137.2,"so":79,"whip":1.51},{"y":1954,"team":"STL","g":19,"w":2,"l":3,"era":5.79,"ip":46.2,"so":22,"whip":1.8},{"y":1956,"team":"PHI","g":27,"w":5,"l":9,"era":4.5,"ip":114.0,"so":60,"whip":1.55},{"y":1957,"team":"NYG","g":38,"w":7,"l":9,"era":3.63,"ip":124.0,"so":60,"whip":1.25},{"y":1958,"team":"SFG","g":41,"w":6,"l":9,"era":2.47,"ip":182.0,"so":119,"whip":1.15},{"y":1959,"team":"SFG","g":59,"w":8,"l":7,"era":2.84,"ip":167.2,"so":95,"whip":1.32},{"y":1960,"team":"SFG","g":47,"w":7,"l":6,"era":3.9,"ip":101.2,"so":65,"whip":1.29},{"y":1961,"team":"SFG","g":63,"w":14,"l":5,"era":2.66,"ip":122.0,"so":89,"whip":1.08},{"y":1962,"team":"SFG","g":59,"w":5,"l":8,"era":4.12,"ip":107.0,"so":78,"whip":1.39},{"y":1963,"team":"BAL","g":71,"w":5,"l":8,"era":2.24,"ip":112.1,"so":114,"whip":1.3},{"y":1964,"team":"BAL","g":66,"w":7,"l":7,"era":3.06,"ip":97.0,"so":87,"whip":1.14},{"y":1965,"team":"BAL","g":67,"w":14,"l":7,"era":1.89,"ip":119.1,"so":104,"whip":1.0},{"y":1966,"team":"BAL","g":51,"w":9,"l":4,"era":2.25,"ip":92.0,"so":67,"whip":0.95},{"y":1967,"team":"BAL","g":42,"w":3,"l":10,"era":2.55,"ip":81.1,"so":60,"whip":1.22},{"y":1968,"team":"ATL","g":2,"w":0,"l":0,"era":27.0,"ip":1.1,"so":1,"whip":3.75}],"answer":true},{"name":"Ted Abernathy","type":"pit","pos":"RELIEVER","first":1955,"last":1972,"teams":["WSH","CLE","CHC","ATL","CIN","STL","KCR"],"games":681,"ip":1147.2,"wins":63,"so":765,"decades":[1950,1960,1970],"seasons":[{"y":1955,"team":"WSH","g":40,"w":5,"l":9,"era":5.96,"ip":119.1,"so":79,"whip":1.7},{"y":1956,"team":"WSH","g":5,"w":1,"l":3,"era":4.15,"ip":30.1,"so":18,"whip":1.48},{"y":1957,"team":"WSH","g":26,"w":2,"l":10,"era":6.78,"ip":85.0,"so":50,"whip":1.94},{"y":1960,"team":"WSH","g":2,"w":0,"l":0,"era":12.0,"ip":3.0,"so":1,"whip":2.67},{"y":1963,"team":"CLE","g":43,"w":7,"l":2,"era":2.88,"ip":59.1,"so":47,"whip":1.4},{"y":1964,"team":"CLE","g":53,"w":2,"l":6,"era":4.33,"ip":72.2,"so":57,"whip":1.54},{"y":1965,"team":"CHC","g":84,"w":4,"l":6,"era":2.57,"ip":136.1,"so":104,"whip":1.24},{"y":1966,"team":"ATL","g":58,"w":5,"l":7,"era":4.55,"ip":93.0,"so":60,"whip":1.47},{"y":1967,"team":"CIN","g":70,"w":6,"l":3,"era":1.27,"ip":106.1,"so":88,"whip":0.98},{"y":1968,"team":"CIN","g":78,"w":10,"l":7,"era":2.47,"ip":134.2,"so":64,"whip":1.23},{"y":1969,"team":"CHC","g":56,"w":4,"l":3,"era":3.16,"ip":85.1,"so":55,"whip":1.37},{"y":1970,"team":"KCR","g":58,"w":10,"l":3,"era":2.6,"ip":83.0,"so":59,"whip":1.45},{"y":1971,"team":"KCR","g":63,"w":4,"l":6,"era":2.56,"ip":81.0,"so":55,"whip":1.36},{"y":1972,"team":"KCR","g":45,"w":3,"l":4,"era":1.7,"ip":58.1,"so":28,"whip":1.08}],"answer":true}];
+
+let POOL = [];      // everything guessable (autocomplete + clue chips)
+let ANSWERS = [];   // subset that can be the mystery player
+let USING_FALLBACK = false;
+
+async function loadData(){
+  let data = null;
+  try{
+    const r = await fetch('players.json', {cache:'no-store'});
+    if (r.ok) data = await r.json();
+  }catch(e){}
+  if (!data || !data.length){ data = FALLBACK; USING_FALLBACK = true; }
+  POOL = data;
+  ANSWERS = data.filter(p => p.answer && p.seasons && p.seasons.length);
+}
+const commas = n => n.toLocaleString();
+// The headline career number a fan would actually quote, which differs by trade.
+function careerBlurb(p){
+  return p.type === "pit"
+    ? commas(p.games)+' games · '+commas(p.wins)+' wins · '+commas(p.so)+' K · '+p.first+'–'+p.last
+    : commas(p.games)+' games · '+commas(p.hits)+' hits · '+commas(p.hr)+' HR · '+p.first+'–'+p.last;
+}
+
+/* ===================== game state & persistence ===================== */
+const NORMAL_GUESSES = 8, HARD_GUESSES = 5;
+const EPOCH = new Date(2026, 7, 1); // daily #1 = 1 Aug 2026
+
+let mem = {}; // in-memory fallback when localStorage is unavailable (e.g. private mode)
+async function sGet(k){ try{ const raw = localStorage.getItem(k); return raw != null ? JSON.parse(raw) : (mem[k] ?? null); }catch(e){ return mem[k] ?? null; } }
+async function sSet(k,v){ mem[k]=v; try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+
+let settings = { hard:false, light:false };
+let allStats = {}; // modeKey -> {played,wins,streak,maxStreak,dist,lastDailyWon}
+function statsFor(k){ return allStats[k] || (allStats[k] = {played:0, wins:0, streak:0, maxStreak:0, dist:{}, lastDailyWon:null}); }
+let G = null; // current game
+
+/* ---- game modes: All-Time + per-decade + practice ---- */
+const DECADES = [1950,1960,1970,1980,1990,2000,2010,2020];
+const DECADE_LABELS = {1950:"50s",1960:"60s",1970:"70s",1980:"80s",1990:"90s",2000:"2000s",2010:"2010s",2020:"2020s"};
+let currentMode = "alltime";   // active modeKey: "alltime" | "d1950" | "d1960" | ...
+let isDailyMode = true;        // daily vs practice within the active pool
+function poolFor(modeKey){
+  if (modeKey === "alltime") return ANSWERS;
+  const d = parseInt(modeKey.slice(1),10);
+  return ANSWERS.filter(p => (p.decades||[]).includes(d));
+}
+function modeLabel(modeKey){
+  return modeKey === "alltime" ? "All-Time" : DECADE_LABELS[parseInt(modeKey.slice(1),10)];
+}
+// stable per-mode salt (FNV-1a) so each mode's daily picks a different player & order
+function modeSalt(modeKey){
+  let h = 2166136261 >>> 0;
+  for (let i=0;i<modeKey.length;i++){ h ^= modeKey.charCodeAt(i); h = Math.imul(h,16777619) >>> 0; }
+  return h >>> 0;
+}
+
+function dailyIndex(){
+  const now = new Date();
+  const days = Math.floor((new Date(now.getFullYear(),now.getMonth(),now.getDate()) - EPOCH)/86400000);
+  return Math.max(0, days);
+}
+function dailyPlayerIdx(n, pool, salt){
+  // deterministic scramble, per-mode via salt, so days aren't alphabetical and
+  // each mode picks a different player on the same date
+  let x = ((n * 2654435761) >>> 0) ^ (salt >>> 0);
+  x = ((x >>> 13) ^ x) >>> 0;
+  return x % pool.length;
+}
+// seeded PRNG (xorshift32) so a day's reveal order is the same for everyone
+function seededRng(seed){
+  let x = (seed >>> 0) || 1;
+  return function(){
+    x ^= x << 13; x >>>= 0;
+    x ^= x >>> 17;
+    x ^= x << 5;  x >>>= 0;
+    return x / 4294967296;
+  };
+}
+// Fisher–Yates shuffle of [0..n-1] using rand() (defaults to Math.random)
+function shuffledOrder(n, rand){
+  rand = rand || Math.random;
+  const a = Array.from({length:n}, (_,i)=>i);
+  for (let i=n-1;i>0;i--){ const j = Math.floor(rand()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; }
+  return a;
+}
+function todayKey(modeKey){ return "daily-" + modeKey + "-" + dailyIndex(); }
+// A day's record is stored under todayKey() from the first guess onwards, so an
+// unfinished daily survives a refresh. done:false marks a game still in play.
+const isDone = rec => !!rec && rec.done !== false;
+async function saveDailyProgress(){
+  if (!G || !G.isDaily || G.over) return;
+  await sSet(todayKey(G.modeKey), {done:false, hard:G.hard, guesses:G.guesses, revealed:G.revealed});
+}
+
+function newGame(modeKey, isDaily){
+  const pool = poolFor(modeKey);
+  if (!pool.length){ toast("No players for "+modeLabel(modeKey)+" yet"); return G || newGame("alltime", isDaily); }
+  const salt = modeSalt(modeKey);
+  let idx;
+  if (isDaily){
+    idx = dailyPlayerIdx(dailyIndex(), pool, salt);
+  } else {
+    idx = Math.floor(Math.random()*pool.length);
+    if (G && pool[idx].name === G.player.name) idx = (idx+1) % pool.length;
+  }
+  const player = pool[idx];
+  // random order in which seasons are unmasked; seeded per day+mode so every
+  // player sees the same daily sequence, freshly random in practice
+  const rand = isDaily ? seededRng((((dailyIndex()*2654435761) >>> 0) ^ 0x9e3779b9 ^ salt) >>> 0) : Math.random;
+  const revealOrder = shuffledOrder(player.seasons.length, rand);
+  return {
+    modeKey, isDaily, hard: settings.hard, player,
+    maxGuesses: settings.hard ? HARD_GUESSES : NORMAL_GUESSES,
+    guesses: [], revealed: 1, over:false, won:false, revealOrder
+  };
+}
+
+/* ===================== rendering ===================== */
+const $ = id => document.getElementById(id);
+const thead = $("thead"), tbody = $("tbody"), chipsEl = $("chips"), guessList = $("guessList");
+
+function headCell(c, qual){
+  const q = qual ? '<span class="qual">'+qual+'</span>' : '';
+  return '<th data-info="'+c.info+'" title="'+c.info+'">'+q+
+         '<span class="hlong">'+c.long+'</span><span class="hshort">'+c.short+'</span></th>';
+}
+function renderHead(cols){
+  thead.innerHTML = '<tr>' + headCell(YEAR_COL) + headCell(TEAM_COL) +
+    cols.map(c => headCell(c)).join("") + '</tr>';
+  // tap a column header to explain it (hover shows the same via title=)
+  thead.querySelectorAll("th[data-info]").forEach(th => {
+    th.addEventListener("click", () => toast(th.dataset.info));
+  });
+}
+
+function teamCell(team, hard, hardIdx){
+  if (hard) return '<span class="clubdot" style="background:var(--line)"></span>Team ' + String.fromCharCode(65+hardIdx);
+  return '<span class="clubdot" style="background:'+teamColour(team)+'"></span>' +
+         '<span class="tm" data-t="'+team+'" title="'+teamName(team)+'">' + team + '</span>';
+}
+function render(){
+  const p = G.player, seasons = p.seasons;
+  const cols = COLSETS[p.type] || COLSETS.bat;
+  const COLS = cols.length + 2;  // year, team + the stat columns
+  renderHead(cols);
+  // hard mode: stable team letters in order of first appearance
+  const clubOrder = [];
+  seasons.forEach(s => { if(!clubOrder.includes(s.team)) clubOrder.push(s.team); });
+
+  let rows = "";
+  const shown = Math.min(G.revealed, seasons.length);
+  const order = G.revealOrder || Array.from({length:seasons.length}, (_,i)=>i);
+  const allShown = shown >= seasons.length;
+  // Revealed seasons fill from the top in the (random) order they were revealed,
+  // so the first season revealed is always the first row. Once every season is
+  // out, settle into chronological order for a clean full-career read.
+  const shownIdx = allShown ? seasons.map((_,i)=>i) : order.slice(0, shown);
+  for (let r=0;r<seasons.length;r++){
+    if (r < shownIdx.length){
+      const s = seasons[shownIdx[r]];
+      const cells = cols.map(c => '<td>' + (s[c.k] == null ? "–" : c.f(s[c.k])) + '</td>').join("");
+      rows += '<tr class="season"><td>'+s.y+'</td><td>'+
+              teamCell(s.team,G.hard,clubOrder.indexOf(s.team))+'</td>'+cells+'</tr>';
+    } else {
+      rows += '<tr class="masked"><td>··</td><td>––––</td>'+'<td>··</td>'.repeat(COLS-2)+'</tr>';
+    }
+  }
+  // bonus clue rows (normal mode only), unlocked after all seasons shown
+  if (!G.hard){
+    const extra = G.revealed - seasons.length;
+    if (extra >= 1) rows += '<tr class="season bonus"><td colspan="'+COLS+'">POSITION: '+p.pos+'</td></tr>';
+    if (extra >= 2) rows += '<tr class="season bonus"><td colspan="'+COLS+'">CAREER: '+careerBlurb(p)+'</td></tr>';
+  }
+  tbody.innerHTML = rows;
+
+  const nClubs = (p.teams || []).length;
+  $("metaLeft").textContent = (p.type === "pit" ? "PITCHING RECORD · " : "BATTING RECORD · ") +
+    seasons.length + " SEASONS · " + nClubs + (nClubs === 1 ? " CLUB" : " CLUBS");
+  $("metaRight").innerHTML = G.hard ? '<b>HARD</b>' : (G.isDaily ? (modeLabel(G.modeKey).toUpperCase()+' <b>#'+(dailyIndex()+1)+'</b>') : 'PRACTICE');
+  $("remain").innerHTML = G.over ? (G.won ? 'Got it. Come back tomorrow.' : 'Better luck tomorrow.')
+    : 'Guess <b>'+(G.guesses.length+1)+'</b> of <b>'+G.maxGuesses+'</b>';
+  $("guessInput").disabled = G.over;
+  $("btnGo").disabled = G.over || !$("guessInput").value.trim();
+
+  // guess history
+  guessList.innerHTML = G.guesses.map((g,i) => {
+    if (g.skip) return '<div class="guessrow skip"><span>Season revealed</span><span class="n">clue '+(i+1)+'</span></div>';
+    return '<div class="guessrow '+(g.correct?'right':'wrong')+'"><span>'+g.name+'</span><span class="n">'+(g.correct?'✔':'✘ '+(i+1))+'</span></div>';
+  }).join("");
+
+  // aux buttons — once the game is over the clue/give-up pair is replaced by a
+  // way back into the result sheet, so the day stays shareable all day
+  const maxReveal = seasons.length + (G.hard ? 0 : 2);
+  $("btnClue").disabled = G.over || G.revealed >= maxReveal || (G.guesses.length >= G.maxGuesses - 1);
+  $("btnGiveUp").disabled = G.over;
+  $("btnClue").hidden = G.over;
+  $("btnGiveUp").hidden = G.over;
+  $("btnResult").hidden = !G.over;
+}
+
+function renderChips(guessed){
+  if (G.hard){ chipsEl.innerHTML=""; return; }
+  const a = G.player;
+  const aTeams = new Set(a.teams || []);
+  const shared = (guessed.teams||[]).some(t => aTeams.has(t));
+  const samePos = guessed.pos === a.pos;
+  const dir = a.first === guessed.first ? "same year" :
+              (a.first > guessed.first ? "debuted later ↓" : "debuted earlier ↑");
+  chipsEl.innerHTML =
+    '<span class="chip '+(shared?'yes':'no')+'">'+(shared?'✔':'✘')+' shared club</span>' +
+    '<span class="chip '+(samePos?'yes':'no')+'">'+(samePos?'✔':'✘')+' position</span>' +
+    '<span class="chip">vs your guess: '+dir+'</span>';
+}
+
+/* ===================== guessing ===================== */
+const input = $("guessInput"), ac = $("ac");
+let acItems = [], acHl = -1;
+
+function norm(s){ return s.toLowerCase().normalize("NFD").replace(/[^a-z ]/g,""); }
+function filterPlayers(q){
+  q = norm(q);
+  if (!q) return [];
+  const guessedNames = new Set(G.guesses.filter(g=>!g.skip).map(g=>g.name));
+  return POOL.filter(p => !guessedNames.has(p.name) && norm(p.name).includes(q)).slice(0,6);
+}
+function openAc(list){
+  acItems = list; acHl = -1;
+  if (!list.length){ ac.classList.remove("open"); ac.innerHTML=""; return; }
+  ac.innerHTML = list.map((p,i) =>
+    '<button class="acitem" data-i="'+i+'">'+p.name+'<small>'+p.first+'–'+p.last+'</small></button>'
+  ).join("");
+  ac.classList.add("open");
+}
+input.addEventListener("input", () => { openAc(filterPlayers(input.value)); $("btnGo").disabled = G.over || !input.value.trim(); });
+input.addEventListener("keydown", e => {
+  if (e.key === "ArrowDown" || e.key === "ArrowUp"){
+    e.preventDefault();
+    if (!acItems.length) return;
+    acHl = (acHl + (e.key==="ArrowDown"?1:-1) + acItems.length) % acItems.length;
+    [...ac.children].forEach((el,i)=>el.classList.toggle("hl", i===acHl));
+  } else if (e.key === "Enter"){
+    if (acHl >= 0) pickPlayer(acItems[acHl]); else submitGuess();
+  }
+});
+ac.addEventListener("click", e => {
+  const b = e.target.closest(".acitem");
+  if (b) pickPlayer(acItems[+b.dataset.i]);
+});
+function pickPlayer(p){ input.value = p.name; ac.classList.remove("open"); submitGuess(); }
+$("btnGo").addEventListener("click", submitGuess);
+document.addEventListener("click", e => { if (!e.target.closest(".guessbar")) ac.classList.remove("open"); });
+// tap a club code in the table for the full name
+tbody.addEventListener("click", e => {
+  const t = e.target.closest(".tm");
+  if (t) toast(teamName(t.dataset.t));
+});
+
+async function submitGuess(){
+  if (G.over) return;
+  const q = norm(input.value.trim());
+  const p = POOL.find(pl => norm(pl.name) === q) || filterPlayers(input.value)[0];
+  if (!p){ toast("Pick a player from the list"); return; }
+  if (G.guesses.some(g => !g.skip && g.name === p.name)){ toast("Already guessed"); return; }
+
+  const correct = p.name === G.player.name;
+  G.guesses.push({name:p.name, correct});
+  input.value = ""; ac.classList.remove("open");
+
+  if (correct){
+    G.over = true; G.won = true;
+    await finishGame();
+  } else {
+    renderChips(p);
+    G.revealed++;
+    if (G.guesses.length >= G.maxGuesses){ G.over = true; G.won = false; G.revealed = 999; await finishGame(); }
+    else await saveDailyProgress();
+  }
+  render();
+}
+
+$("btnClue").addEventListener("click", async () => {
+  if (G.over) return;
+  G.guesses.push({name:"Season revealed", skip:true});
+  G.revealed++;
+  chipsEl.innerHTML = "";
+  if (G.guesses.length >= G.maxGuesses){ G.over = true; G.won = false; G.revealed = 999; await finishGame(); }
+  else await saveDailyProgress();
+  render();
+});
+$("btnResult").addEventListener("click", showResult);
+$("btnGiveUp").addEventListener("click", async () => {
+  if (G.over) return;
+  G.over = true; G.won = false;
+  await finishGame();
+  render();
+});
+
+async function finishGame(){
+  G.revealed = 999; // open the whole table
+  if (G.isDaily){
+    // only count the day once, even though an in-progress record already exists
+    const already = await sGet(todayKey(G.modeKey));
+    if (!isDone(already)){
+      const st = statsFor(G.modeKey);
+      st.played++;
+      if (G.won){
+        st.wins++;
+        // a streak only survives if the previous win was yesterday; skipping a
+        // day starts it over. Stats saved before lastDailyWon was recorded have
+        // no history to judge, so they're given the benefit of the doubt.
+        const d = dailyIndex();
+        const continues = st.lastDailyWon == null || st.lastDailyWon === d - 1;
+        st.streak = continues ? st.streak + 1 : 1;
+        st.lastDailyWon = d;
+        st.maxStreak = Math.max(st.maxStreak, st.streak);
+        st.dist[G.guesses.length] = (st.dist[G.guesses.length]||0)+1;
+      } else st.streak = 0;
+      await sSet("stats", allStats);
+      await sSet(todayKey(G.modeKey), {done:true, won:G.won, n:G.guesses.length, hard:G.hard, guesses:G.guesses});
+    }
+  }
+  setTimeout(showResult, 650);
+}
+
+function showResult(){
+  const p = G.player;
+  $("resTag").textContent = G.isDaily ? ("JOURNEYMAN MLB — "+modeLabel(G.modeKey)+" #"+(dailyIndex()+1)) : "PRACTICE";
+  $("resWho").textContent = p.name;
+  $("resCareer").textContent = p.pos+" · "+careerBlurb(p);
+  $("resVerdict").textContent = G.won
+    ? ["Seer.","Freakish.","Too easy.","Solid read.","Got there.","Scraped in."][Math.min(G.guesses.length-1,5)] + " " + G.guesses.length + "/" + G.maxGuesses
+    : "Not this time.";
+  $("shareFallback").style.display = "none";
+  $("ovResult").classList.add("open");
+}
+
+function shareUrl(){
+  const u = SITE_URL || (location.origin && location.origin !== "null" ? location.origin : "");
+  return u.replace(/\/+$/, "");
+}
+// Deliberately just the score, the grid and a link — the Buy Me a Coffee prompt
+// lives on the result sheet next to the share button, not in what gets pasted
+// into someone else's group chat.
+function shareText(){
+  const n = G.won ? G.guesses.length : "X";
+  const grid = G.guesses.map(g => g.skip ? "⬜" : (g.correct ? "🟩" : "🟥")).join("");
+  const label = G.isDaily ? (modeLabel(G.modeKey)+" #"+(dailyIndex()+1)) : "practice";
+  const url = shareUrl();
+  return "Journeyman MLB — "+label+" "+n+"/"+G.maxGuesses+(G.hard?" (hard)":"")+"\n"+grid+
+    (url ? "\n⚾ Play: "+url : "\n⚾ playjourneyman");
+}
+function legacyCopy(t){
+  try{
+    const ta = document.createElement("textarea");
+    ta.value = t;
+    ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+    document.body.appendChild(ta);
+    ta.focus(); ta.select(); ta.setSelectionRange(0, t.length);
+    const ok = document.execCommand("copy");
+    ta.remove();
+    return ok;
+  }catch(e){ return false; }
+}
+$("btnShare").addEventListener("click", async () => {
+  const t = shareText();
+  if (navigator.share){
+    try{ await navigator.share({text:t}); return; }
+    catch(e){ if (e.name === "AbortError") return; }
+  }
+  let copied = false;
+  try{ await navigator.clipboard.writeText(t); copied = true; }catch(e){}
+  if (!copied) copied = legacyCopy(t);
+  if (copied){ toast("Copied to clipboard"); return; }
+  // last resort: show the text so it can be long-pressed and copied
+  const fb = $("shareFallback");
+  fb.textContent = t;
+  fb.style.display = "block";
+  toast("Long-press the text to copy");
+});
+$("btnAgain").addEventListener("click", () => {
+  $("ovResult").classList.remove("open");
+  startGame(currentMode, false);
+});
+
+/* ===================== stats / settings UI ===================== */
+// The stored streak is only refreshed when a day is played, so a run broken by
+// a missed day has to be spotted at read time. A win yesterday is still live —
+// today can extend it — but anything older is done.
+function currentStreak(stats){
+  if (stats.lastDailyWon == null) return stats.streak;
+  return dailyIndex() - stats.lastDailyWon <= 1 ? stats.streak : 0;
+}
+function renderStats(){
+  const stats = statsFor(currentMode);
+  const wp = stats.played ? Math.round(100*stats.wins/stats.played) : 0;
+  $("statGrid").innerHTML = [
+    [stats.played,"Played"],[wp+"%","Win rate"],[currentStreak(stats),"Streak"],[stats.maxStreak,"Best streak"]
+  ].map(([v,l]) => '<div class="statbox"><div class="v">'+v+'</div><div class="l">'+l+'</div></div>').join("");
+  const max = Math.max(1, ...Object.values(stats.dist));
+  let html = "";
+  for (let i=1;i<=NORMAL_GUESSES;i++){
+    const c = stats.dist[i]||0;
+    const hit = G && G.isDaily && G.modeKey===currentMode && G.won && G.guesses.length===i;
+    html += '<div class="distrow"><span>'+i+'</span><div class="distbar'+(hit?' hit':'')+'" style="width:'+Math.max(10, 100*c/max)+'%">'+c+'</div></div>';
+  }
+  $("dist").innerHTML = html;
+}
+
+function applyTheme(){ document.body.dataset.theme = settings.light ? "light" : "dark"; }
+function renderSettings(){
+  $("tglHard").classList.toggle("on", settings.hard);
+  $("tglLight").classList.toggle("on", settings.light);
+}
+$("tglHard").addEventListener("click", async () => {
+  settings.hard = !settings.hard; renderSettings(); await sSet("settings", settings);
+  toast(settings.hard ? "Hard mode on — next game" : "Hard mode off — next game");
+});
+$("tglLight").addEventListener("click", async () => {
+  settings.light = !settings.light; renderSettings(); applyTheme(); await sSet("settings", settings);
+});
+
+/* ===================== modals / tabs / toast ===================== */
+function openOv(id){ $(id).classList.add("open"); if(id==="ovStats") renderStats(); }
+$("btnHelp").addEventListener("click", ()=>openOv("ovHelp"));
+$("btnStats").addEventListener("click", ()=>openOv("ovStats"));
+$("btnSettings").addEventListener("click", ()=>openOv("ovSettings"));
+$("btnGames").addEventListener("click", ()=>openOv("ovGames"));
+document.querySelectorAll(".overlay").forEach(ov => {
+  ov.addEventListener("click", e => { if (e.target === ov || e.target.closest("[data-close]")) ov.classList.remove("open"); });
+});
+let toastT;
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),2400); }
+
+const tabAll = $("tabAll"), tabDecades = $("tabDecades"), tabPractice = $("tabPractice");
+const decadeBar = $("decadeBar");
+
+function updateTabs(){
+  tabAll.classList.toggle("on", isDailyMode && currentMode==="alltime");
+  tabDecades.classList.toggle("on", currentMode!=="alltime");
+  tabPractice.classList.toggle("on", !isDailyMode);
+  decadeBar.style.display = currentMode!=="alltime" ? "flex" : "none";
+  document.querySelectorAll(".dchip").forEach(c =>
+    c.classList.toggle("on", currentMode === "d"+c.dataset.d));
+  $("decadeSub").textContent = currentMode==="alltime" ? "pick" : DECADE_LABELS[parseInt(currentMode.slice(1),10)];
+}
+
+async function startGame(modeKey, isDaily){
+  currentMode = modeKey; isDailyMode = isDaily;
+  updateTabs();
+  chipsEl.innerHTML = "";
+  if (isDaily){
+    const rec = await sGet(todayKey(modeKey));
+    if (rec){
+      // newGame reproduces the day's player and reveal order deterministically,
+      // so the stored guesses can just be replayed on top of a fresh game.
+      G = newGame(modeKey, true);
+      G.hard = rec.hard; G.maxGuesses = rec.hard?HARD_GUESSES:NORMAL_GUESSES;
+      G.guesses = rec.guesses || [];
+      if (isDone(rec)){
+        // rebuild finished state so the day's result is viewable, not replayable
+        G.over = true; G.won = rec.won; G.revealed = 999;
+        render(); return;
+      }
+      // resume an unfinished daily where it left off
+      G.revealed = rec.revealed || 1;
+      render();
+      // restore the feedback chips for the most recent real guess
+      const last = [...G.guesses].reverse().find(g => !g.skip);
+      const lastPlayer = last && POOL.find(pl => pl.name === last.name);
+      if (lastPlayer) renderChips(lastPlayer);
+      return;
+    }
+  }
+  G = newGame(modeKey, isDaily);
+  render();
+}
+
+tabAll.addEventListener("click", ()=>startGame("alltime", true));
+tabDecades.addEventListener("click", ()=>startGame(currentMode!=="alltime" ? currentMode : "d1990", true));
+tabPractice.addEventListener("click", ()=>startGame(currentMode, false));
+document.querySelectorAll(".dchip").forEach(c =>
+  c.addEventListener("click", ()=>startGame("d"+c.dataset.d, true)));
+
+/* ===================== init ===================== */
+(async function init(){
+  await loadData();
+  const s = await sGet("settings"); if (s) settings = s;
+  const st = await sGet("stats"); if (st) allStats = st;
+  applyTheme(); renderSettings();
+  $("coffeeMain").href = COFFEE_URL;
+  $("coffeeResult").href = COFFEE_URL;
+  let lo = Infinity, hi = -Infinity;
+  POOL.forEach(p => { if(p.first<lo) lo=p.first; if(p.last>hi) hi=p.last; });
+  $("dataYears").innerHTML = POOL.length + " players · seasons " + lo + "–" + hi +
+    '<br>Stats from the <a href="https://sabr.org/lahman-database/" target="_blank" rel="noopener">Lahman Baseball Database</a>. Not affiliated with MLB.';
+  $("dailyNo").textContent = "#" + (dailyIndex()+1);
+  await startGame("alltime", true);
+  if (USING_FALLBACK) toast(POOL.length + " players (offline set)");
+  const seen = await sGet("seenHelp");
+  if (!seen){ openOv("ovHelp"); await sSet("seenHelp", true); }
+})();
+</script>
+</body>
+</html>
